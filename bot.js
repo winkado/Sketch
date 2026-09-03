@@ -123,6 +123,10 @@ function decide(id, b, req) {
     const opts = {leads: b.leads || (b.leads = chooseLeads(b.oppSpecies)), pivot: 'sinistcha', imprisonFirst: false};
     choice = S.ourChoice(req, b.st, opts);
   } catch (e) { console.log('  choice error', e.message); choice = 'default'; }
+  // live server reverts Megas to base forme: press the button on the first move
+  if (req.active && !req.teamPreview && !req.forceSwitch) {
+    choice = choice.split(', ').map((part, i) => (req.active[i] && req.active[i].canMegaEvo && part.startsWith('move ') && !/ mega$/.test(part)) ? part + ' mega' : part).join(', ');
+  }
   if (req.teamPreview) console.log(`  vs ${b.oppName} (${b.oppRating ?? 'unrated'}) six: ${b.oppSpecies.join(', ')} -> lead ${b.leads[0]} + ${b.leads[1]}`);
   if (process.env.VERBOSE) console.log(`  [${room(id)}] T${b.st.turn} -> ${choice}`);
   send(`${room(id)}|/choose ${choice}|${req.rqid}`);
