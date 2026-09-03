@@ -1,5 +1,5 @@
 # One container per bot account. Each holds up to CONCURRENT battles at once (one pending search at a time is the server's rule).
-# Comment out bot2/bot3 if you only have one account.
+# Add more services (bot2, bot3...) with their own PS_USER/PS_PASS for more accounts; keep it to 3-4 per IP.
 x-bot: &bot
   build: .
   restart: unless-stopped
@@ -19,24 +19,6 @@ services:
     environment:
       PS_USER: ${PS_USER_1}
       PS_PASS: ${PS_PASS_1}
-      TEAM: team_trickroom_v7.json
-      GAMES: "300"
-      CONCURRENT: "3"
-  bot2:
-    <<: *bot
-    container_name: sketch-bot2
-    environment:
-      PS_USER: ${PS_USER_2}
-      PS_PASS: ${PS_PASS_2}
-      TEAM: team_trickroom_v7.json
-      GAMES: "300"
-      CONCURRENT: "3"
-  bot3:
-    <<: *bot
-    container_name: sketch-bot3
-    environment:
-      PS_USER: ${PS_USER_3}
-      PS_PASS: ${PS_PASS_3}
       TEAM: team_trickroom_v7.json
       GAMES: "300"
       CONCURRENT: "3"
