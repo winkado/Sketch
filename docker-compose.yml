@@ -1,26 +1,42 @@
-# One container per bot account. Each plays one battle at a time (Showdown's rule); 3-4 accounts is the sane ceiling per IP.
+# One container per bot account. Each holds up to CONCURRENT battles at once (one pending search at a time is the server's rule).
+# Comment out bot2/bot3 if you only have one account.
 x-bot: &bot
   build: .
   restart: unless-stopped
-  stop_grace_period: 30m     # docker stop sends SIGTERM; bot finishes open battles instead of forfeiting
-  environment: &env
-    TEAM: team_trickroom_v7.json
-    GAMES: "300"
-    CONCURRENT: "3"          # simultaneous battles per account
+  stop_grace_period: 30m     # docker stop -> SIGTERM -> bot finishes open battles instead of forfeiting
   volumes:
     - ./replays/own:/app/replays/own
-  logging: { driver: json-file, options: { max-size: "10m", max-file: "5" } }
+  logging:
+    driver: json-file
+    options:
+      max-size: "10m"
+      max-file: "5"
 
 services:
   bot1:
     <<: *bot
     container_name: sketch-bot1
-    environment: { <<: *env, PS_USER: ${PS_USER_1}, PS_PASS: ${PS_PASS_1} }
+    environment:
+      PS_USER: ${PS_USER_1}
+      PS_PASS: ${PS_PASS_1}
+      TEAM: team_trickroom_v7.json
+      GAMES: "300"
+      CONCURRENT: "3"
   bot2:
     <<: *bot
     container_name: sketch-bot2
-    environment: { <<: *env, PS_USER: ${PS_USER_2}, PS_PASS: ${PS_PASS_2} }
+    environment:
+      PS_USER: ${PS_USER_2}
+      PS_PASS: ${PS_PASS_2}
+      TEAM: team_trickroom_v7.json
+      GAMES: "300"
+      CONCURRENT: "3"
   bot3:
     <<: *bot
     container_name: sketch-bot3
-    environment: { <<: *env, PS_USER: ${PS_USER_3}, PS_PASS: ${PS_PASS_3} }
+    environment:
+      PS_USER: ${PS_USER_3}
+      PS_PASS: ${PS_PASS_3}
+      TEAM: team_trickroom_v7.json
+      GAMES: "300"
+      CONCURRENT: "3"
