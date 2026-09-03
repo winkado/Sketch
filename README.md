@@ -1,6 +1,5 @@
 # Sketch
 <p align="center">
-  <img src="smeargle.png" width="800">
   <img src="smeargle.png" width="200">
 </p>
 
