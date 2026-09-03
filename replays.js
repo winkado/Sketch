@@ -46,7 +46,7 @@ async function fetchAll(pages) {
 // ------------------------------------------------------------- protocol parser (same protocol our sim emits)
 function parseReplay(log, players) {
   const st = {turn: 0, tr: false, active: {p1: [null, null], p2: [null, null]}, mons: {p1: {}, p2: {}}, brought: {p1: new Set(), p2: new Set()},
-    leads: {p1: [], p2: []}, actions: [], names: players};
+    leads: {p1: [], p2: []}, actions: [], names: players, items: {}, abilities: {}, movesets: {}};
   const pos = (s) => s && s.match(/^(p[12])([ab]): (.*)$/);
   for (const line of log.split('\n')) {
     const parts = line.split('|'); const tag = parts[1];
@@ -60,8 +60,16 @@ function parseReplay(log, players) {
       if (st.turn === 0) st.leads[m[1]][slot] = species;
       else if (tag === 'switch') st.actions.push({side: m[1], turn: st.turn, species: st.active[m[1]][slot], kind: 'switch', to: species, tr: st.tr});
       st.active[m[1]][slot] = species;
+    } else if (tag === '-item' || tag === '-enditem') {
+      const m = pos(parts[2]); if (m && parts[3]) st.items[m[1] + ':' + (st.mons[m[1]][m[3]] || m[3])] = parts[3];
+    } else if (tag === '-ability') {
+      const m = pos(parts[2]); if (m && parts[3]) st.abilities[m[1] + ':' + (st.mons[m[1]][m[3]] || m[3])] = parts[3];
+    } else if (tag === '-mega') {
+      const m = pos(parts[2]); if (m && parts[4]) st.items[m[1] + ':' + (st.mons[m[1]][m[3]] || m[3])] = parts[4];
     } else if (tag === 'move') {
       const m = pos(parts[2]); if (!m) continue;
+      { const key = m[1] + ':' + (st.mons[m[1]][m[3]] || m[3]); (st.movesets[key] ??= new Set()).add(parts[3]); }
+      for (const p of parts.slice(4)) { const fi = p.match(/\[from\] (item|ability): (.+)/); if (fi) { const key = m[1] + ':' + (st.mons[m[1]][m[3]] || m[3]); (fi[1] === 'item' ? st.items : st.abilities)[key] = fi[2]; } }
       const tgt = pos(parts[4]);
       const targetSpecies = tgt ? (st.mons[tgt[1]][tgt[3]] || tgt[3]) : '';
       st.actions.push({side: m[1], turn: st.turn, species: st.mons[m[1]][m[3]] || m[3], kind: 'move', move: parts[3],
@@ -69,6 +77,10 @@ function parseReplay(log, players) {
     } else if (tag === '-fieldstart' && /Trick Room/.test(parts[2])) st.tr = true;
     else if (tag === '-fieldend' && /Trick Room/.test(parts[2])) st.tr = false;
     else if (tag === 'win') st.winner = parts[2];
+    if (tag && tag.startsWith('-')) {
+      const src = parts.find(p => /^\[of\] /.test(p)); const tgt = pos(parts[2]);
+      for (const p of parts.slice(3)) { const fi = p.match(/^\[from\] (item|ability): (.+)/); if (fi) { const who = src ? pos(src.slice(5)) : tgt; if (who) (fi[1] === 'item' ? st.items : st.abilities)[who[1] + ':' + (st.mons[who[1]][who[3]] || who[3])] = fi[2]; } }
+    }
   }
   return st;
 }
@@ -94,7 +106,7 @@ const inc = (o, k, by = 1) => { o[k] = (o[k] || 0) + by; };
 
 function mine() {
   const files = fs.readdirSync(DIR).filter(f => f.endsWith('.json'));
-  const species = {}, players = {}, byElo = {}; let games = 0; const gamesByElo = {};
+  const species = {}, players = {}, byElo = {}; let games = 0; const gamesByElo = {}; const SETS = {};
   for (const f of files) {
     let rep; try { rep = JSON.parse(fs.readFileSync(path.join(DIR, f), 'utf8')); } catch { continue; }
     if (!rep.log) continue;
@@ -112,6 +124,16 @@ function mine() {
       for (const sp of st.leads[side]) if (sp) inc(EL.led, sp);
       for (const sp of st.brought[side]) { const S_ = species[sp] ??= {brought: 0, led: 0, moves: {T1: {}, 'T2-3': {}, 'T4+': {}}, protectTR: [0, 0], protectNoTR: [0, 0], switches: 0, actions: 0, fakeOutOnSetter: [0, 0], tauntOnSetter: [0, 0]}; S_.brought++; }
       for (const sp of st.leads[side]) if (sp && species[sp]) species[sp].led++;
+    }
+    for (const [key, mv] of Object.entries(st.movesets)) {
+      const sp = key.split(':')[1]; const S2 = SETS[sp] ??= {games: 0, moves: {}, items: {}, abilities: {}, combos: {}, pairs: {}};
+      S2.games++;
+      const list = [...mv].sort();
+      for (const m of list) inc(S2.moves, m);
+      for (let i = 0; i < list.length; i++) for (let j = i + 1; j < list.length; j++) inc(S2.pairs, list[i] + ' | ' + list[j]);
+      if (list.length >= 3) inc(S2.combos, list.join(' / '));
+      if (st.items[key]) inc(S2.items, st.items[key]);
+      if (st.abilities[key]) inc(S2.abilities, st.abilities[key]);
     }
     for (const a of st.actions) {
       const S_ = species[a.species]; if (!S_) continue;
@@ -168,6 +190,15 @@ function mine() {
       switchRate: +(P.switches / (P.moves || 1)).toFixed(3), topLeads: Object.entries(P.leads).sort((a, b) => b[1] - a[1]).slice(0, 3)};
   }
   fs.writeFileSync(path.join(OUT, 'behaviour.json'), JSON.stringify(out, null, 1));
+  // sets.json: per-species revealed move / item / ability frequencies + co-occurrence, for sampling full opposing sets
+  const sets = {};
+  for (const [sp, S2] of Object.entries(SETS)) {
+    if (S2.games < 5) continue;
+    const top = (o, n) => Object.entries(o).sort((a, b) => b[1] - a[1]).slice(0, n).map(([k, v]) => [k, +(v / S2.games).toFixed(3)]);
+    sets[sp] = {games: S2.games, moves: top(S2.moves, 14), items: top(S2.items, 8), abilities: top(S2.abilities, 4), pairs: top(S2.pairs, 20), combos3plus: top(S2.combos, 10)};
+  }
+  fs.writeFileSync(path.join(OUT, 'sets.json'), JSON.stringify(sets, null, 1));
+  console.error(`sets.json: ${Object.keys(sets).length} species with >=5 games (moves/items/abilities are per-game REVEAL rates - a move used in 40% of games is carried by at least 40%)`);
   console.error(`mined ${games} games, ${Object.keys(out.species).length} species, ${Object.keys(out.players).length} players with >=3 games -> models/behaviour.json`);
 }
 
