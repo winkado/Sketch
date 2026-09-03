@@ -14,7 +14,8 @@ const D = Dex.mod('champions');
 const FORMAT = 'gen9championsvgc2026regmb';
 
 // ------------------------------------------------------------------ teams
-const OURS = JSON.parse(fs.readFileSync((require.main === module && process.argv[5]) || '/home/claude/champsolver/team_trickroom_v4.json', 'utf8'));
+const TEAM_PATH = (require.main === module && process.argv[5]) || ['team_trickroom_v7.json', 'team_trickroom_v6.json', 'team_trickroom_v4.json'].map(f => require('path').join(__dirname, f)).find(f => fs.existsSync(f));
+const OURS = TEAM_PATH ? JSON.parse(fs.readFileSync(TEAM_PATH, 'utf8')) : [];
 
 const A = (name, ability, item, nature, evs, moves) => ({name, ability, item, nature, evs, moves});
 const CORES = {
@@ -419,7 +420,7 @@ function oppChoice(req, st, core, policy, rng) {
 }
 
 // ------------------------------------------------------------------ replay-derived opponent model
-const BEH_PATH = process.env.BEH || ['./models/behaviour.json', './behaviour.json', '/home/claude/champsolver/behaviour.json'].find(p => fs.existsSync(p));
+const BEH_PATH = process.env.BEH || [require('path').join(__dirname, 'models/behaviour.json'), './models/behaviour.json', './behaviour.json'].find(p => fs.existsSync(p));
 const BEH = BEH_PATH ? JSON.parse(fs.readFileSync(BEH_PATH, 'utf8')) : null;
 const ELO_BUCKET = process.env.ELO || '<1300';
 function replayMoveDist(species, turn) {
@@ -550,7 +551,7 @@ async function main() {
     console.log(`  Oranguru taunted ${pct(agg.taunted)}  flinched ${pct(agg.flinched)}  encored ${pct(agg.encored)}  opp used TR ${pct(agg.oppTR)}`);
     if (Object.keys(agg.fails).length) console.log('  no-TR causes:', JSON.stringify(agg.fails));
   }
-  fs.writeFileSync(`/home/claude/champsolver/sim_${which}_${policy}.json`, JSON.stringify(results, null, 1));
+  fs.writeFileSync(require('path').join(__dirname, `sim_${which}_${policy}.json`), JSON.stringify(results, null, 1));
 }
 if (require.main === module) main().catch(e => { console.error(e); process.exit(1); });
 module.exports = {mulberry, CORES, OURS, setText, validate, newState, parseLine, estPct, ourChoice, oppChoice, foeSlotTarget, allyTarget, chooseSwitchIn, FORMAT, D};
