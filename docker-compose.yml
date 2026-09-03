@@ -5,6 +5,7 @@ x-bot: &bot
   environment: &env
     TEAM: team_trickroom_v7.json
     GAMES: "300"
+    CONCURRENT: "3"          # simultaneous battles per account
   volumes:
     - ./replays/own:/app/replays/own
   logging: { driver: json-file, options: { max-size: "10m", max-file: "5" } }

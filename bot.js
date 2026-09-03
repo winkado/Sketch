@@ -22,6 +22,7 @@ const TEAMFILE = process.argv[2] || 'team_trickroom_v7.json';
 const MAX_GAMES = +(process.argv[3] || 50);
 const FORMAT = 'gen9championsvgc2026regmb';
 const SERVER = process.env.PS_SERVER || 'wss://sim3.psim.us/showdown/websocket';
+const CONCURRENT = +(process.env.CONCURRENT || 3);   // battles open at once on this account (one pending search at a time is the server's rule)
 if (!USER || !PASS) { console.error('set PS_USER and PS_PASS'); process.exit(1); }
 
 const team = JSON.parse(fs.readFileSync(TEAMFILE, 'utf8'));
@@ -42,7 +43,7 @@ function swapSides(line) {
   return line.replace(/\bp([12])([ab]?)\b/g, (_, n, ab) => 'p' + (n === '1' ? '2' : '1') + ab);
 }
 
-let ws, games = 0, wins = 0, searching = false;
+let ws, games = 0, wins = 0, searching = false, activeGames = 0;
 const battles = {}; // id -> {st, lines, mySide, oppName, oppRating, leads, oppSpecies}
 
 function send(msg) { ws.send(msg); }
@@ -63,11 +64,17 @@ async function login(challstr) {
   setTimeout(search, 1500);
 }
 function search() {
-  if (searching || games >= MAX_GAMES) return;
+  if (searching || games + activeGames >= MAX_GAMES || activeGames >= CONCURRENT) return;
   searching = true;
   send(`|/utm ${packed}`);
   send(`|/search ${FORMAT}`);
-  console.log(`searching ${FORMAT} (game ${games + 1}/${MAX_GAMES})`);
+  console.log(`searching ${FORMAT} (active ${activeGames}/${CONCURRENT}, finished ${games}/${MAX_GAMES})`);
+}
+function onUpdateSearch(json) {
+  let j; try { j = JSON.parse(json); } catch { return; }
+  searching = !!(j.searching && j.searching.length);
+  activeGames = j.games ? Object.keys(j.games).length : 0;
+  if (!searching) setTimeout(search, 500);   // a search just resolved into a battle (or ended): queue the next one
 }
 
 function handleBattleLine(id, line) {
@@ -108,7 +115,7 @@ function decide(id, b, req) {
 
 function finish(id, b, winner) {
   if (b.done) return; b.done = true;
-  games++; searching = false;
+  games++;
   const won = winner === USER;
   if (won) wins++;
   console.log(`game ${games}: ${won ? 'WIN' : 'LOSS'} vs ${b.oppName} (${b.oppRating ?? 'unrated'})  running ${wins}/${games}`);
@@ -117,7 +124,7 @@ function finish(id, b, winner) {
   fs.appendFileSync(path.join(__dirname, 'replays', 'own', 'results.csv'), `${new Date().toISOString()},${USER},${id.replace(/^>/, '')},${b.oppName},${b.oppRating ?? ''},${won ? 1 : 0},${b.leads.join('+')},${b.oppSpecies.join('+')}\n`);
   send(`${id}|/leave`);
   delete battles[id];
-  if (games < MAX_GAMES) setTimeout(search, 4000); else { console.log('done'); setTimeout(() => process.exit(0), 1000); }
+  if (games >= MAX_GAMES && activeGames <= 1) { console.log('done'); setTimeout(() => process.exit(0), 1000); }
 }
 
 function connect() {
@@ -130,7 +137,7 @@ function connect() {
       if (!raw) continue;
       if (raw.startsWith('>')) { room = raw; continue; }
       if (raw.startsWith('|challstr|')) { login(raw.slice('|challstr|'.length)).catch(e => { console.error(e.message); process.exit(1); }); continue; }
-      if (raw.startsWith('|updatesearch|')) continue;
+      if (raw.startsWith('|updatesearch|')) { onUpdateSearch(raw.slice('|updatesearch|'.length)); continue; }
       if (room.startsWith('>battle-')) handleBattleLine(room, raw);
       if (raw.startsWith('|popup|')) console.log('popup:', raw.slice(7, 200));
     }
