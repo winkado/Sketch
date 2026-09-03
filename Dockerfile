@@ -8,7 +8,7 @@ FROM node:22-bookworm-slim
 WORKDIR /app
 COPY --from=build /opt/pokemon-showdown /app/pokemon-showdown
 COPY . /app
-RUN npm install --omit=dev ws && mkdir -p /app/replays/own
+RUN npm install --omit=dev ws && mkdir -p /app/replays/own /app/manager/queue /app/models
 ENV PS_PATH=/app/pokemon-showdown
 # team file and game cap are overridable from compose
-CMD ["sh", "-c", "node bot.js ${TEAM:-team_trickroom_v7.json} ${GAMES:-100000}"]
+CMD ["sh", "-c", "if [ \"$MANAGER\" = \"1\" ]; then (node manager.js 2>&1 | sed -u 's/^/[manager] /') & fi; exec node bot.js ${TEAM:-team_trickroom_v8.json} ${GAMES:-100000}"]

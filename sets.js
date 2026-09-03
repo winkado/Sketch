@@ -11,7 +11,9 @@ const {Dex, Teams, TeamValidator} = require(require('./ps.js'));
 const D = Dex.mod('champions');
 const FORMAT = 'gen9championsvgc2026regmb';
 const SETS_PATH = process.env.SETS || ['./models/sets.json', path.join(__dirname, 'models/sets.json')].find(p => fs.existsSync(p));
-const SETS = SETS_PATH ? JSON.parse(fs.readFileSync(SETS_PATH, 'utf8')) : {};
+let SETS = SETS_PATH ? JSON.parse(fs.readFileSync(SETS_PATH, 'utf8')) : {};
+let SETS_MTIME = SETS_PATH ? fs.statSync(SETS_PATH).mtimeMs : 0;
+setInterval(() => { try { if (SETS_PATH && fs.statSync(SETS_PATH).mtimeMs !== SETS_MTIME) { SETS = JSON.parse(fs.readFileSync(SETS_PATH, 'utf8')); SETS_MTIME = fs.statSync(SETS_PATH).mtimeMs; } } catch {} }, 60000).unref();
 const validator = new TeamValidator(FORMAT);
 
 // Items/abilities that never announce themselves in a replay log; reveal rates for these are meaningless (lower bounds near 0).

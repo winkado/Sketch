@@ -82,3 +82,13 @@ First live run (133 games): setup 92% OK; SWEEPER_ENTRY 34% of losses, Camerupt-
 
 A/B protocol: incumbent on one account/machine, challenger on the other, same period, same policy, a few hundred games each.
 Challenger replaces incumbent only if it wins the A/B. Sims screen candidates; only live A/B promotes them.
+
+## 8. Unattended improvement (`manager.js`, MANAGER=1 in compose)
+Runs beside the bot. Alternates incumbent/challenger team by team on the same account; scores each game into a
+Sequential Probability Ratio Test (challenger must be +5 win-rate points; alpha .05, beta .10; 60-400 games).
+Accept -> challenger becomes incumbent. Reject -> next challenger. When the queue is empty it generates one from
+the dominant loss cause (`losses.js`): SWEEPER_ENTRY -> spread variant for the mon dying on entry; NO_TR_T1 ->
+Oranguru item; PROTECT_STALL/ROOM_EXPIRED -> Imprison->Foul Play. Hand-written challengers: drop a team JSON into
+`manager/queue/` and it goes first. Every 50 games it re-mines behaviour.json/sets.json (own games included) and
+the bot hot-reloads them. State and history: `manager/state.json`. Nothing here needs a human between games.
+What it cannot do: invent a new team concept or a new mechanic-level idea. Those still come from us, via the queue.

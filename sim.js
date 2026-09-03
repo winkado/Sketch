@@ -458,7 +458,10 @@ function oppChoice(req, st, core, policy, rng) {
 
 // ------------------------------------------------------------------ replay-derived opponent model
 const BEH_PATH = process.env.BEH || [require('path').join(__dirname, 'models/behaviour.json'), './models/behaviour.json', './behaviour.json'].find(p => fs.existsSync(p));
-const BEH = BEH_PATH ? JSON.parse(fs.readFileSync(BEH_PATH, 'utf8')) : null;
+let BEH = BEH_PATH ? JSON.parse(fs.readFileSync(BEH_PATH, 'utf8')) : null;
+let BEH_MTIME = BEH_PATH ? fs.statSync(BEH_PATH).mtimeMs : 0;
+function refreshBeh() { try { if (BEH_PATH && fs.statSync(BEH_PATH).mtimeMs !== BEH_MTIME) { BEH = JSON.parse(fs.readFileSync(BEH_PATH, 'utf8')); BEH_MTIME = fs.statSync(BEH_PATH).mtimeMs; console.error('behaviour.json reloaded'); } } catch {} }
+setInterval(refreshBeh, 60000).unref();
 const ELO_BUCKET = process.env.ELO || '<1300';
 function replayMoveDist(species, turn) {
   if (!BEH) return null;
