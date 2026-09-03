@@ -46,7 +46,7 @@ async function fetchAll(pages) {
 // ------------------------------------------------------------- protocol parser (same protocol our sim emits)
 function parseReplay(log, players) {
   const st = {turn: 0, tr: false, active: {p1: [null, null], p2: [null, null]}, mons: {p1: {}, p2: {}}, brought: {p1: new Set(), p2: new Set()},
-    leads: {p1: [], p2: []}, actions: [], names: players, items: {}, abilities: {}, movesets: {}};
+    leads: {p1: [], p2: []}, actions: [], names: players, items: {}, abilities: {}, movesets: {}, hp: {}, faints: {p1: 0, p2: 0}};
   const pos = (s) => s && s.match(/^(p[12])([ab]): (.*)$/);
   for (const line of log.split('\n')) {
     const parts = line.split('|'); const tag = parts[1];
@@ -58,8 +58,12 @@ function parseReplay(log, players) {
       st.brought[m[1]].add(species);
       const slot = m[2] === 'a' ? 0 : 1;
       if (st.turn === 0) st.leads[m[1]][slot] = species;
-      else if (tag === 'switch') st.actions.push({side: m[1], turn: st.turn, species: st.active[m[1]][slot], kind: 'switch', to: species, tr: st.tr});
+      else if (tag === 'switch') st.actions.push({side: m[1], turn: st.turn, species: st.active[m[1]][slot], kind: 'switch', to: species, tr: st.tr, hp: st.hp[m[1] + ':' + st.active[m[1]][slot]] ?? 1, faints: st.faints[m[1]]});
       st.active[m[1]][slot] = species;
+    } else if (tag === '-damage' || tag === '-heal' || tag === '-sethp') {
+      const m = pos(parts[2]); if (m && parts[3]) { const h = parts[3].split(' ')[0]; const [a, b] = h.split('/').map(Number); st.hp[m[1] + ':' + (st.mons[m[1]][m[3]] || m[3])] = b ? a / b : 0; }
+    } else if (tag === 'faint') {
+      const m = pos(parts[2]); if (m) { st.faints[m[1]]++; st.hp[m[1] + ':' + (st.mons[m[1]][m[3]] || m[3])] = 0; }
     } else if (tag === '-item' || tag === '-enditem') {
       const m = pos(parts[2]); if (m && parts[3]) st.items[m[1] + ':' + (st.mons[m[1]][m[3]] || m[3])] = parts[3];
     } else if (tag === '-ability') {
@@ -73,7 +77,7 @@ function parseReplay(log, players) {
       const tgt = pos(parts[4]);
       const targetSpecies = tgt ? (st.mons[tgt[1]][tgt[3]] || tgt[3]) : '';
       st.actions.push({side: m[1], turn: st.turn, species: st.mons[m[1]][m[3]] || m[3], kind: 'move', move: parts[3],
-        target: targetSpecies, targetSide: tgt ? tgt[1] : '', tr: st.tr});
+        target: targetSpecies, targetSide: tgt ? tgt[1] : '', tr: st.tr, hp: st.hp[m[1] + ':' + (st.mons[m[1]][m[3]] || m[3])] ?? 1, faints: st.faints[m[1]]});
     } else if (tag === '-fieldstart' && /Trick Room/.test(parts[2])) st.tr = true;
     else if (tag === '-fieldend' && /Trick Room/.test(parts[2])) st.tr = false;
     else if (tag === 'win') st.winner = parts[2];
@@ -106,7 +110,7 @@ const inc = (o, k, by = 1) => { o[k] = (o[k] || 0) + by; };
 
 function mine() {
   const files = fs.readdirSync(DIR).filter(f => f.endsWith('.json'));
-  const species = {}, players = {}, byElo = {}; let games = 0; const gamesByElo = {}; const SETS = {};
+  const species = {}, players = {}, byElo = {}; let games = 0; const gamesByElo = {}; const SETS = {}; const SWITCH = {};
   for (const f of files) {
     let rep; try { rep = JSON.parse(fs.readFileSync(path.join(DIR, f), 'utf8')); } catch { continue; }
     if (!rep.log) continue;
@@ -136,6 +140,10 @@ function mine() {
       if (st.abilities[key]) inc(S2.abilities, st.abilities[key]);
     }
     for (const a of st.actions) {
+      if (a.species) { const hb = a.hp > 0.75 ? 'hi' : a.hp > 0.4 ? 'mid' : 'lo'; const SW = (SWITCH[a.species] ??= {hi: [0, 0], mid: [0, 0], lo: [0, 0], turn1: [0, 0], underTR: [0, 0]});
+        SW[hb][1]++; if (a.kind === 'switch') SW[hb][0]++;
+        if (a.turn === 1) { SW.turn1[1]++; if (a.kind === 'switch') SW.turn1[0]++; }
+        if (a.tr) { SW.underTR[1]++; if (a.kind === 'switch') SW.underTR[0]++; } }
       const S_ = species[a.species]; if (!S_) continue;
       const pname = (rep.players || [])[a.side === 'p1' ? 0 : 1] || 'unknown';
       const P = players[pname];
@@ -189,6 +197,9 @@ function mine() {
     out.players[p] = {games: P.games, elo: P.ratings ? Math.round(P.ratings.reduce((a, b) => a + b, 0) / P.ratings.length) : null, winRate: +(P.wins / P.games).toFixed(3), protectRate: +(P.protect / (P.moves || 1)).toFixed(3),
       switchRate: +(P.switches / (P.moves || 1)).toFixed(3), topLeads: Object.entries(P.leads).sort((a, b) => b[1] - a[1]).slice(0, 3)};
   }
+  out.switchModel = {};
+  const rate = (p) => p[1] >= 20 ? +(p[0] / p[1]).toFixed(3) : null;
+  for (const [sp, SW] of Object.entries(SWITCH)) out.switchModel[sp] = {hi: rate(SW.hi), mid: rate(SW.mid), lo: rate(SW.lo), turn1: rate(SW.turn1), underTR: rate(SW.underTR), n: SW.hi[1] + SW.mid[1] + SW.lo[1]};
   fs.writeFileSync(path.join(OUT, 'behaviour.json'), JSON.stringify(out, null, 1));
   // sets.json: per-species revealed move / item / ability frequencies + co-occurrence, for sampling full opposing sets
   const sets = {};

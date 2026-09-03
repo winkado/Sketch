@@ -45,3 +45,15 @@ M=12 K=6 S=2 ROLL=10 node arena.js sunchomp 100 search antiTR team_trickroom_v7.
   the replay-derived opponent model is the fix, not more search.
 - Open hole for v5: Basculegion Aqua Jet OHKOs Camerupt-Mega through Trick Room (engine-verified).
   Real players will find it; the heuristic AI mostly didn't.
+
+## 5. Showdown ladder client (v1)
+```bash
+npm install ws
+PS_USER=yourname PS_PASS=yourpass node bot.js team_trickroom_v7.json 20   # 20 games, then stops
+```
+One account, one battle at a time. Decisions = the plan logic from `sim.js` with the data-driven lead rule
+(Sinistcha vs Fake Out cores, Avalugg otherwise). Every game is saved to `replays/own/` and appended to
+`replays/own/results.csv` (time, id, opponent, rating, win, our leads, their six). `node replays.js mine`
+picks up `replays/own` automatically if you copy them into `replays/`.
+Start with a small game count and watch the console: v1 has not been run against the live server.
+Search-agent decisions (arena.js) plug in once opponent-state injection into a local Battle exists — next.

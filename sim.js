@@ -320,6 +320,36 @@ function ourChoice(req, st, opts) {
 function oppChoice(req, st, core, policy, rng) {
   if (policy === 'replay') {
     if (req.teamPreview) { const b = replayLeads(core, rng) || core.brings[Math.floor(rng() * core.brings.length)]; return 'team ' + b.map(i => i + 1).join(''); }
+    if (!req.forceSwitch && BEH && BEH.switchModel) {
+      // voluntary switch: real per-species rate by HP bucket (falls back to pooled 21%); target = bench mon that takes least from our actives
+      const parts = [];
+      let any = false;
+      req.active.forEach((act, i) => {
+        const me = st.active.p2[i]; if (!me || act.trapped) { parts.push(null); return; }
+        const sm = BEH.switchModel[me.species] || BEH.switchModel[me.species.replace(/-Mega.*$/, '')];
+        const hb = me.hp / me.maxhp > 0.75 ? 'hi' : me.hp / me.maxhp > 0.4 ? 'mid' : 'lo';
+        let p = sm ? (st.tr && sm.underTR != null ? sm.underTR : (sm[hb] ?? 0.2)) : 0.2;
+        if (st.turn === 1) p = sm && sm.turn1 != null ? sm.turn1 : 0.05;
+        if (rng() < p) {
+          const bench = req.side.pokemon.map((pk, k) => ({pk, k})).filter(x => !x.pk.active && !/fnt/.test(x.pk.condition));
+          if (bench.length) {
+            let best = null;
+            for (const b of bench) {
+              const spName = b.pk.details.split(',')[0]; const fake = {species: spName, hp: 1, maxhp: 1, side: 'p2'};
+              let threat = 0; st.active.p1.forEach(f => { if (!f) return; for (const mv of ['Eruption', 'Earth Power', 'Ice Spinner', 'Flash Cannon']) threat = Math.max(threat, estPct(f, mv, fake, st, false)); });
+              if (!best || threat < best.threat) best = {k: b.k, threat};
+            }
+            parts.push('switch ' + (best.k + 1)); any = true; return;
+          }
+        }
+        parts.push(null);
+      });
+      if (any) {
+        const rc = replayChoice(req, st, core, rng) || [];
+        const merged = parts.map((p, i) => p || rc[i] || null);
+        if (merged.every(Boolean) && new Set(merged.filter(m => m.startsWith('switch'))).size === merged.filter(m => m.startsWith('switch')).length) return merged.join(', ');
+      }
+    }
     if (!req.forceSwitch && rng() < 0.7) {
       const rc = replayChoice(req, st, core, rng);
       if (rc && rc.every(c => c !== null)) return rc.join(', ');

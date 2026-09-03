@@ -14,6 +14,11 @@ const SETS_PATH = process.env.SETS || ['./models/sets.json', path.join(__dirname
 const SETS = SETS_PATH ? JSON.parse(fs.readFileSync(SETS_PATH, 'utf8')) : {};
 const validator = new TeamValidator(FORMAT);
 
+// Items/abilities that never announce themselves in a replay log; reveal rates for these are meaningless (lower bounds near 0).
+const SILENT_ITEMS = new Set(['Black Glasses', 'Charcoal', 'Mystic Water', 'Magnet', 'Miracle Seed', 'Never-Melt Ice', 'Black Belt', 'Poison Barb', 'Soft Sand', 'Sharp Beak', 'Twisted Spoon', 'Silver Powder', 'Hard Stone', 'Spell Tag', 'Dragon Fang', 'Metal Coat', 'Silk Scarf', 'Fairy Feather', 'Muscle Band', 'Wise Glasses', 'Expert Belt', 'Scope Lens', 'Wide Lens', 'Zoom Lens', 'Bright Powder', 'Choice Scarf', 'Focus Sash', 'Chople Berry', 'Occa Berry', 'Passho Berry', 'Wacan Berry', 'Rindo Berry', 'Yache Berry', 'Shuca Berry', 'Coba Berry', 'Payapa Berry', 'Tanga Berry', 'Charti Berry', 'Kasib Berry', 'Haban Berry', 'Colbur Berry', 'Babiri Berry', 'Chilan Berry', 'Roseli Berry', 'Kebia Berry']);
+const SILENT_ABILITIES = new Set(['Prankster', 'Adaptability', 'Technician', 'Tough Claws', 'Huge Power', 'Pure Power', 'Sheer Force', 'Multiscale', 'Regenerator', 'Magic Guard', 'Unaware', 'Chlorophyll', 'Swift Swim', 'Sand Rush', 'Slush Rush', 'Unburden', 'Mold Breaker', 'Scrappy', 'Iron Fist', 'Strong Jaw', 'Sharpness', 'Infiltrator', 'Competitive', 'Poison Touch', 'Pressure', 'Rock Head', 'Reckless', 'Stamina', 'Guts', 'Solar Power', 'Blaze', 'Overgrow', 'Torrent', 'Swarm', 'No Guard', 'Inner Focus', 'Own Tempo', 'Oblivious', 'Shell Armor', 'Battle Armor', 'Thick Fat', 'Filter', 'Solid Rock', 'Fur Coat', 'Ice Scales', 'Skill Link', 'Serene Grace', 'Super Luck', 'Hyper Cutter', 'Anger Point', 'Contrary', 'Aerilate', 'Pixilate', 'Refrigerate', 'Mega Launcher', 'Berserk', 'Supreme Overlord']);
+// Sash and pinch berries DO announce when they trigger, but only then; treat as half-silent by giving them residual mass too.
+
 const NATURE = {atkspe: 'Jolly', atkhp: 'Adamant', spaspe: 'Timid', spahp: 'Modest', bulkdef: 'Impish', bulkspd: 'Careful', slowatk: 'Brave', slowspa: 'Quiet'};
 
 function weightedPick(entries, rng, exclude = new Set()) {
@@ -64,9 +69,37 @@ function sampleSet(species, revealed = {}, rng = Math.random, tries = 12) {
     for (const id of legal) { const n = nameOf(id); if (!seen.has(n) && D.moves.get(id).basePower >= 60 || ['protect', 'trickroom', 'tailwind', 'fakeout', 'followme', 'ragepowder', 'taunt', 'encore', 'wideguard', 'helpinghand', 'icywind', 'thunderwave'].includes(id)) weights.push([n, 0.01]); }
     while (moves.length < 4) { const m = weightedPick(weights, rng, new Set(moves)); if (!m) break; moves.push(m); }
     // ability
-    const abil = revealed.ability || weightedPick(data.abilities.length ? data.abilities : Object.values(sp.abilities).map(a => [a, 1]), rng) || sp.abilities['0'];
+    // ability: revealed rates for loud abilities; the unexplained residual goes to the species' silent abilities
+    let abil = revealed.ability;
+    if (!abil) {
+      const legalAb = Object.values(sp.abilities);
+      const rev = data.abilities.filter(([a]) => legalAb.includes(a));
+      const known = rev.reduce((s, [, w]) => s + w, 0);
+      const silent = legalAb.filter(a => SILENT_ABILITIES.has(a));
+      const w = rev.map(([a, r]) => [a, r]);
+      const residual = Math.max(0.05, 1 - known);
+      for (const a of (silent.length ? silent : legalAb)) w.push([a, residual / (silent.length || legalAb.length)]);
+      abil = weightedPick(w, rng) || sp.abilities['0'];
+    }
     // item: mega stone if this is a mega; else revealed; else weighted; Item Clause handled by sampleTeam
-    let item = sp.requiredItem || revealed.item || weightedPick(data.items.length ? data.items : [['Sitrus Berry', 1], ['Focus Sash', 1], ['Life Orb', 1], ['Leftovers', 1]], rng) || 'Sitrus Berry';
+    // item: loud items from reveal rates; residual mass to silent items that fit the set (STAB type item, Sash, resist berry, Scarf)
+    let item = sp.requiredItem || revealed.item;
+    if (!item) {
+      const w = data.items.filter(([i]) => !SILENT_ITEMS.has(i) && D.items.get(i).exists).map(([i, r]) => [i, r]);
+      const known = w.reduce((s, [, r]) => s + r, 0);
+      const residual = Math.max(0.15, 1 - known);
+      const stabTypes = sp.types;
+      const TYPEITEM = {Fire: 'Charcoal', Water: 'Mystic Water', Electric: 'Magnet', Grass: 'Miracle Seed', Ice: 'Never-Melt Ice', Fighting: 'Black Belt', Poison: 'Poison Barb', Ground: 'Soft Sand', Flying: 'Sharp Beak', Psychic: 'Twisted Spoon', Bug: 'Silver Powder', Rock: 'Hard Stone', Ghost: 'Spell Tag', Dragon: 'Dragon Fang', Dark: 'Black Glasses', Steel: 'Metal Coat', Fairy: 'Fairy Feather', Normal: 'Silk Scarf'};
+      const attackTypes = moves.map(m => D.moves.get(m)).filter(m => m.category !== 'Status').map(m => m.type).filter(t => stabTypes.includes(t));
+      const cands = [];
+      if (attackTypes.length) cands.push([TYPEITEM[attackTypes[0]], 0.35]);
+      cands.push(['Focus Sash', sp.baseStats.hp + sp.baseStats.def + sp.baseStats.spd < 250 ? 0.3 : 0.1]);
+      cands.push(['Choice Scarf', sp.baseStats.spe >= 60 && sp.baseStats.spe <= 110 ? 0.15 : 0.05]);
+      cands.push(['Chople Berry', 0.1], ['Life Orb', known < 0.3 ? 0.2 : 0.05], ['Sitrus Berry', 0.1]);
+      const ctot = cands.reduce((s, [, x]) => s + x, 0);
+      for (const [i, x] of cands) w.push([i, residual * x / ctot]);
+      item = weightedPick(w, rng) || 'Sitrus Berry';
+    }
     const {evs, nature} = chooseSpread(sp.name, moves, abil, rng);
     const set = {name: sp.name, ability: abil, item, nature, evs, moves};
     const probs = validator.validateTeam(Teams.import(setText(set)));
