@@ -19,10 +19,10 @@ and per-player profiles for anyone with 3+ replays. Re-run `mine` whenever you a
 
 ## 2. Policy-vs-policy at scale (all cores)
 ```bash
-node sim.js all 2000 antiTR team_trickroom_v5.json          # heuristic vs heuristic, ~20 games/s/core
-PIVOT=sinistcha node sim.js all 2000 greedy team_trickroom_v5.json
-node arena.js all 300 search antiTR team_trickroom_v5.json  # search agent, uses all cores - 1
-M=12 K=6 S=2 ROLL=10 node arena.js sunchomp 100 search antiTR team_trickroom_v5.json   # stronger, slower
+node sim.js all 2000 antiTR team_trickroom_v7.json          # heuristic vs heuristic, ~20 games/s/core
+PIVOT=sinistcha node sim.js all 2000 greedy team_trickroom_v7.json
+node arena.js all 300 search antiTR team_trickroom_v7.json  # search agent, uses all cores - 1
+M=12 K=6 S=2 ROLL=10 node arena.js sunchomp 100 search antiTR team_trickroom_v7.json   # stronger, slower
 ```
 
 ## 3. What to build next, in order

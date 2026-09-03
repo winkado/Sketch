@@ -8,7 +8,7 @@
 //
 // usage: node sim.js <coreName|all> <games> [oppPolicy=antiTR|greedy] [ourVariant]
 'use strict';
-const {BattleStream, Teams, Dex, TeamValidator} = require('../pokemon-showdown');
+const {BattleStream, Teams, Dex, TeamValidator} = require('/home/claude/pscheck/node_modules/pokemon-showdown');
 const fs = require('fs');
 const D = Dex.mod('champions');
 const FORMAT = 'gen9championsvgc2026regmb';
@@ -85,6 +85,17 @@ const CORES = {
       A('Milotic', 'Competitive', 'Focus Sash', 'Modest', {spa: 32, hp: 32, spd: 2}, ['Muddy Water', 'Ice Beam', 'Icy Wind', 'Protect']),
     ],
     brings: [[1, 0, 2, 3], [1, 4, 0, 2], [0, 1, 3, 5], [1, 2, 0, 4]],
+  },
+  sunspam: { // the lead that beat us live: Zard-Y + Chandelure double Heat Wave
+    team: [
+      A('Charizard-Mega-Y', 'Drought', 'Charizardite Y', 'Modest', {spa: 32, spe: 32, hp: 2}, ['Heat Wave', 'Air Slash', 'Solar Beam', 'Protect']),
+      A('Chandelure', 'Flash Fire', 'Charcoal', 'Modest', {spa: 32, spe: 32, hp: 2}, ['Heat Wave', 'Shadow Ball', 'Energy Ball', 'Protect']),
+      A('Garchomp', 'Rough Skin', 'Life Orb', 'Jolly', {atk: 32, spe: 32, hp: 2}, ['Earthquake', 'Rock Slide', 'Dragon Claw', 'Protect']),
+      A('Kingambit', 'Defiant', 'Black Glasses', 'Adamant', {atk: 32, hp: 32, spe: 2}, ['Kowtow Cleave', 'Sucker Punch', 'Iron Head', 'Protect']),
+      A('Venusaur', 'Chlorophyll', 'Focus Sash', 'Modest', {spa: 32, spe: 32, hp: 2}, ['Sludge Bomb', 'Energy Ball', 'Sleep Powder', 'Protect']),
+      A('Whimsicott', 'Prankster', 'Sitrus Berry', 'Timid', {spa: 32, spe: 32, hp: 2}, ['Moonblast', 'Tailwind', 'Encore', 'Protect']),
+    ],
+    brings: [[0, 1, 2, 3], [0, 1, 4, 3], [0, 1, 2, 5], [1, 0, 3, 4]],
   },
   dragonite: { // Mega Dragonite + Garchomp + Tailwind
     team: [
@@ -177,7 +188,7 @@ function estPct(atkRec, mv, defRec, st, spread) {
   if (defS.abilities['0'] === 'Levitate' && type === 'Ground') return 0;
   const eff = Math.pow(2, D.getEffectiveness(type, defS.types));
   const phys = move.category === 'Physical';
-  const Aస = stat(atkRec.species, phys ? 'atk' : 'spa', 32);
+  const Aస = stat(atkRec.species, move.id === 'bodypress' ? 'def' : (phys ? 'atk' : 'spa'), 32);
   const Dx = stat(defRec.species, phys ? 'def' : 'spd', 16);
   let base = Math.floor(Math.floor(22 * bp * Aస / Dx) / 50) + 2;
   let mod = eff * (atkS.types.includes(type) ? 1.5 : 1) * (spread ? 0.75 : 1);
@@ -201,7 +212,7 @@ function chooseSwitchIn(req, prefer) {
 function ourChoice(req, st, opts) {
   if (req.teamPreview) {
     // bring 4: Oranguru, Sinistcha lead; Camerupt, Farigiraf back
-    const order = ['Oranguru', 'Sinistcha', 'Camerupt', 'Farigiraf'];
+    const order = (opts.leads || ['Oranguru', 'Sinistcha', 'Camerupt', 'Farigiraf']);
     const idx = order.map(n => req.side.pokemon.findIndex(p => p.details.startsWith(n)) + 1);
     return `team ${idx.join('')}`;
   }
@@ -212,7 +223,7 @@ function ourChoice(req, st, opts) {
   const choices = [];
   const oppSpecies = new Set(Object.values(st.sides.p2).map(r => r.species));
   const oppCanTR = [...oppSpecies].some(s => { const ls = D.species.getLearnsetData(D.species.get(s).id); return ls && ls.learnset && ls.learnset.trickroom; });
-  const attackerOut = st.active.p1.some(r => r && !['Oranguru', 'Sinistcha', 'Farigiraf'].includes(r.species));
+  const attackerOut = st.active.p1.some(r => r && !['Oranguru', 'Sinistcha', 'Farigiraf'].includes(r.species) && !(r.species.startsWith('Avalugg') && opts.leads && opts.leads[1] === 'Avalugg' && st.turn <= 2));
   const benchAttacker = chooseSwitchIn(req, opts.switchOrder || ['Camerupt', 'Torkoal', 'Slowbro', 'Farigiraf']);
   const benchIsAttacker = benchAttacker && !/Oranguru|Sinistcha/.test(req.side.pokemon[benchAttacker - 1].details);
   // which support leaves on the pivot turn?
@@ -251,6 +262,8 @@ function ourChoice(req, st, opts) {
       else if (mv('Trick Room') && !st.tr) c = 'move Trick Room';
       else if (mv('Protect') && !me.protectedLast) c = 'move Protect';
       else c = 'move ' + act.moves.find(m => !m.disabled).move;
+    } else if (me.species.startsWith('Avalugg') && mv('Wide Guard') && (st.turn === 1 || (!st.tr && st.active.p2.filter(Boolean).length === 2)) && st.active.p2.some(f => f && (() => { const ls = D.species.getLearnsetData(D.species.get(f.species).id); return ls && ls.learnset && Object.keys(ls.learnset).some(k => ['heatwave','eruption','earthquake','rockslide','hypervoice','makeitrain','muddywater','dazzlinggleam','blizzard','sludgewave','snarl','icywind','matchagotcha','bulldoze','discharge','lavaplume','surf'].includes(k)); })())) {
+      c = 'move Wide Guard';
     } else if (!['Oranguru', 'Sinistcha', 'Farigiraf'].includes(me.species)) {
       const canLearnFO = (f) => { const ls = D.species.getLearnsetData(D.species.get(f.species).id); return !!(ls && ls.learnset && ls.learnset.fakeout); };
       const freshFO = st.active.p2.some(f => f && canLearnFO(f) && f.fresh);
@@ -305,6 +318,14 @@ function ourChoice(req, st, opts) {
 
 // ---- opponent heuristic AI
 function oppChoice(req, st, core, policy, rng) {
+  if (policy === 'replay') {
+    if (req.teamPreview) { const b = replayLeads(core, rng) || core.brings[Math.floor(rng() * core.brings.length)]; return 'team ' + b.map(i => i + 1).join(''); }
+    if (!req.forceSwitch && rng() < 0.7) {
+      const rc = replayChoice(req, st, core, rng);
+      if (rc && rc.every(c => c !== null)) return rc.join(', ');
+    }
+    return oppChoice(req, st, core, 'antiTR', rng);
+  }
   if (req.teamPreview) {
     const b = core.brings[Math.floor(rng() * core.brings.length)];
     return 'team ' + b.map(i => i + 1).join('');
@@ -367,6 +388,56 @@ function oppChoice(req, st, core, policy, rng) {
   return choices.join(', ');
 }
 
+// ------------------------------------------------------------------ replay-derived opponent model
+const BEH_PATH = process.env.BEH || ['./models/behaviour.json', './behaviour.json', '/home/claude/champsolver/behaviour.json'].find(p => fs.existsSync(p));
+const BEH = BEH_PATH ? JSON.parse(fs.readFileSync(BEH_PATH, 'utf8')) : null;
+const ELO_BUCKET = process.env.ELO || '<1300';
+function replayMoveDist(species, turn) {
+  if (!BEH) return null;
+  const tb = turn <= 1 ? 'T1' : turn <= 3 ? 'T2-3' : 'T4+';
+  const base = species.replace(/-Mega.*$/, '');
+  const byElo = (BEH.speciesByElo[ELO_BUCKET] || {})[base] || (BEH.speciesByElo[ELO_BUCKET] || {})[species];
+  const pooled = BEH.species[base] || BEH.species[species];
+  const src = byElo && byElo.actions >= 30 ? byElo : pooled;
+  return src ? {moves: src.moves[tb] || {}, protectTR: (byElo && byElo.protectRateUnderTR) ?? (pooled && pooled.protectRate && pooled.protectRate.underTR), switchRate: src.switchRate} : null;
+}
+function replayChoice(req, st, core, rng) {
+  // per active mon: sample a move from the real distribution restricted to this set, else fall back to heuristic
+  const choices = [];
+  req.active.forEach((act, i) => {
+    const me = st.active.p2[i];
+    if (!me) { choices.push('pass'); return; }
+    const dist = replayMoveDist(me.species, st.turn);
+    const legal = act.moves.filter(m => !m.disabled);
+    let pick = null;
+    if (dist) {
+      const w = legal.map(m => (dist.moves[m.move] || 0) + 0.01);
+      const tot = w.reduce((a, b) => a + b, 0);
+      let r = rng() * tot; for (let k = 0; k < legal.length; k++) { r -= w[k]; if (r <= 0) { pick = legal[k]; break; } }
+      if (!pick) pick = legal[legal.length - 1];
+    }
+    if (!pick) { choices.push(null); return; }
+    const move = D.moves.get(pick.move);
+    if (['normal', 'any', 'adjacentFoe'].includes(move.target)) {
+      // target: real data has no target info, so use damage-max targeting (what humans mostly do)
+      let best = 0, bd = -1; st.active.p1.forEach((f, j) => { if (!f) return; const d = estPct(me, pick.move, f, st, false) + (move.category === 'Status' ? (f.species === 'Oranguru' ? 50 : 0) : 0); if (d > bd) { bd = d; best = j; } });
+      choices.push(`move ${pick.move} ${foeSlotTarget(best)}`);
+    } else if (move.target === 'adjacentAlly' || move.target === 'adjacentAllyOrSelf') choices.push(`move ${pick.move} ${i === 0 ? '-2' : '-1'}`);
+    else choices.push(`move ${pick.move}`);
+  });
+  return choices;
+}
+function replayLeads(core, rng) {
+  if (!BEH || !BEH.leadsByElo) return null;
+  const pairs = (BEH.leadsByElo[ELO_BUCKET] || BEH.leadsByElo['<1300'] || {}).topPairs || [];
+  const names = core.team.map(t => t.name.replace(/-Mega.*$/, ''));
+  const cands = pairs.map(([k, v]) => { const [a, b] = k.split(' + '); const ia = names.indexOf(a), ib = names.indexOf(b); return ia >= 0 && ib >= 0 && ia !== ib ? {ia, ib, v} : null; }).filter(Boolean);
+  if (!cands.length) return null;
+  const tot = cands.reduce((a, c) => a + c.v, 0); let r = rng() * tot;
+  for (const c of cands) { r -= c.v; if (r <= 0) { const rest = [0, 1, 2, 3, 4, 5].filter(i => i !== c.ia && i !== c.ib).sort(() => rng() - 0.5).slice(0, 2); return [c.ia, c.ib, ...rest]; } }
+  return null;
+}
+
 // ------------------------------------------------------------------ run one battle
 function mulberry(seed) { return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
 
@@ -413,7 +484,7 @@ async function main() {
   const which = process.argv[2] || 'all';
   const N = +(process.argv[3] || 200);
   const policy = process.argv[4] || 'antiTR';
-  const opts = {prioAware: process.env.PRIOAWARE === '1', foProtect: process.env.FOPROTECT === '1', imprisonFirst: process.env.IMPRISON === '1', pivot: process.env.PIVOT || 'sinistcha', pivotHp: +(process.env.PIVOT_HP || 0.6)};
+  const opts = {leads: process.env.LEADS ? process.env.LEADS.split(',') : undefined, prioAware: process.env.PRIOAWARE === '1', foProtect: process.env.FOPROTECT === '1', imprisonFirst: process.env.IMPRISON === '1', pivot: process.env.PIVOT || 'sinistcha', pivotHp: +(process.env.PIVOT_HP || 0.6)};
   validate(OURS, 'OUR TEAM');
   const results = {};
   for (const [name, core] of Object.entries(CORES)) {
