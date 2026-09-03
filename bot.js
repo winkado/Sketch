@@ -114,7 +114,7 @@ function finish(id, b, winner) {
   console.log(`game ${games}: ${won ? 'WIN' : 'LOSS'} vs ${b.oppName} (${b.oppRating ?? 'unrated'})  running ${wins}/${games}`);
   fs.writeFileSync(path.join(__dirname, 'replays', 'own', id.replace(/^>/, '') + '.json'),
     JSON.stringify({id: id.replace(/^>/, ''), players: b.mySide === 'p1' ? [USER, b.oppName] : [b.oppName, USER], rating: b.oppRating, leads: b.leads, oppSpecies: b.oppSpecies, won, log: b.lines.join('\n')}));
-  fs.appendFileSync(path.join(__dirname, 'replays', 'own', 'results.csv'), `${new Date().toISOString()},${id.replace(/^>/, '')},${b.oppName},${b.oppRating ?? ''},${won ? 1 : 0},${b.leads.join('+')},${b.oppSpecies.join('+')}\n`);
+  fs.appendFileSync(path.join(__dirname, 'replays', 'own', 'results.csv'), `${new Date().toISOString()},${USER},${id.replace(/^>/, '')},${b.oppName},${b.oppRating ?? ''},${won ? 1 : 0},${b.leads.join('+')},${b.oppSpecies.join('+')}\n`);
   send(`${id}|/leave`);
   delete battles[id];
   if (games < MAX_GAMES) setTimeout(search, 4000); else { console.log('done'); setTimeout(() => process.exit(0), 1000); }

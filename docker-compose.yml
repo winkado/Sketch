@@ -1,15 +1,24 @@
+# One container per bot account. Each plays one battle at a time (Showdown's rule); 3-4 accounts is the sane ceiling per IP.
+x-bot: &bot
+  build: .
+  restart: unless-stopped
+  environment: &env
+    TEAM: team_trickroom_v7.json
+    GAMES: "300"
+  volumes:
+    - ./replays/own:/app/replays/own
+  logging: { driver: json-file, options: { max-size: "10m", max-file: "5" } }
+
 services:
-  sketch-bot:
-    build: .
-    container_name: sketch-bot
-    restart: unless-stopped
-    environment:
-      PS_USER: ${PS_USER}
-      PS_PASS: ${PS_PASS}
-      TEAM: team_trickroom_v7.json
-      GAMES: "300"              # first run: cap it, read results.csv, then raise
-    volumes:
-      - ./replays/own:/app/replays/own   # games + results.csv persist on the host
-    logging:
-      driver: json-file
-      options: { max-size: "10m", max-file: "5" }
+  bot1:
+    <<: *bot
+    container_name: sketch-bot1
+    environment: { <<: *env, PS_USER: ${PS_USER_1}, PS_PASS: ${PS_PASS_1} }
+  bot2:
+    <<: *bot
+    container_name: sketch-bot2
+    environment: { <<: *env, PS_USER: ${PS_USER_2}, PS_PASS: ${PS_PASS_2} }
+  bot3:
+    <<: *bot
+    container_name: sketch-bot3
+    environment: { <<: *env, PS_USER: ${PS_USER_3}, PS_PASS: ${PS_PASS_3} }
