@@ -218,7 +218,16 @@ function ourChoice(req, st, opts) {
     return `team ${idx.join('')}`;
   }
   if (req.forceSwitch) {
-    return 'switch ' + req.forceSwitch.map((f, i) => f ? chooseSwitchIn(req, opts.switchOrder || ['Camerupt', 'Torkoal', 'Slowbro', 'Farigiraf', 'Sinistcha', 'Oranguru']) : 'pass').filter(x => x !== null).join(', switch ');
+    const taken = new Set();
+    return req.forceSwitch.map(f => {
+      if (!f) return 'pass';
+      const bench = req.side.pokemon.map((p, i) => ({p, i})).filter(x => !x.p.active && !/fnt/.test(x.p.condition) && !taken.has(x.i));
+      const order = opts.switchOrder || ['Camerupt', 'Torkoal', 'Slowbro', 'Avalugg', 'Farigiraf', 'Sinistcha', 'Oranguru'];
+      let pick = null; for (const n of order) { const b = bench.find(x => x.p.details.startsWith(n)); if (b) { pick = b; break; } }
+      pick = pick || bench[0];
+      if (!pick) return 'pass';
+      taken.add(pick.i); return 'switch ' + (pick.i + 1);
+    }).join(', ');
   }
   const foes = st.active.p2.filter(Boolean);
   const choices = [];
@@ -362,7 +371,12 @@ function oppChoice(req, st, core, policy, rng) {
     return 'team ' + b.map(i => i + 1).join('');
   }
   if (req.forceSwitch) {
-    return 'switch ' + req.forceSwitch.map(f => f ? chooseSwitchIn(req, []) : 'pass').filter(x => x !== null).join(', switch ');
+    const taken = new Set();
+    return req.forceSwitch.map(f => {
+      if (!f) return 'pass';
+      const b = req.side.pokemon.map((p, i) => ({p, i})).find(x => !x.p.active && !/fnt/.test(x.p.condition) && !taken.has(x.i));
+      if (!b) return 'pass'; taken.add(b.i); return 'switch ' + (b.i + 1);
+    }).join(', ');
   }
   const setter = st.active.p1.findIndex(r => r && (r.species === 'Oranguru' || r.species === 'Farigiraf'));
   const sweeper = st.active.p1.findIndex(r => r && r.species.startsWith('Camerupt'));
