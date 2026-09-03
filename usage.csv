@@ -1,0 +1,70 @@
+# usage.csv - Champions Reg M-B, per-Pokemon performance
+# Source: Pikalytics AI endpoint /ai/pokedex/battledataregmbs3
+#         (Pokemon Champions VGC 2026 Reg M-B S3 Ranked Battle Data)
+# Pulled: 2026-09-02
+#
+# READ THE CAVEATS BEFORE USING THIS AS META KNOWLEDGE
+# 1. The feed reports Data Date = 2026-05. Reg M-B did not start until
+#    17 June 2026. Either the date field is wrong or this is partly M-A
+#    ladder data wearing an M-B label. Treat rank order as indicative,
+#    not authoritative, until a fresher pull confirms it.
+# 2. The feed returns "N/A" for usage percent. There is no usage column
+#    here because there was no usage number to copy. battle_share below
+#    is DERIVED by me: (wins+losses+ties) / (sum of the same over these
+#    50 rows). It is a share-of-recorded-battles proxy, not usage.
+# 3. Rows are base formes. "Charizard" aggregates Charizard-Mega-Y and
+#    Charizard-Mega-X. Same for Staraptor, Tyranitar, Metagross, Mawile.
+# 4. Top 50 only. The tail is not represented.
+# 5. Win rates cluster at 45-52%. Differences under ~2 points across
+#    fewer than ~3000 battles are not signal.
+rank,pokemon,win_rate_pct,wins,losses,ties,battles,battle_share_pct
+1,Garchomp,48.05,10833,11714,41,22588,6.274
+2,Sinistcha,48.584,8116,8590,29,16735,4.649
+3,Basculegion,50.82,9582,9272,45,18899,5.250
+4,Whimsicott,48.598,7736,8183,27,15946,4.429
+5,Kingambit,51.397,13129,12414,39,25582,7.106
+6,Staraptor,49.369,6437,6602,26,13065,3.629
+7,Incineroar,48.189,9348,10052,38,19438,5.399
+8,Charizard,49.5,9490,9682,40,19212,5.337
+9,Raichu,48.411,3527,3759,14,7300,2.028
+10,Pelipper,48.555,4662,4940,16,9618,2.672
+11,Sneasler,48.324,6823,7297,19,14139,3.927
+12,Archaludon,48.812,5145,5396,27,10568,2.936
+13,Grimmsnarl,48.277,3773,4043,21,7837,2.177
+14,Sylveon,47.711,5408,5928,25,11361,3.156
+15,Swampert,48.841,2901,3039,13,5953,1.654
+16,Metagross,45.423,1827,2196,8,4031,1.120
+17,Farigiraf,47.26,6272,7001,30,13303,3.695
+18,Floette-Eternal,54.845,4868,4007,11,8886,2.468
+19,Gholdengo,48.365,3543,3783,15,7341,2.039
+20,Aerodactyl,46.63,3473,3976,13,7462,2.073
+21,Maushold,47.279,1646,1836,10,3492,0.970
+22,Annihilape,49.752,1403,1417,4,2824,0.784
+23,Sableye,42.491,1093,1480,4,2577,0.716
+24,Mawile,45.389,1310,1577,8,2895,0.804
+25,Ninetales-Alola,48.087,2033,2195,6,4234,1.176
+26,Torkoal,44.602,1493,1855,5,3353,0.931
+27,Froslass,50.834,2100,2031,5,4136,1.149
+28,Talonflame,48.36,1440,1538,9,2987,0.830
+29,Rotom-Wash,43.768,1036,1332,7,2375,0.660
+30,Glimmora,51.133,2253,2153,9,4415,1.226
+31,Delphox,50.293,3432,3392,9,6833,1.898
+32,Dragonite,49.962,1973,1976,5,3954,1.098
+33,Tyranitar,48.652,4014,4237,19,8270,2.297
+34,Blastoise,47.819,1836,2004,12,3852,1.070
+35,Milotic,49.427,3528,3610,14,7152,1.987
+36,Venusaur,49.886,5039,5062,25,10126,2.813
+37,Hydreigon,48.479,1400,1488,4,2892,0.803
+38,Politoed,48.474,1314,1397,9,2720,0.756
+39,Tsareena,46.568,724,831,4,1559,0.433
+40,Gengar,47.91,1886,2051,11,3948,1.097
+41,Kangaskhan,45.973,740,870,4,1614,0.448
+42,Pyroar,43.265,317,416,2,735,0.204
+43,Gardevoir,48.837,859,900,4,1763,0.490
+44,Corviknight,46.433,819,945,2,1766,0.491
+45,Scrafty,44.125,559,708,1,1268,0.352
+46,Vivillon,49.531,1211,1234,6,2451,0.681
+47,Eelektross,35.27,170,312,0,482,0.134
+48,Scovillain,52.732,1289,1155,8,2452,0.681
+49,Primarina,45.408,528,635,2,1165,0.324
+50,Ceruledge,46.426,1135,1310,3,2448,0.680

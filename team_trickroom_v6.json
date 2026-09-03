@@ -1,0 +1,104 @@
+[
+ {
+  "name": "Oranguru",
+  "ability": "Inner Focus",
+  "item": "Mental Herb",
+  "nature": "Relaxed",
+  "evs": {
+   "hp": 32,
+   "def": 32,
+   "spd": 2
+  },
+  "moves": [
+   "Trick Room",
+   "Instruct",
+   "Protect",
+   "Imprison"
+  ]
+ },
+ {
+  "name": "Sinistcha",
+  "ability": "Hospitality",
+  "item": "Focus Sash",
+  "nature": "Relaxed",
+  "evs": {
+   "hp": 32,
+   "def": 28,
+   "spd": 6
+  },
+  "moves": [
+   "Rage Powder",
+   "Trick Room",
+   "Protect",
+   "Strength Sap"
+  ]
+ },
+ {
+  "name": "Torkoal",
+  "ability": "Drought",
+  "item": "Charcoal",
+  "nature": "Quiet",
+  "evs": {
+   "hp": 32,
+   "spa": 32,
+   "spd": 2
+  },
+  "moves": [
+   "Eruption",
+   "Earth Power",
+   "Burning Jealousy",
+   "Protect"
+  ]
+ },
+ {
+  "name": "Camerupt-Mega",
+  "ability": "Sheer Force",
+  "item": "Cameruptite",
+  "nature": "Quiet",
+  "evs": {
+   "hp": 18,
+   "def": 29,
+   "spa": 19
+  },
+  "moves": [
+   "Earth Power",
+   "Eruption",
+   "Flash Cannon",
+   "Protect"
+  ]
+ },
+ {
+  "name": "Raichu-Mega-Y",
+  "ability": "No Guard",
+  "item": "Raichunite Y",
+  "nature": "Timid",
+  "evs": {
+   "spa": 32,
+   "spe": 32,
+   "hp": 2
+  },
+  "moves": [
+   "Zap Cannon",
+   "Focus Blast",
+   "Fake Out",
+   "Protect"
+  ]
+ },
+ {
+  "name": "Dragapult",
+  "ability": "Clear Body",
+  "item": "Life Orb",
+  "nature": "Jolly",
+  "evs": {
+   "atk": 32,
+   "spe": 21,
+   "hp": 13
+  },
+  "moves": [
+   "Dragon Darts",
+   "Sucker Punch",
+   "U-turn",
+   "Protect"
+  ]
+ }
+]
