@@ -89,11 +89,13 @@ function onUpdateSearch(json) {
   if (!searching) setTimeout(search, 500);   // a search just resolved into a battle (or ended): queue the next one
 }
 
+function room(id) { return id.replace(/^>/, ''); }   // server room id has no leading '>'
 function handleBattleLine(id, line) {
   const b = battles[id] ??= {st: S.newState(), lines: [], mySide: null, oppName: null, oppRating: null, leads: null, oppSpecies: [], done: false, lastRq: 0};
   b.lines.push(line);
   const parts = line.split('|');
   const tag = parts[1];
+  if (tag === 'init') { send(`${room(id)}|/timer on`); console.log(`  battle started: https://play.pokemonshowdown.com/${room(id)}`); }
   if (tag === 'player' && parts[3]) {
     if (parts[3] === USER) b.mySide = parts[2];
     else { b.oppName = parts[3]; b.oppRating = parts[5] ? +parts[5] : null; }
@@ -108,7 +110,7 @@ function handleBattleLine(id, line) {
     decide(id, b, req);
     return;
   }
-  if (tag === 'error') { console.log('  server error:', parts.slice(2).join('|').slice(0, 120)); send(`${id}|/choose default|${b.lastRq}`); return; }
+  if (tag === 'error') { console.log('  server error:', parts.slice(2).join('|').slice(0, 120)); send(`${room(id)}|/choose default|${b.lastRq}`); return; }
   if (tag === 'win' || tag === 'tie') { finish(id, b, parts[2]); return; }
   // state tracking (normalised so we are p1)
   const norm = b.mySide === 'p2' ? swapSides(line) : line;
@@ -122,7 +124,8 @@ function decide(id, b, req) {
     choice = S.ourChoice(req, b.st, opts);
   } catch (e) { console.log('  choice error', e.message); choice = 'default'; }
   if (req.teamPreview) console.log(`  vs ${b.oppName} (${b.oppRating ?? 'unrated'}) six: ${b.oppSpecies.join(', ')} -> lead ${b.leads[0]} + ${b.leads[1]}`);
-  send(`${id}|/choose ${choice}|${req.rqid}`);
+  if (process.env.VERBOSE) console.log(`  [${room(id)}] T${b.st.turn} -> ${choice}`);
+  send(`${room(id)}|/choose ${choice}|${req.rqid}`);
 }
 
 function finish(id, b, winner) {
@@ -134,7 +137,7 @@ function finish(id, b, winner) {
   fs.writeFileSync(path.join(__dirname, 'replays', 'own', id.replace(/^>/, '') + '.json'),
     JSON.stringify({id: id.replace(/^>/, ''), players: b.mySide === 'p1' ? [USER, b.oppName] : [b.oppName, USER], rating: b.oppRating, leads: b.leads, oppSpecies: b.oppSpecies, won, log: b.lines.join('\n')}));
   fs.appendFileSync(path.join(__dirname, 'replays', 'own', 'results.csv'), `${new Date().toISOString()},${USER},${id.replace(/^>/, '')},${b.oppName},${b.oppRating ?? ''},${won ? 1 : 0},${b.leads.join('+')},${b.oppSpecies.join('+')}\n`);
-  send(`${id}|/leave`);
+  send(`${room(id)}|/leave`);
   delete battles[id];
   if ((draining || games >= MAX_GAMES) && activeGames <= 1) { console.log(draining ? 'drained, exiting' : 'done'); setTimeout(() => process.exit(0), 1000); }
 }
