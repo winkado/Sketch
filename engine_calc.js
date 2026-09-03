@@ -2,7 +2,7 @@
 // the damage the ENGINE deals. No reimplementation. Crit turns are discarded.
 //
 // usage: node engine_calc.js jobs.json   (see runJobs for the job shape)
-const {BattleStream, Teams, Dex} = require('/home/claude/pscheck/node_modules/pokemon-showdown');
+const {BattleStream, Teams, Dex} = require('../pokemon-showdown');
 const fs = require('fs');
 
 const FORMAT = 'gen9championscustomgame';
@@ -79,7 +79,7 @@ async function calc(atk, def, move, opts = {}, seeds = 40) {
   return {min: mn, max: mx, maxhp, min_pct: +(100 * mn / maxhp).toFixed(1), max_pct: +(100 * mx / maxhp).toFixed(1), n: rolls.length};
 }
 
-const {TeamValidator} = require('/home/claude/pscheck/node_modules/pokemon-showdown');
+const {TeamValidator} = require('../pokemon-showdown');
 function validate(set) {
   const v = new TeamValidator('gen9championsvgc2026regmb');
   const team = Teams.import(setToText(set));

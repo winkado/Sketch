@@ -5,7 +5,7 @@
 // usage:  node arena.js <core|all> <games> <p1=search|heuristic> <p2policy=antiTR|greedy> [teamfile] [workers]
 // env:    M (our candidate joint actions, default 8)  K (opp candidates, 4)  S (rng seeds per pair, 1)  ROLL (rollout turns, 8)
 'use strict';
-const {Battle, Teams, PRNG} = require('/home/claude/pscheck/node_modules/pokemon-showdown');
+const {Battle, Teams, PRNG} = require('../pokemon-showdown');
 const S = require('./sim.js');
 const fs = require('fs');
 const os = require('os');
