@@ -137,7 +137,7 @@ function parseLine(st, l) {
     const species = parts[3].split(',')[0];
     const [hp, mx] = (parts[4] || '100/100').split(' ')[0].split('/').map(Number);
     const rec = st.sides[m[1]][m[3]] || (st.sides[m[1]][m[3]] = {});
-    Object.assign(rec, {nick: m[3], species, hp, maxhp: mx || rec.maxhp, slot: m[2], taunt: 0, protectedLast: false, fainted: false, firstTurn: st.turn, fresh: true});
+    Object.assign(rec, {nick: m[3], species, hp, maxhp: mx || rec.maxhp, slot: m[2], taunt: 0, protectedLast: false, fainted: false, firstTurn: st.turn, fresh: true, boosts: {}, status: rec.status || ''});
     if (tag !== 'detailschange') st.active[m[1]][m[2] === 'a' ? 0 : 1] = rec;
   } else if (tag === '-damage' || tag === '-heal' || tag === '-sethp') {
     const m = pos(parts[2]); if (!m) return;
@@ -152,6 +152,15 @@ function parseLine(st, l) {
   } else if (tag === '-fieldstart') { if (/Trick Room/.test(parts[2])) { st.tr = true; st.events['tr_up_turn'] ??= st.turn; } }
   else if (tag === '-fieldend') { if (/Trick Room/.test(parts[2])) st.tr = false; }
   else if (tag === '-weather') { st.weather = parts[2]; }
+  else if (tag === '-boost' || tag === '-unboost') {
+    const m = pos(parts[2]); if (!m) return; const r = st.sides[m[1]][m[3]]; if (!r) return;
+    r.boosts ??= {}; r.boosts[parts[3]] = Math.max(-6, Math.min(6, (r.boosts[parts[3]] || 0) + (tag === '-boost' ? 1 : -1) * (+parts[4] || 1)));
+  } else if (tag === '-setboost') { const m = pos(parts[2]); const r = m && st.sides[m[1]][m[3]]; if (r) { r.boosts ??= {}; r.boosts[parts[3]] = +parts[4]; } }
+  else if (tag === '-clearallboost') { for (const side of ['p1', 'p2']) for (const r of Object.values(st.sides[side])) r.boosts = {}; }
+  else if (tag === '-clearboost' || tag === '-clearnegativeboost' || tag === '-clearpositiveboost') { const m = pos(parts[2]); const r = m && st.sides[m[1]][m[3]]; if (r && r.boosts) { for (const k of Object.keys(r.boosts)) if (tag === '-clearboost' || (tag === '-clearnegativeboost' && r.boosts[k] < 0) || (tag === '-clearpositiveboost' && r.boosts[k] > 0)) r.boosts[k] = 0; } }
+  else if (tag === '-status') { const m = pos(parts[2]); const r = m && st.sides[m[1]][m[3]]; if (r) r.status = parts[3]; }
+  else if (tag === '-curestatus') { const m = pos(parts[2]); const r = m && st.sides[m[1]][m[3]]; if (r) r.status = ''; }
+  else if (tag === '-sidestart' || tag === '-sideend') { const side = (parts[2] || '').slice(0, 2); const cond = (parts[3] || '').replace(/^move: /, ''); st.sideConds ??= {p1: {}, p2: {}}; if (st.sideConds[side]) st.sideConds[side][cond] = tag === '-sidestart'; }
   else if (tag === '-start') {
     const m = pos(parts[2]); if (m && /Taunt/.test(parts[3])) { const r = st.sides[m[1]][m[3]]; if (r) r.taunt = 3; if (m[1] === 'p1') st.events['taunted_' + m[3]] ??= st.turn; }
     if (m && /Encore/.test(parts[3]) && m[1] === 'p1') st.events['encored_' + m[3]] ??= st.turn;
@@ -189,12 +198,20 @@ function estPct(atkRec, mv, defRec, st, spread) {
   if (defS.abilities['0'] === 'Levitate' && type === 'Ground') return 0;
   const eff = Math.pow(2, D.getEffectiveness(type, defS.types));
   const phys = move.category === 'Physical';
-  const Aస = stat(atkRec.species, move.id === 'bodypress' ? 'def' : (phys ? 'atk' : 'spa'), 32);
-  const Dx = stat(defRec.species, phys ? 'def' : 'spd', 16);
+  const stage = (b) => b >= 0 ? (2 + b) / 2 : 2 / (2 - b);
+  const aKey = move.id === 'bodypress' ? 'def' : (phys ? 'atk' : 'spa'), dKey = phys ? 'def' : 'spd';
+  const Aస = Math.floor(stat(atkRec.species, aKey, 32) * stage((atkRec.boosts || {})[aKey] || 0));
+  const Dx = Math.floor(stat(defRec.species, dKey, 16) * stage((defRec.boosts || {})[dKey] || 0));
   let base = Math.floor(Math.floor(22 * bp * Aస / Dx) / 50) + 2;
   let mod = eff * (atkS.types.includes(type) ? 1.5 : 1) * (spread ? 0.75 : 1);
   if (/Sunny/.test(st.weather)) mod *= type === 'Fire' ? 1.5 : type === 'Water' ? 0.5 : 1;
   if (/Rain/.test(st.weather)) mod *= type === 'Water' ? 1.5 : type === 'Fire' ? 0.5 : 1;
+  if (atkRec.status === 'brn' && phys && move.id !== 'facade') mod *= 0.5;
+  if (st.terrain && /Psychic/.test(st.terrain) && type === 'Psychic') mod *= 1.3;
+  if (st.terrain && /Grassy/.test(st.terrain) && type === 'Grass') mod *= 1.3;
+  if (st.terrain && /Electric/.test(st.terrain) && type === 'Electric') mod *= 1.3;
+  if (st.terrain && /Misty/.test(st.terrain) && type === 'Dragon') mod *= 0.5;
+  if (st.sideConds && st.sideConds[defRec.side] && ((phys && st.sideConds[defRec.side]['Reflect']) || (!phys && st.sideConds[defRec.side]['Light Screen']) || st.sideConds[defRec.side]['Aurora Veil'])) mod *= 2 / 3;
   return 100 * base * 0.925 * mod / stat(defRec.species, 'hp', 32);
 }
 
