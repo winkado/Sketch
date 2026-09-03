@@ -1,0 +1,15 @@
+services:
+  sketch-bot:
+    build: .
+    container_name: sketch-bot
+    restart: unless-stopped
+    environment:
+      PS_USER: ${PS_USER}
+      PS_PASS: ${PS_PASS}
+      TEAM: team_trickroom_v7.json
+      GAMES: "300"              # first run: cap it, read results.csv, then raise
+    volumes:
+      - ./replays/own:/app/replays/own   # games + results.csv persist on the host
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "5" }

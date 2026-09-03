@@ -3,3 +3,5 @@ replays/
 node_modules/
 __pycache__/
 *.out.json
+
+.env
