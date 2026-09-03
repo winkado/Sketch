@@ -57,3 +57,7 @@ One account, one battle at a time. Decisions = the plan logic from `sim.js` with
 picks up `replays/own` automatically if you copy them into `replays/`.
 Start with a small game count and watch the console: v1 has not been run against the live server.
 Search-agent decisions (arena.js) plug in once opponent-state injection into a local Battle exists — next.
+
+**Stopping the bot without losing rating:** `docker compose stop` (SIGTERM) or `touch replays/own/STOP`. Either way the bot
+cancels any pending search, plays every open battle to the end, then exits. `stop_grace_period` is 30 minutes so Docker
+waits for it. `docker compose kill` is the only thing that forfeits.

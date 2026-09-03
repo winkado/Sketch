@@ -2,6 +2,7 @@
 x-bot: &bot
   build: .
   restart: unless-stopped
+  stop_grace_period: 30m     # docker stop sends SIGTERM; bot finishes open battles instead of forfeiting
   environment: &env
     TEAM: team_trickroom_v7.json
     GAMES: "300"

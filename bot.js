@@ -43,7 +43,19 @@ function swapSides(line) {
   return line.replace(/\bp([12])([ab]?)\b/g, (_, n, ab) => 'p' + (n === '1' ? '2' : '1') + ab);
 }
 
-let ws, games = 0, wins = 0, searching = false, activeGames = 0;
+let ws, games = 0, wins = 0, searching = false, activeGames = 0, draining = false;
+// graceful stop: finish every open battle, never start another. Triggered by SIGTERM/SIGINT (docker stop)
+// or by creating the file replays/own/STOP. Forfeiting a battle costs rating; this never does.
+function drain(reason) {
+  if (draining) return;
+  draining = true;
+  console.log(`draining (${reason}): finishing ${activeGames} open battle(s), no new searches`);
+  if (searching) send('|/cancelsearch');
+  if (activeGames === 0) { console.log('no open battles, exiting'); setTimeout(() => process.exit(0), 500); }
+}
+process.on('SIGTERM', () => drain('SIGTERM'));
+process.on('SIGINT', () => drain('SIGINT'));
+setInterval(() => { if (fs.existsSync(path.join(__dirname, 'replays', 'own', 'STOP'))) drain('STOP file'); }, 5000);
 const battles = {}; // id -> {st, lines, mySide, oppName, oppRating, leads, oppSpecies}
 
 function send(msg) { ws.send(msg); }
@@ -64,7 +76,7 @@ async function login(challstr) {
   setTimeout(search, 1500);
 }
 function search() {
-  if (searching || games + activeGames >= MAX_GAMES || activeGames >= CONCURRENT) return;
+  if (draining || searching || games + activeGames >= MAX_GAMES || activeGames >= CONCURRENT) return;
   searching = true;
   send(`|/utm ${packed}`);
   send(`|/search ${FORMAT}`);
@@ -124,7 +136,7 @@ function finish(id, b, winner) {
   fs.appendFileSync(path.join(__dirname, 'replays', 'own', 'results.csv'), `${new Date().toISOString()},${USER},${id.replace(/^>/, '')},${b.oppName},${b.oppRating ?? ''},${won ? 1 : 0},${b.leads.join('+')},${b.oppSpecies.join('+')}\n`);
   send(`${id}|/leave`);
   delete battles[id];
-  if (games >= MAX_GAMES && activeGames <= 1) { console.log('done'); setTimeout(() => process.exit(0), 1000); }
+  if ((draining || games >= MAX_GAMES) && activeGames <= 1) { console.log(draining ? 'drained, exiting' : 'done'); setTimeout(() => process.exit(0), 1000); }
 }
 
 function connect() {
