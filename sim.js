@@ -264,7 +264,7 @@ function ourChoice(req, st, opts) {
     ? st.active.p1.findIndex(r => r && r.species === (who === 'oranguru' ? 'Oranguru' : 'Sinistcha')) : -1;
   req.active.forEach((act, i) => {
     const me = st.active.p1[i];
-    if (!me) { choices.push('pass'); return; }
+    if (!me || !act || !act.moves) { choices.push('pass'); return; }
     const mv = (n) => act.moves.find(m => m.move === n && !m.disabled);
     const partner = st.active.p1[1 - i];
     let c = null;
@@ -406,7 +406,7 @@ function oppChoice(req, st, core, policy, rng) {
   const choices = [];
   req.active.forEach((act, i) => {
     const me = st.active.p2[i];
-    if (!me) { choices.push('pass'); return; }
+    if (!me || !act || !act.moves) { choices.push('pass'); return; }
     const mv = (n) => act.moves.find(m => m.move === n && !m.disabled);
     const options = [];
     for (const m of act.moves) {

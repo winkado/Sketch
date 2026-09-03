@@ -16,6 +16,10 @@ const https = require('https');
 const WebSocket = require('ws');
 const {Teams} = require(require('./ps.js'));
 const S = require('./sim.js');
+const {LiveState} = require('./live.js');
+const A = require('./arena.js');
+const USE_SEARCH = process.env.SEARCH === '1';   // expectimax over the rebuilt Battle; else the plan logic
+const DEBOUNCE_MS = +(process.env.DEBOUNCE_MS || 400);
 
 const USER = process.env.PS_USER, PASS = process.env.PS_PASS;
 const TEAMFILE = process.argv[2] || 'team_trickroom_v7.json';
@@ -91,13 +95,13 @@ function onUpdateSearch(json) {
 
 function room(id) { return id.replace(/^>/, ''); }   // server room id has no leading '>'
 function handleBattleLine(id, line) {
-  const b = battles[id] ??= {st: S.newState(), lines: [], mySide: null, oppName: null, oppRating: null, leads: null, oppSpecies: [], done: false, lastRq: 0};
+  const b = battles[id] ??= {st: S.newState(), live: null, lines: [], mySide: null, oppName: null, oppRating: null, leads: null, oppSpecies: [], done: false, lastRq: 0, pending: null, timer: null};
   b.lines.push(line);
   const parts = line.split('|');
   const tag = parts[1];
   if (tag === 'init') { send(`${room(id)}|/timer on`); console.log(`  battle started: https://play.pokemonshowdown.com/${room(id)}`); }
   if (tag === 'player' && parts[3]) {
-    if (parts[3] === USER) b.mySide = parts[2];
+    if (parts[3] === USER) { b.mySide = parts[2]; b.live = new LiveState(team, b.mySide, USER); }
     else { b.oppName = parts[3]; b.oppRating = parts[5] ? +parts[5] : null; }
     return;
   }
@@ -107,22 +111,30 @@ function handleBattleLine(id, line) {
     const req = JSON.parse(parts.slice(2).join('|'));
     if (req.wait) return;
     b.lastRq = req.rqid;
-    decide(id, b, req);
+    if (req.teamPreview || req.forceSwitch) { decide(id, b, req); return; }
+    // move requests: the turn's log lines may still be arriving; decide once the burst settles
+    b.pending = req; clearTimeout(b.timer); b.timer = setTimeout(() => { const q = b.pending; b.pending = null; if (q) decide(id, b, q); }, DEBOUNCE_MS);
     return;
   }
   if (tag === 'error') { console.log('  server error:', parts.slice(2).join('|').slice(0, 120)); send(`${room(id)}|/choose default|${b.lastRq}`); return; }
   if (tag === 'win' || tag === 'tie') { finish(id, b, parts[2]); return; }
-  // state tracking (normalised so we are p1)
+  // state tracking: the live layer (real Battle rebuild) plus the legacy tracker as fallback
+  if (b.live) b.live.feed(line);
   const norm = b.mySide === 'p2' ? swapSides(line) : line;
   S.parseLine(b.st, norm);
+  if (b.pending) { clearTimeout(b.timer); b.timer = setTimeout(() => { const q = b.pending; b.pending = null; if (q) decide(id, b, q); }, DEBOUNCE_MS); }
 }
 
 function decide(id, b, req) {
   let choice;
+  const opts = {leads: b.leads || (b.leads = chooseLeads(b.oppSpecies)), pivot: 'sinistcha', imprisonFirst: false};
   try {
-    const opts = {leads: b.leads || (b.leads = chooseLeads(b.oppSpecies)), pivot: 'sinistcha', imprisonFirst: false};
-    choice = S.ourChoice(req, b.st, opts);
-  } catch (e) { console.log('  choice error', e.message); choice = 'default'; }
+    if (!req.teamPreview && !req.forceSwitch && b.live && b.live.turn >= 1) {
+      const battle = b.live.build(req);                      // real engine state, us as p1
+      const st = A.stFromBattle(battle, 'p1');
+      choice = USE_SEARCH ? (A.searchChoice(battle, req, 'antiTR', Math.random) || S.ourChoice(req, st, opts)) : S.ourChoice(req, st, opts);
+    } else choice = S.ourChoice(req, b.st, opts);
+  } catch (e) { console.log('  live/search error, falling back:', e.message); try { choice = S.ourChoice(req, b.st, opts); } catch (e2) { choice = 'default'; } }
   // live server reverts Megas to base forme: press the button on the first move
   if (req.active && !req.teamPreview && !req.forceSwitch) {
     choice = choice.split(', ').map((part, i) => (req.active[i] && req.active[i].canMegaEvo && part.startsWith('move ') && !/ mega$/.test(part)) ? part + ' mega' : part).join(', ');

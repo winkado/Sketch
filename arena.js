@@ -17,13 +17,14 @@ const M = +(process.env.M || 8), K = +(process.env.K || 4), SEEDS = +(process.en
 function ch(b, side, choice) { const ok = b.choose(side, choice); if (!ok) b.choose(side, 'default'); b.sendUpdates(); return ok; }
 
 // ------------------------------------------------ state adapter: Battle -> sim.js `st` shape
-function stFromBattle(b) {
+function stFromBattle(b, mySide = 'p1') {
   const st = S.newState();
+  const map = (id) => mySide === 'p1' ? id : (id === 'p1' ? 'p2' : 'p1');
   st.turn = b.turn;
   st.tr = !!b.field.pseudoWeather.trickroom;
   st.weather = b.field.weather || '';
   for (const side of b.sides) {
-    const id = side.id;
+    const id = map(side.id);
     st.faints[id] = side.pokemon.filter(p => p.fainted).length;
     for (const p of side.pokemon) {
       const rec = {nick: p.name, species: p.species.name, hp: p.hp, maxhp: p.maxhp, slot: p.isActive ? 'ab'[p.position] : '',

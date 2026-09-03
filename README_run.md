@@ -61,3 +61,15 @@ Search-agent decisions (arena.js) plug in once opponent-state injection into a l
 **Stopping the bot without losing rating:** `docker compose stop` (SIGTERM) or `touch replays/own/STOP`. Either way the bot
 cancels any pending search, plays every open battle to the end, then exits. `stop_grace_period` is 30 minutes so Docker
 waits for it. `docker compose kill` is the only thing that forfeits.
+
+## 6. Live state layer (`live.js`) and search on ladder
+The bot no longer tracks state itself. At every decision it rebuilds a real Showdown `Battle` from the protocol
+(our team exact; theirs sampled from `models/sets.json`, forced consistent with everything revealed), overwriting HP,
+status, stat stages, positions, faints, items consumed, PP, weather/terrain/Trick Room/screens with remaining turns.
+`node test_live.js <core> <seed>` plays a game from spectator-only information and diffs the rebuilt battle against the
+hidden real one every turn (0 mismatches expected, apart from fainted mons that the engine keeps in their slot).
+
+`SEARCH=1` makes the bot decide with `arena.searchChoice` on the rebuilt battle instead of the plan rules.
+Cost: several seconds per decision (M=6 K=3 is ~10 s/decision on a laptop core; a Pi 4 is 3-4x slower). Against the
+45 s timer, use `SEARCH=1 M=4 K=2 ROLL=6 CONCURRENT=1` on a Pi, or keep rules with CONCURRENT=3 and run search on
+faster hardware. The rules path is still there as fallback whenever the rebuild or the search throws.

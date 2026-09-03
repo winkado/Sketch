@@ -22,3 +22,7 @@ services:
       TEAM: team_trickroom_v7.json
       GAMES: "300"
       CONCURRENT: "3"
+      SEARCH: "0"              # "1" = expectimax over the rebuilt battle (slow on a Pi: pair with CONCURRENT=1, M=4 K=2 ROLL=6)
+      M: "4"
+      K: "2"
+      ROLL: "6"
