@@ -1,5 +1,6 @@
 pokemon-showdown/
-replays/
+replays/*
+!replays/own/
 node_modules/
 __pycache__/
 *.out.json

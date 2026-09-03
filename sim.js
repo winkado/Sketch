@@ -272,6 +272,12 @@ function ourChoice(req, st, opts) {
       else if (mv('Trick Room') && !st.tr) c = 'move Trick Room';
       else if (mv('Protect') && !me.protectedLast) c = 'move Protect';
       else c = 'move ' + act.moves.find(m => !m.disabled).move;
+    } else if (me.species.startsWith('Avalugg') && mv('Wide Guard') && !me.protectedLast && st.active.p2.some(f => f && (() => {
+        // real-player data: is this species' most likely click right now a spread move?
+        const d = (typeof replayMoveDist === 'function') ? replayMoveDist(f.species, st.turn) : null;
+        if (d && d.moves) { const top = Object.entries(d.moves).sort((a, b) => b[1] - a[1])[0]; if (top && top[1] >= 0.3) { const mvx = D.moves.get(top[0]); if (['allAdjacentFoes', 'allAdjacent'].includes(mvx.target) && mvx.category !== 'Status') return true; } }
+        return false; })()) ) {
+      c = 'move Wide Guard';
     } else if (me.species.startsWith('Avalugg') && mv('Wide Guard') && (st.turn === 1 || (!st.tr && st.active.p2.filter(Boolean).length === 2)) && st.active.p2.some(f => f && (() => { const ls = D.species.getLearnsetData(D.species.get(f.species).id); return ls && ls.learnset && Object.keys(ls.learnset).some(k => ['heatwave','eruption','earthquake','rockslide','hypervoice','makeitrain','muddywater','dazzlinggleam','blizzard','sludgewave','snarl','icywind','matchagotcha','bulldoze','discharge','lavaplume','surf'].includes(k)); })())) {
       c = 'move Wide Guard';
     } else if (!['Oranguru', 'Sinistcha', 'Farigiraf'].includes(me.species)) {
