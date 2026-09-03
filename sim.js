@@ -8,7 +8,7 @@
 //
 // usage: node sim.js <coreName|all> <games> [oppPolicy=antiTR|greedy] [ourVariant]
 'use strict';
-const {BattleStream, Teams, Dex, TeamValidator} = require('/home/claude/pscheck/node_modules/pokemon-showdown');
+const {BattleStream, Teams, Dex, TeamValidator} = require(require('./ps.js'));
 const fs = require('fs');
 const D = Dex.mod('champions');
 const FORMAT = 'gen9championsvgc2026regmb';

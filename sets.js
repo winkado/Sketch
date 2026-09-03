@@ -7,7 +7,7 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
-const {Dex, Teams, TeamValidator} = require('/home/claude/pscheck/node_modules/pokemon-showdown');
+const {Dex, Teams, TeamValidator} = require(require('./ps.js'));
 const D = Dex.mod('champions');
 const FORMAT = 'gen9championsvgc2026regmb';
 const SETS_PATH = process.env.SETS || ['./models/sets.json', path.join(__dirname, 'models/sets.json')].find(p => fs.existsSync(p));

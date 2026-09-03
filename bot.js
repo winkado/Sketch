@@ -14,7 +14,7 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 const WebSocket = require('ws');
-const {Teams} = require('/home/claude/pscheck/node_modules/pokemon-showdown');
+const {Teams} = require(require('./ps.js'));
 const S = require('./sim.js');
 
 const USER = process.env.PS_USER, PASS = process.env.PS_PASS;
