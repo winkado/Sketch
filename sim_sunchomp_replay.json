@@ -1,0 +1,19 @@
+{
+ "sunchomp": {
+  "games": 300,
+  "wins": 172,
+  "ties": 0,
+  "trT1": 296,
+  "trT2": 296,
+  "trEver": 296,
+  "oranguruDeadT1": 1,
+  "taunted": 0,
+  "flinched": 0,
+  "encored": 45,
+  "oppTR": 0,
+  "turns": 2008,
+  "fails": {
+   "setter KOd before TR": 4
+  }
+ }
+}

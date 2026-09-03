@@ -73,3 +73,12 @@ hidden real one every turn (0 mismatches expected, apart from fainted mons that 
 Cost: several seconds per decision (M=6 K=3 is ~10 s/decision on a laptop core; a Pi 4 is 3-4x slower). Against the
 45 s timer, use `SEARCH=1 M=4 K=2 ROLL=6 CONCURRENT=1` on a Pi, or keep rules with CONCURRENT=3 and run search on
 faster hardware. The rules path is still there as fallback whenever the rebuild or the search throws.
+
+## 7. Team iteration loop
+`node losses.js` attributes every one of our own games (replays/own) to a cause: NO_TR_T1 (with sub-cause), SWEEPER_ENTRY,
+SWEEPER_NEVER, PROTECT_STALL, ROOM_EXPIRED, LATE_GAME. The cause histogram decides the next change:
+setup causes -> lead/set; SWEEPER_ENTRY -> the payoff slot; LATE_GAME -> the playing algorithm; stall/expired -> Imprison timing / kill speed.
+First live run (133 games): setup 92% OK; SWEEPER_ENTRY 34% of losses, Camerupt-Mega dying to Water/Ground on entry -> v8 swaps in Ampharos-Mega.
+
+A/B protocol: incumbent on one account/machine, challenger on the other, same period, same policy, a few hundred games each.
+Challenger replaces incumbent only if it wins the A/B. Sims screen candidates; only live A/B promotes them.

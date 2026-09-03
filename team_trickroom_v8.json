@@ -1,0 +1,104 @@
+[
+ {
+  "name": "Oranguru",
+  "ability": "Inner Focus",
+  "item": "Lum Berry",
+  "nature": "Relaxed",
+  "evs": {
+   "hp": 32,
+   "def": 32,
+   "spd": 2
+  },
+  "moves": [
+   "Trick Room",
+   "Instruct",
+   "Protect",
+   "Imprison"
+  ]
+ },
+ {
+  "name": "Sinistcha",
+  "ability": "Hospitality",
+  "item": "Focus Sash",
+  "nature": "Relaxed",
+  "evs": {
+   "hp": 32,
+   "def": 28,
+   "spd": 6
+  },
+  "moves": [
+   "Rage Powder",
+   "Trick Room",
+   "Protect",
+   "Strength Sap"
+  ]
+ },
+ {
+  "name": "Torkoal",
+  "ability": "Drought",
+  "item": "Charcoal",
+  "nature": "Quiet",
+  "evs": {
+   "hp": 32,
+   "spa": 32,
+   "spd": 2
+  },
+  "moves": [
+   "Eruption",
+   "Earth Power",
+   "Burning Jealousy",
+   "Protect"
+  ]
+ },
+ {
+  "name": "Ampharos-Mega",
+  "ability": "Mold Breaker",
+  "item": "Ampharosite",
+  "nature": "Quiet",
+  "evs": {
+   "hp": 32,
+   "spa": 32,
+   "def": 2
+  },
+  "moves": [
+   "Thunderbolt",
+   "Dragon Pulse",
+   "Dazzling Gleam",
+   "Protect"
+  ]
+ },
+ {
+  "name": "Raichu-Mega-Y",
+  "ability": "No Guard",
+  "item": "Raichunite Y",
+  "nature": "Timid",
+  "evs": {
+   "spa": 32,
+   "spe": 32,
+   "hp": 2
+  },
+  "moves": [
+   "Zap Cannon",
+   "Focus Blast",
+   "Fake Out",
+   "Protect"
+  ]
+ },
+ {
+  "name": "Avalugg",
+  "ability": "Sturdy",
+  "item": "Leftovers",
+  "nature": "Relaxed",
+  "evs": {
+   "hp": 32,
+   "def": 32,
+   "atk": 2
+  },
+  "moves": [
+   "Wide Guard",
+   "Ice Spinner",
+   "Body Press",
+   "Protect"
+  ]
+ }
+]

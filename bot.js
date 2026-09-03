@@ -39,7 +39,9 @@ const FO_CORE = new Set(['Incineroar', 'Sneasler', 'Kangaskhan', 'Grimmsnarl', '
 function chooseLeads(oppSpecies) {
   const fo = oppSpecies.some(sp => FO_CORE.has(sp.replace(/-Mega.*$/, '')));
   const second = fo && team.some(m => m.name === 'Sinistcha') ? 'Sinistcha' : (team.some(m => m.name === 'Avalugg') ? 'Avalugg' : 'Sinistcha');
-  return ['Oranguru', second, 'Camerupt', 'Torkoal'];
+  const SUPPORT = new Set(['Oranguru', 'Sinistcha', 'Avalugg', 'Farigiraf', 'Raichu-Mega-Y', 'Dragapult']);
+  const sweepers = team.map(m => m.name.replace(/-Mega.*$/, '')).filter(n => !SUPPORT.has(n) && n !== second);
+  return ['Oranguru', second, ...sweepers.slice(0, 2)];
 }
 
 // our side may be p2: normalise every line so parseLine always sees us as p1

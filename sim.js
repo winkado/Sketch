@@ -239,7 +239,7 @@ function ourChoice(req, st, opts) {
     return req.forceSwitch.map(f => {
       if (!f) return 'pass';
       const bench = req.side.pokemon.map((p, i) => ({p, i})).filter(x => !x.p.active && !/fnt/.test(x.p.condition) && !taken.has(x.i));
-      const order = opts.switchOrder || ['Camerupt', 'Torkoal', 'Slowbro', 'Avalugg', 'Farigiraf', 'Sinistcha', 'Oranguru'];
+      const order = opts.switchOrder || ['Ampharos', 'Camerupt', 'Torkoal', 'Slowbro', 'Avalugg', 'Farigiraf', 'Sinistcha', 'Oranguru'];
       let pick = null; for (const n of order) { const b = bench.find(x => x.p.details.startsWith(n)); if (b) { pick = b; break; } }
       pick = pick || bench[0];
       if (!pick) return 'pass';
