@@ -92,3 +92,13 @@ Oranguru item; PROTECT_STALL/ROOM_EXPIRED -> Imprison->Foul Play. Hand-written c
 `manager/queue/` and it goes first. Every 50 games it re-mines behaviour.json/sets.json (own games included) and
 the bot hot-reloads them. State and history: `manager/state.json`. Nothing here needs a human between games.
 What it cannot do: invent a new team concept or a new mechanic-level idea. Those still come from us, via the queue.
+
+## 9. What improves without a human, after this commit
+- Opponent model (`behaviour.json`, `sets.json`): re-mined every REFRESH_GAMES games, own games included.
+- Position evaluation (`models/value.json`): logistic regression over state features, trained on our own games
+  (`node value.js train`), refit on every refresh, used at rollout leaves (70/30 with the hand-written score).
+  Only saved when it beats the hand-written score on held-out states. First fit on 129 live games: 70.9% vs 61.6%.
+- Team: spreads / items / one move swap, promoted by SPRT.
+- Search policy: ROBUST, K, M, ROLL, S variants run as challengers once the team menu is exhausted; accepted
+  values become the incumbent policy.
+Still human: new team concepts (manager/queue), new features/depth in the search, bugs the live layer hits, M-C.

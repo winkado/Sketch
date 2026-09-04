@@ -88,7 +88,9 @@ function playout(b, oppPolicy, maxTurns) {
     if (!stepHeuristics(b, oppPolicy, 'heuristic')) break;
   }
   if (b.ended) return b.winner === 'TR' ? 1 : b.winner === 'META' ? 0 : 0.5;
-  return 1 / (1 + Math.exp(-1.2 * material(b)));
+  const lv = (() => { try { return require('./value.js').evaluate(b); } catch { return null; } })();
+  const hand = 1 / (1 + Math.exp(-1.2 * material(b)));
+  return lv == null ? hand : 0.7 * lv + 0.3 * hand;   // learned evaluation when trained; blended so a bad early fit can't wreck play
 }
 // make one decision for every side that has a pending request, using heuristics
 function stepHeuristics(b, oppPolicy, p1kind, rng = Math.random) {
@@ -109,17 +111,18 @@ function stepHeuristics(b, oppPolicy, p1kind, rng = Math.random) {
 }
 
 // ------------------------------------------------ the search policy for P1
-function searchChoice(b, req, oppPolicy, rng) {
+function searchChoice(b, req, oppPolicy, rng, policy = {}) {
+  const Mx = policy.M || M, Kx = policy.K || K, SEEDSx = policy.S || SEEDS, ROLLx = policy.ROLL || ROLL, robustX = policy.ROBUST != null ? +policy.ROBUST : +(process.env.ROBUST || 0.35);
   const ours = enumerate(req, M);
   if (!ours) return null; // team preview / force switch handled by heuristic
   const st = stFromBattle(b);
   // rank our candidates by the heuristic's own pick first, then a cheap material lookahead
   const heur = (() => { try { return S.ourChoice(req, st, {pivot: 'sinistcha'}); } catch { return null; } })();
-  const cand = [...new Set([heur, ...ours].filter(Boolean))].slice(0, Math.max(M, 1) + 24);
+  const cand = [...new Set([heur, ...ours].filter(Boolean))].slice(0, Math.max(Mx, 1) + 24);
   // opponent candidates: heuristic picks under both policies with different randomness
   const oppReq = b.p2.activeRequest;
   const oppCands = new Set();
-  for (let k = 0; k < K * 3 && oppCands.size < K; k++) {
+  for (let k = 0; k < Kx * 3 && oppCands.size < Kx; k++) {
     const r = S.mulberry ? S.mulberry(k * 7919 + b.turn) : (() => { let s = k * 7919 + b.turn; return () => { s = (s * 9301 + 49297) % 233280; return s / 233280; }; })();
     try { oppCands.add(S.oppChoice(oppReq, st, b._core, k % 2 ? 'greedy' : oppPolicy, r)); } catch {}
   }
@@ -136,17 +139,17 @@ function searchChoice(b, req, oppPolicy, rng) {
       v += material(cb);
     }
     return {c, v};
-  }).sort((x, y) => y.v - x.v).slice(0, M);
+  }).sort((x, y) => y.v - x.v).slice(0, Mx);
   for (const {c} of screened) {
     let total = 0, n = 0; const perOpp = [];
-    for (const o of oppList) { let ot = 0, on = 0; for (let s = 0; s < SEEDS; s++) {
+    for (const o of oppList) { let ot = 0, on = 0; for (let s = 0; s < SEEDSx; s++) {
       const cb = Battle.fromJSON(json); cb._core = b._core; cb.sentLogPos = cb.log.length;
       cb.prng = new PRNG([1 + s, 2 + b.turn, 3, 4 + n]);
       ch(cb, 'p1', c); ch(cb, 'p2', o);
-      const pv = playout(cb, oppPolicy, ROLL); total += pv; n++; ot += pv; on++;
+      const pv = playout(cb, oppPolicy, ROLLx); total += pv; n++; ot += pv; on++;
     } perOpp.push(ot / on); }
     // ROBUST in [0,1]: 0 = pure expectation (take the coin flip), 1 = pure worst case (never enter a mind game)
-    const robust = +(process.env.ROBUST || 0.35);
+    const robust = robustX;
     const v = (1 - robust) * (total / n) + robust * Math.min(...perOpp);
     explain.push({c, v: +v.toFixed(3), mean: +(total / n).toFixed(3), worst: +Math.min(...perOpp).toFixed(3)});
     if (!best || v > best.v) best = {c, v};
@@ -217,4 +220,4 @@ if (!isMainThread) {
   }
   parentPort.postMessage(out);
 } else if (require.main === module) main().catch(e => { console.error(e); process.exit(1); });
-module.exports = {runGame, searchChoice, stFromBattle, enumerate};
+module.exports = {runGame, searchChoice, stFromBattle, enumerate, material, playout};

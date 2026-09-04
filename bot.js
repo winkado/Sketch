@@ -36,9 +36,10 @@ function loadTeam(file) { if (!teamCache[file]) { const t = JSON.parse(fs.readFi
 let gameCounter = 0;
 function nextTeamFile() {
   // manager present: alternate incumbent / challenger game by game; else the fixed TEAMFILE
-  try { if (fs.existsSync(ASSIGN)) { const a = JSON.parse(fs.readFileSync(ASSIGN, 'utf8')); if (a.alternate && a.challenger) return (gameCounter++ % 2 === 0) ? a.incumbent : a.challenger; if (a.incumbent) return a.incumbent; } } catch {}
-  return TEAMFILE;
+  try { if (fs.existsSync(ASSIGN)) { const a = JSON.parse(fs.readFileSync(ASSIGN, 'utf8')); if (a.alternate && a.challenger) { const chal = (gameCounter++ % 2 === 1); currentPolicy = chal ? (a.challengerPolicy || a.incumbentPolicy || {}) : (a.incumbentPolicy || {}); return chal ? a.challenger : a.incumbent; } if (a.incumbent) { currentPolicy = a.incumbentPolicy || {}; return a.incumbent; } } } catch {}
+  currentPolicy = {}; return TEAMFILE;
 }
+let currentPolicy = {};
 let current = loadTeam(nextTeamFile()); let team = current.team; let packed = current.packed; let currentFile = TEAMFILE;
 fs.mkdirSync(path.join(__dirname, 'replays', 'own'), {recursive: true});
 
@@ -110,7 +111,7 @@ function handleBattleLine(id, line) {
   b.lines.push(line);
   const parts = line.split('|');
   const tag = parts[1];
-  if (tag === 'init') { b.teamFile = currentFile; b.team = team; b.format = ''; send(`${room(id)}|/timer on`); console.log(`  battle started: https://play.pokemonshowdown.com/${room(id)}`); }
+  if (tag === 'init') { b.teamFile = currentFile; b.team = team; b.policy = currentPolicy; b.format = ''; send(`${room(id)}|/timer on`); console.log(`  battle started: https://play.pokemonshowdown.com/${room(id)}`); }
   if (tag === 'player' && parts[3]) {
     if (parts[3] === USER) { b.mySide = parts[2]; b.live = new LiveState(b.team || team, b.mySide, USER); }
     else { b.oppName = parts[3]; b.oppRating = parts[5] ? +parts[5] : null; }
@@ -146,7 +147,7 @@ function decide(id, b, req) {
       const battle = b.live.build(req);                      // real engine state, us as p1
       const st = A.stFromBattle(battle, 'p1');
       let via = 'rules';
-      if (USE_SEARCH) { const sc = A.searchChoice(battle, req, 'antiTR', Math.random); if (sc) { choice = sc; via = 'search'; } else choice = S.ourChoice(req, st, opts); }
+      if (USE_SEARCH) { const sc = A.searchChoice(battle, req, 'antiTR', Math.random, b.policy || {}); if (sc) { choice = sc; via = 'search'; } else choice = S.ourChoice(req, st, opts); }
       else choice = S.ourChoice(req, st, opts);
       if (process.env.VERBOSE) console.log(`  [${room(id)}] T${b.live.turn} ${via} ${Date.now() - t0}ms -> ${choice}`);
       if (process.env.EXPLAIN && via === 'search' && A.lastExplain) {
