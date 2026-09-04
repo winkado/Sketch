@@ -1,0 +1,19 @@
+{
+ "weather_1": {
+  "games": 60,
+  "wins": 49,
+  "ties": 0,
+  "trT1": 58,
+  "trT2": 58,
+  "trEver": 58,
+  "oranguruDeadT1": 0,
+  "taunted": 0,
+  "flinched": 0,
+  "encored": 0,
+  "oppTR": 0,
+  "turns": 378,
+  "fails": {
+   "setter KOd before TR": 2
+  }
+ }
+}

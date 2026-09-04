@@ -60,7 +60,14 @@ function swapSides(line) {
   return line.replace(/\bp([12])([ab]?)\b/g, (_, n, ab) => 'p' + (n === '1' ? '2' : '1') + ab);
 }
 
-let ws, games = 0, wins = 0, searching = false, activeGames = 0, draining = false;
+let ws, games = 0, wins = 0, searching = false, activeGames = 0, draining = false, lastMessageAt = Date.now(), searchStartedAt = 0;
+setInterval(() => {
+  const idle = (Date.now() - lastMessageAt) / 1000;
+  if (idle > 180) { console.log(`watchdog: no server message for ${idle | 0}s, reconnecting`); lastMessageAt = Date.now(); try { ws.terminate(); } catch {} }
+  if (searching && searchStartedAt && Date.now() - searchStartedAt > 5 * 60 * 1000 && activeGames < CONCURRENT) { console.log('watchdog: search stuck 5 min, re-searching'); searching = false; searchStartedAt = 0; search(); }
+  if (!searching && !draining && activeGames < CONCURRENT && games + activeGames < MAX_GAMES && Date.now() - lastMessageAt < 60000) search();
+}, 30000).unref();
+setInterval(() => console.log(`heartbeat: ${activeGames} active, ${games} finished, ${wins} won, searching=${searching}`), 5 * 60 * 1000).unref();
 // graceful stop: finish every open battle, never start another. Triggered by SIGTERM/SIGINT (docker stop)
 // or by creating the file replays/own/STOP. Forfeiting a battle costs rating; this never does.
 function drain(reason) {
@@ -98,7 +105,7 @@ async function login(challstr) {
 }
 function search() {
   if (draining || searching || games + activeGames >= MAX_GAMES || activeGames >= CONCURRENT) return;
-  searching = true;
+  searching = true; searchStartedAt = Date.now();
   currentFile = nextTeamFile(); current = loadTeam(currentFile); team = current.team; packed = current.packed;
   send(`|/utm ${packed}`);
   for (const f of FORMATS) send(`|/search ${f}`);
@@ -106,7 +113,7 @@ function search() {
 }
 function onUpdateSearch(json) {
   let j; try { j = JSON.parse(json); } catch { return; }
-  searching = !!(j.searching && j.searching.length);
+  searching = !!(j.searching && j.searching.length); if (!searching) searchStartedAt = 0;
   activeGames = j.games ? Object.keys(j.games).length : 0;
   // leave any game room we are not tracking as a live battle (dead Bo3 lobbies, stale rooms after reconnect)
   if (j.games) for (const r of Object.keys(j.games)) {
@@ -137,13 +144,19 @@ function handleBattleLine(id, line) {
     if (!parts[2]) return;
     const req = JSON.parse(parts.slice(2).join('|'));
     if (req.wait) return;
-    b.lastRq = req.rqid;
+    b.lastRq = req.rqid; b.lastReq = req; b.errors = 0;
     if (req.teamPreview || req.forceSwitch) { decide(id, b, req); return; }
     // move requests: the turn's log lines may still be arriving; decide once the burst settles
     b.pending = req; clearTimeout(b.timer); b.timer = setTimeout(() => { const q = b.pending; b.pending = null; if (q) decide(id, b, q); }, DEBOUNCE_MS);
     return;
   }
-  if (tag === 'error') { console.log('  server error:', parts.slice(2).join('|').slice(0, 120)); send(`${room(id)}|/choose default|${b.lastRq}`); return; }
+  if (tag === 'error') {
+    console.log('  server error:', parts.slice(2).join('|').slice(0, 120));
+    b.errors = (b.errors || 0) + 1;
+    if (b.lastReq && b.errors <= 2) { try { const c = S.ourChoice(b.lastReq, b.st, {leads: b.leads || ['Oranguru', 'Avalugg'], pivot: 'sinistcha'}); send(`${room(id)}|/choose ${validChoice(b.lastReq, c) ? c : 'default'}|${b.lastRq}`); } catch { send(`${room(id)}|/choose default|${b.lastRq}`); } }
+    else send(`${room(id)}|/choose default|${b.lastRq}`);
+    return;
+  }
   if (tag === 'win' || tag === 'tie') { finish(id, b, parts[2]); return; }
   // state tracking: the live layer (real Battle rebuild) plus the legacy tracker as fallback
   if (b.live) b.live.feed(line);
@@ -152,8 +165,15 @@ function handleBattleLine(id, line) {
   if (b.pending) { clearTimeout(b.timer); b.timer = setTimeout(() => { const q = b.pending; b.pending = null; if (q) decide(id, b, q); }, DEBOUNCE_MS); }
 }
 
+function validChoice(req, choice) {
+  if (!req.active || req.teamPreview || req.forceSwitch) return true;
+  const parts = choice.split(', ');
+  if (parts.length !== req.active.length) return false;
+  return parts.every((p, i) => { const m = p.match(/^move (.+?)(?: (-?\d))?(?: mega)?$/); if (!m) return /^(switch \d|pass)$/.test(p); const act = req.active[i]; return act && act.moves && act.moves.some(x => x.move === m[1] && !x.disabled); });
+}
 function decide(id, b, req) {
   let choice;
+  if (req.rqid != null && b.lastRq != null && req.rqid !== b.lastRq) { console.log(`  [${room(id)}] dropped stale request rqid ${req.rqid} (latest ${b.lastRq})`); return; }
   if (!b.mySide && !req.teamPreview) console.log(`  WARNING [${room(id)}] own side unknown - name mismatch? player lines: ${b.lines.filter(l => l.startsWith('|player|')).join(' ')}`);
   const opts = {leads: b.leads || (b.leads = chooseLeads(b.oppSpecies, b.team || team)), pivot: 'sinistcha', imprisonFirst: false};
   try {
@@ -181,6 +201,11 @@ function decide(id, b, req) {
       }
     } else choice = S.ourChoice(req, b.st, opts);
   } catch (e) { console.log('  live/search error, falling back:', e.message); try { choice = S.ourChoice(req, b.st, opts); } catch (e2) { choice = 'default'; } }
+  if (!validChoice(req, choice)) {
+    console.log(`  [${room(id)}] choice '${choice}' does not fit the current request; regenerating from rules`);
+    try { choice = S.ourChoice(req, b.live && b.live.turn >= 1 ? A.stFromBattle(b.live.build(req), 'p1') : b.st, opts); } catch { choice = 'default'; }
+    if (!validChoice(req, choice)) choice = 'default';
+  }
   // live server reverts Megas to base forme: press the button on the first move
   if (req.active && !req.teamPreview && !req.forceSwitch) {
     choice = choice.split(', ').map((part, i) => (req.active[i] && req.active[i].canMegaEvo && part.startsWith('move ') && !/ mega$/.test(part)) ? part + ' mega' : part).join(', ');
@@ -207,6 +232,8 @@ function connect() {
   ws = new WebSocket(SERVER);
   ws.on('open', () => { console.log('connected'); clearInterval(ws._ka); ws._ka = setInterval(() => { try { ws.ping(); } catch {} }, 60000); });
   ws.on('message', (data) => {
+    lastMessageAt = Date.now();
+    try {
     const text = data.toString();
     let room = '';
     for (const raw of text.split('\n')) {
@@ -218,6 +245,7 @@ function connect() {
       else if (room.startsWith('>') && !raw.startsWith('|c|') && !raw.startsWith('|j|') && !raw.startsWith('|l|')) { if (process.env.VERBOSE) console.log(`  [${room}] ${raw.slice(0, 200)}`); if (/\|request\|/.test(raw)) console.log('  NOTE: request in a non-battle room — Bo3 protocol; paste this log'); }
       if (raw.startsWith('|popup|')) console.log('popup:', raw.slice(7, 200));
     }
+    } catch (e) { console.log('handler error (ignored):', e.message.slice(0, 160)); }
   });
   ws.on('close', () => { console.log('disconnected, reconnecting in 10s'); setTimeout(connect, 10000); });
   ws.on('error', (e) => console.error('ws error', e.message));

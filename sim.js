@@ -111,6 +111,37 @@ const CORES = {
   },
 };
 
+// Real opponent population: top real teams per archetype, sets sampled from their own revealed moves/items/abilities.
+function realCores(minSeen = 4, perArch = 6) {
+  const p = require('path').join(__dirname, 'models', 'teams.json'); if (!fs.existsSync(p)) return {};
+  const {sampleTeam} = require('./sets.js');
+  const lib = JSON.parse(fs.readFileSync(p, 'utf8')).teams.filter(t => t.n >= minSeen && !t.species.includes('Oranguru'));
+  const out = {}, count = {};
+  for (const t of lib) {
+    if ((count[t.archetype] || 0) >= perArch) continue;
+    const revealed = {}; for (const [sp, ss] of Object.entries(t.sets)) revealed[sp] = {moves: Object.entries(ss.moves).sort((a, b) => b[1] - a[1]).slice(0, 4).map(x => x[0]), item: Object.entries(ss.items).sort((a, b) => b[1] - a[1])[0]?.[0] || null, ability: Object.entries(ss.abilities).sort((a, b) => b[1] - a[1])[0]?.[0] || null};
+    let team = null; for (let k = 0; k < 5 && !team; k++) team = sampleTeam(t.species, revealed, Math.random);
+    if (!team) continue;
+    const idx = (n) => team.findIndex(m => m.name.replace(/-Mega.*$/, '') === n.replace(/-Mega.*$/, ''));
+    const brings = t.leads.map(([lk]) => { const L = lk.split('+').map(idx).filter(i => i >= 0); const rest = team.map((_, i) => i).filter(i => !L.includes(i)).slice(0, 4 - L.length); return [...L, ...rest]; }).filter(b => b.length === 4);
+    if (!brings.length) continue;
+    count[t.archetype] = (count[t.archetype] || 0) + 1;
+    out[`${t.archetype}_${count[t.archetype]}`] = {team, brings, tr: t.archetype === 'trickroom' || t.archetype === 'tailroom', archetype: t.archetype, seen: t.n, winRate: t.winRate};
+  }
+  return out;
+}
+if (process.env.REALTEAMS === '1') Object.assign(CORES, realCores(+(process.env.MIN_SEEN || 4), +(process.env.PER_ARCH || 6)));
+
+// ---- styles for the heuristic opponent (multipliers on option values)
+const STYLES = {
+  neutral:    {dmg: 1.0, protect: 1.0, status: 1.0, setter: 1.0, noise: 0.15},
+  aggressive: {dmg: 1.3, protect: 0.5, status: 0.6, setter: 1.4, noise: 0.10},
+  defensive:  {dmg: 0.8, protect: 1.8, status: 1.4, setter: 0.8, noise: 0.10},
+  variance:   {dmg: 1.0, protect: 1.0, status: 1.0, setter: 1.0, noise: 0.45},   // picks among top-3 far more often
+  tournament: {dmg: 1.0, protect: 1.4, status: 1.2, setter: 1.2, noise: 0.08},
+};
+const STYLE = STYLES[process.env.STYLE || 'neutral'] || STYLES.neutral;
+
 function setText(s) {
   return [`${s.name}${s.item ? ' @ ' + s.item : ''}`, `Ability: ${s.ability}`, `Level: 50`,
     'EVs: ' + Object.entries(s.evs).map(([k, v]) => `${v} ${k.toUpperCase()}`).join(' / '),
@@ -422,11 +453,11 @@ function oppChoice(req, st, core, policy, rng) {
       if (move.category === 'Status') {
         if (move.id === 'taunt' && setter >= 0 && !st.active.p1[setter].taunt) options.push({c: `move Taunt ${foeSlotTarget(setter)}`, v: st.tr ? 75 : 60});
         if (move.id === 'protect' && !me.protectedLast) {
-          // expect a KO on us?
+          // expect a KO on us?  (style: defensive/tournament Protect more)
           let incoming = 0;
           st.active.p1.forEach(f => { if (!f) return; for (const fm of ['Earth Power', 'Eruption', 'Foul Play', 'Flash Cannon']) incoming = Math.max(incoming, estPct(f, fm, me, st, fm === 'Eruption')); });
           const willDie = incoming * (st.tr ? 2 : 1) >= 100 * me.hp / me.maxhp;
-          if (willDie && st.tr) options.push({c: 'move Protect', v: 55});
+          if (willDie && st.tr) options.push({c: 'move Protect', v: 55 * STYLE.protect}); else if (STYLE.protect > 1.5 && st.tr && incoming > 40) options.push({c: 'move Protect', v: 30 * STYLE.protect});
         }
         if (move.id === 'tailwind' && !st.tr && st.turn === 1 && policy !== 'antiTR') options.push({c: 'move Tailwind', v: 30});
         if (move.id === 'tailwind' && !st.tr && st.turn === 1 && policy === 'antiTR' && core.team.some(t => t.name.startsWith('Dragonite') || t.name.startsWith('Arcanine'))) options.push({c: 'move Tailwind', v: 65});
@@ -447,7 +478,8 @@ function oppChoice(req, st, core, policy, rng) {
           let v = estPct(me, m.move, f, st, false);
           if (move.id === 'fakeout') { v = (setter === j && policy === 'antiTR' && !st.tr) ? 90 : (me.firstTurn === st.turn ? 25 : -1); }
           if (move.id === 'suckerpunch' && (f.species === 'Oranguru' || f.species === 'Sinistcha')) v *= 0.2;
-          if (policy === 'antiTR' && j === setter && !st.tr) v *= 1.8;   // focus the setter
+          if (policy === 'antiTR' && j === setter && !st.tr) v *= 1.8 * STYLE.setter;   // focus the setter
+          v *= STYLE.dmg;
           if (sweeper >= 0 && j === sweeper && st.tr) v *= 1.5;         // kill the sweeper under TR
           if (v >= 100 * f.hp / f.maxhp) v += 40;                        // KO bonus
           options.push({c: `move ${m.move} ${foeSlotTarget(j)}`, v});
@@ -457,7 +489,7 @@ function oppChoice(req, st, core, policy, rng) {
     if (!options.length) { choices.push('move ' + act.moves.find(m => !m.disabled).move); return; }
     options.sort((a, b) => b.v - a.v);
     // small randomness so we don't replay one line thousands of times
-    const pick = options[rng() < 0.85 ? 0 : Math.min(1, options.length - 1)];
+    const r = rng(); const pick = options[r < 1 - STYLE.noise ? 0 : r < 1 - STYLE.noise / 3 ? Math.min(1, options.length - 1) : Math.min(2, options.length - 1)];
     choices.push(pick.c);
   });
   return choices.join(', ');

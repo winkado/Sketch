@@ -115,3 +115,11 @@ candidate: estimated damage into our actives, KO threat, Protect/status/priority
 (low HP / T1 / room up / protected last turn), used last turn, times used this game, revealed, species prior and Elo
 prior, turn, room. Softmax over candidates. Trained on 6,142 games: held-out top-1/top-3 44.4/84.9 vs 39.4/81.1 for
 frequencies. The search samples opponent replies from it (falls back to frequencies if untrained). Refit on refresh.
+
+## 11. Opponent population and belief
+- `node archetypes.js build` -> `models/teams.json` (600 real six-mon teams from replays, labelled trickroom / tailwind / tailroom /
+  weather / hyperoffense / balance, with their leads, win rate, rating, revealed sets) and `models/belief.json`.
+- `node archetypes.js posterior Dragonite Milotic` -> P(species on their team | seen), naive Bayes over 12k real team-sides.
+- `REALTEAMS=1 node sim.js ...` adds real teams as opponent cores (PER_ARCH, MIN_SEEN). `STYLE=aggressive|defensive|variance|tournament`.
+- `REALTEAMS=1 node matrix.js team.json 200` -> win rate vs every real core x style; mean by archetype; worst cells. models/matrix.json.
+Sims screen; the ladder promotes. A 90% cell against the sim population is a claim about the sim, not about humans.

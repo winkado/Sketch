@@ -1,0 +1,19 @@
+{
+ "trickroom_2": {
+  "games": 60,
+  "wins": 38,
+  "ties": 0,
+  "trT1": 32,
+  "trT2": 32,
+  "trEver": 46,
+  "oranguruDeadT1": 0,
+  "taunted": 0,
+  "flinched": 0,
+  "encored": 0,
+  "oppTR": 32,
+  "turns": 374,
+  "fails": {
+   "setter KOd before TR": 14
+  }
+ }
+}
