@@ -1,17 +1,17 @@
 {
  "balance_1": {
-  "games": 60,
-  "wins": 51,
+  "games": 50,
+  "wins": 5,
   "ties": 0,
-  "trT1": 60,
-  "trT2": 60,
-  "trEver": 60,
+  "trT1": 50,
+  "trT2": 50,
+  "trEver": 50,
   "oranguruDeadT1": 0,
   "taunted": 0,
   "flinched": 0,
   "encored": 0,
   "oppTR": 0,
-  "turns": 395,
+  "turns": 357,
   "fails": {}
  }
 }

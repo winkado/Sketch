@@ -324,6 +324,8 @@ function ourChoice(req, st, opts) {
       else if (mv('Trick Room') && !st.tr) c = 'move Trick Room';
       else if (mv('Protect') && !me.protectedLast) c = 'move Protect';
       else c = 'move ' + act.moves.find(m => !m.disabled).move;
+    } else if (me.species.startsWith('Gengar') && st.turn === 1 && mv('Imprison')) {
+      c = 'move Imprison';
     } else if (me.species.startsWith('Avalugg') && mv('Wide Guard') && (me.wgStreak || 0) < 2 && st.active.p2.some(f => f && f.lastWasSpread) && st.active.p2.some(f => f && (() => {
         // real-player data: is this species' most likely click right now a spread move?
         const d = (typeof replayMoveDist === 'function') ? replayMoveDist(f.species, st.turn) : null;

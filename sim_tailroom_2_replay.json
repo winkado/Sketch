@@ -1,19 +1,20 @@
 {
  "tailroom_2": {
-  "games": 60,
-  "wins": 44,
+  "games": 50,
+  "wins": 2,
   "ties": 0,
-  "trT1": 46,
-  "trT2": 46,
-  "trEver": 46,
+  "trT1": 0,
+  "trT2": 4,
+  "trEver": 47,
   "oranguruDeadT1": 0,
   "taunted": 0,
-  "flinched": 0,
+  "flinched": 1,
   "encored": 0,
   "oppTR": 0,
-  "turns": 346,
+  "turns": 342,
   "fails": {
-   "setter KOd before TR": 14
+   "other": 1,
+   "setter KOd before TR": 2
   }
  }
 }

@@ -47,7 +47,14 @@ fs.mkdirSync(path.join(__dirname, 'replays', 'own'), {recursive: true});
 
 // lead rule from the replay-model sims: Sinistcha vs Fake Out / Intimidate cores, Avalugg otherwise
 const FO_CORE = new Set(['Incineroar', 'Sneasler', 'Kangaskhan', 'Grimmsnarl', 'Lopunny', 'Sableye', 'Scrafty', 'Persian', 'Meowscarada']);
+const TR_SETTERS = new Set(['Farigiraf', 'Oranguru', 'Hatterene', 'Sinistcha', 'Slowking', 'Slowbro', 'Reuniclus', 'Cofagrigus', 'Armarouge', 'Musharna', 'Porygon2', 'Spiritomb', 'Bronzong', 'Dusclops']);
 function chooseLeads(oppSpecies, team) {
+  // anti-Trick-Room bring when the team carries it and their six has 2+ setter species
+  const setters = oppSpecies.filter(sp => TR_SETTERS.has(sp.replace(/-Mega.*$/, ''))).length;
+  if (setters >= 2 && team.some(m => m.name.startsWith('Gengar')) && team.some(m => m.name === 'Garchomp')) {
+    const rest = team.map(m => m.name).filter(n => !n.startsWith('Gengar') && n !== 'Garchomp' && !/Sinistcha|Avalugg|Raichu/.test(n));
+    return ['Gengar-Mega', 'Garchomp', ...rest.slice(0, 2)];
+  }
   const fo = oppSpecies.some(sp => FO_CORE.has(sp.replace(/-Mega.*$/, '')));
   const second = fo && team.some(m => m.name === 'Sinistcha') ? 'Sinistcha' : (team.some(m => m.name === 'Avalugg') ? 'Avalugg' : 'Sinistcha');
   const SUPPORT = new Set(['Oranguru', 'Sinistcha', 'Avalugg', 'Farigiraf', 'Raichu-Mega-Y', 'Dragapult']);

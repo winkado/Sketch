@@ -1,0 +1,104 @@
+[
+ {
+  "name": "Oranguru",
+  "ability": "Inner Focus",
+  "item": "Mental Herb",
+  "nature": "Relaxed",
+  "evs": {
+   "hp": 32,
+   "def": 26,
+   "spd": 8
+  },
+  "moves": [
+   "Instruct",
+   "Imprison",
+   "Trick Room",
+   "Protect"
+  ]
+ },
+ {
+  "name": "Sinistcha",
+  "ability": "Hospitality",
+  "item": "Focus Sash",
+  "nature": "Bold",
+  "evs": {
+   "hp": 32,
+   "def": 32,
+   "spd": 2
+  },
+  "moves": [
+   "Rage Powder",
+   "Trick Room",
+   "Protect",
+   "Strength Sap"
+  ]
+ },
+ {
+  "name": "Camerupt-Mega",
+  "ability": "Sheer Force",
+  "item": "Cameruptite",
+  "nature": "Quiet",
+  "evs": {
+   "hp": 32,
+   "def": 2,
+   "spa": 32
+  },
+  "moves": [
+   "Eruption",
+   "Earthquake",
+   "Solar Beam",
+   "Protect"
+  ]
+ },
+ {
+  "name": "Avalugg-Hisui",
+  "ability": "Strong Jaw",
+  "item": "Never-Melt Ice",
+  "nature": "Brave",
+  "evs": {
+   "hp": 32,
+   "atk": 32,
+   "def": 2
+  },
+  "moves": [
+   "Ice Spinner",
+   "Body Press",
+   "Rock Slide",
+   "Wide Guard"
+  ]
+ },
+ {
+  "name": "Gengar-Mega",
+  "ability": "Shadow Tag",
+  "item": "Gengarite",
+  "nature": "Timid",
+  "evs": {
+   "hp": 2,
+   "spa": 32,
+   "spe": 32
+  },
+  "moves": [
+   "Shadow Ball",
+   "Imprison",
+   "Trick Room",
+   "Protect"
+  ]
+ },
+ {
+  "name": "Garchomp",
+  "ability": "Rough Skin",
+  "item": "Life Orb",
+  "nature": "Jolly",
+  "evs": {
+   "hp": 2,
+   "atk": 32,
+   "spe": 32
+  },
+  "moves": [
+   "Earthquake",
+   "Dragon Claw",
+   "Stomping Tantrum",
+   "Protect"
+  ]
+ }
+]

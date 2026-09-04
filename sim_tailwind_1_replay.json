@@ -1,19 +1,17 @@
 {
  "tailwind_1": {
-  "games": 60,
-  "wins": 54,
+  "games": 50,
+  "wins": 41,
   "ties": 0,
-  "trT1": 57,
-  "trT2": 57,
-  "trEver": 57,
+  "trT1": 50,
+  "trT2": 50,
+  "trEver": 50,
   "oranguruDeadT1": 0,
   "taunted": 0,
   "flinched": 0,
-  "encored": 1,
+  "encored": 0,
   "oppTR": 0,
-  "turns": 373,
-  "fails": {
-   "setter KOd before TR": 3
-  }
+  "turns": 343,
+  "fails": {}
  }
 }
