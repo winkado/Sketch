@@ -67,6 +67,9 @@ function drain(reason) {
   console.log(`draining (${reason}): finishing ${activeGames} open battle(s), no new searches`);
   if (searching) send('|/cancelsearch');
   if (activeGames === 0) { console.log('no open battles, exiting'); setTimeout(() => process.exit(0), 500); }
+  // safety: the server's game count can include rooms we don't handle (e.g. a Bo3 parent). If none of OUR tracked
+  // battles is still running, leave everything and exit after a grace period rather than hanging forever.
+  setInterval(() => { const live = Object.values(battles).filter(b => !b.done).length; if (live === 0) { console.log('drain: no tracked battles running, leaving remaining rooms and exiting'); for (const id of Object.keys(battles)) send(`${room(id)}|/leave`); setTimeout(() => process.exit(0), 2000); } }, 30000).unref();
 }
 process.on('SIGTERM', () => drain('SIGTERM'));
 process.on('SIGINT', () => drain('SIGINT'));
@@ -197,6 +200,7 @@ function connect() {
       if (raw.startsWith('|challstr|')) { login(raw.slice('|challstr|'.length)).catch(e => { console.error(e.message); process.exit(1); }); continue; }
       if (raw.startsWith('|updatesearch|')) { onUpdateSearch(raw.slice('|updatesearch|'.length)); continue; }
       if (room.startsWith('>battle-')) handleBattleLine(room, raw);
+      else if (room.startsWith('>') && !raw.startsWith('|c|') && !raw.startsWith('|j|') && !raw.startsWith('|l|')) { if (process.env.VERBOSE) console.log(`  [${room}] ${raw.slice(0, 200)}`); if (/\|request\|/.test(raw)) console.log('  NOTE: request in a non-battle room — Bo3 protocol; paste this log'); }
       if (raw.startsWith('|popup|')) console.log('popup:', raw.slice(7, 200));
     }
   });

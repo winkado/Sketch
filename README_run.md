@@ -102,3 +102,9 @@ What it cannot do: invent a new team concept or a new mechanic-level idea. Those
 - Search policy: ROBUST, K, M, ROLL, S variants run as challengers once the team menu is exhausted; accepted
   values become the incumbent policy.
 Still human: new team concepts (manager/queue), new features/depth in the search, bugs the live layer hits, M-C.
+
+## Bo3 (disabled)
+Bo3 uses a parent game room with child battle rooms; the client only handles `battle-` rooms, so team preview timed out and the
+parent room kept the game count non-zero, which blocked draining. Disabled in compose. To enable it properly I need one
+captured Bo3 start: run with VERBOSE=1 and PS_FORMATS including the bo3 format for a single game, and paste every log
+line whose room id does not start with `battle-`. Drain now also exits when no tracked battle is running.
