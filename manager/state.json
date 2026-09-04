@@ -1,0 +1,19 @@
+{
+ "incumbent": "team_trickroom_v8.json",
+ "challenger": "team_chal_1788482082984.json",
+ "challengerLabel": "spread:Sinistcha:{\"hp\":32,\"def\":32,\"atk\":2}",
+ "inc": {
+  "w": 3,
+  "n": 9
+ },
+ "chal": {
+  "w": 5,
+  "n": 17
+ },
+ "seenRows": 192,
+ "gamesSinceRefresh": 27,
+ "history": [],
+ "tried": [
+  "Sinistcha{\"hp\":32,\"def\":32,\"atk\":2}"
+ ]
+}
