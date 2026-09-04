@@ -23,6 +23,7 @@ services:
       PS_USER: ${PS_USER_1}
       PS_PASS: ${PS_PASS_1}
       TEAM: team_trickroom_v8.json
+      PS_FORMATS: gen9championsvgc2026regmb,gen9championsvgc2026regmbbo3   # search both; Bo3 = 3 games vs the same human
       MANAGER: "1"             # champion/challenger A/B + model refresh, unattended
       INCUMBENT: team_trickroom_v8.json
       SPRT_DELTA: "0.05"
