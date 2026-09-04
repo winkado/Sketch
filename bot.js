@@ -23,6 +23,8 @@ const DEBOUNCE_MS = +(process.env.DEBOUNCE_MS || 400);
 console.log(`policy: ${USE_SEARCH ? `SEARCH (expectimax, M=${process.env.M || 8} K=${process.env.K || 4} S=${process.env.S || 1} ROLL=${process.env.ROLL || 8})` : 'RULES (plan logic)'} | live state layer: on | concurrent battles: ${process.env.CONCURRENT || 3}`);
 
 const USER = process.env.PS_USER, PASS = process.env.PS_PASS;
+const toID = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+const USERID = toID(USER);
 const TEAMFILE = process.argv[2] || 'team_trickroom_v7.json';
 const MAX_GAMES = +(process.argv[3] || 50);
 const FORMATS = (process.env.PS_FORMATS || 'gen9championsvgc2026regmb').split(',').map(s => s.trim()).filter(Boolean);   // search all of these at once
@@ -105,6 +107,9 @@ function onUpdateSearch(json) {
   let j; try { j = JSON.parse(json); } catch { return; }
   searching = !!(j.searching && j.searching.length);
   activeGames = j.games ? Object.keys(j.games).length : 0;
+  // leave any game room we are not tracking as a live battle (dead Bo3 lobbies, stale rooms after reconnect)
+  if (j.games) for (const r of Object.keys(j.games)) { if (!battles['>' + r] || battles['>' + r].done) { send(`${r}|/leave`); console.log('  left untracked room', r); } }
+  activeGames = Object.values(battles).filter(x => !x.done).length;
   if (!searching) setTimeout(search, 500);   // a search just resolved into a battle (or ended): queue the next one
 }
 
@@ -116,8 +121,8 @@ function handleBattleLine(id, line) {
   const tag = parts[1];
   if (tag === 'init') { b.teamFile = currentFile; b.team = team; b.policy = currentPolicy; b.format = ''; send(`${room(id)}|/timer on`); console.log(`  battle started: https://play.pokemonshowdown.com/${room(id)}`); }
   if (tag === 'player' && parts[3]) {
-    if (parts[3] === USER) { b.mySide = parts[2]; b.live = new LiveState(b.team || team, b.mySide, USER); }
-    else { b.oppName = parts[3]; b.oppRating = parts[5] ? +parts[5] : null; }
+    if (toID(parts[3]) === USERID) { b.mySide = parts[2]; b.live = new LiveState(b.team || team, b.mySide, USER); }
+    else if (toID(parts[3]) !== USERID) { b.oppName = parts[3]; b.oppRating = parts[5] ? +parts[5] : null; }
     return;
   }
   if (tag === 'tier') b.format = parts[2] || '';
@@ -143,18 +148,22 @@ function handleBattleLine(id, line) {
 
 function decide(id, b, req) {
   let choice;
+  if (!b.mySide && !req.teamPreview) console.log(`  WARNING [${room(id)}] own side unknown - name mismatch? player lines: ${b.lines.filter(l => l.startsWith('|player|')).join(' ')}`);
   const opts = {leads: b.leads || (b.leads = chooseLeads(b.oppSpecies, b.team || team)), pivot: 'sinistcha', imprisonFirst: false};
   try {
     if (!req.teamPreview && !req.forceSwitch && b.live && b.live.turn >= 1) {
       const t0 = Date.now();
       const battle = b.live.build(req);                      // real engine state, us as p1
       const st = A.stFromBattle(battle, 'p1');
+      st.oppElo = b.oppRating == null ? 'tourney' : b.oppRating < 1300 ? '<1300' : b.oppRating < 1600 ? '1300-1599' : b.oppRating < 1900 ? '1600-1899' : '1900+';
+      for (const r of Object.values(b.live.mons[b.live.oppSide])) { const rec = Object.values(st.sides.p2).find(x => x.species === r.species || x.species === r.species.replace(/-Mega.*$/, '')); if (rec) { rec.revealed = r.moves; rec.usedCount = r.ppUsed; rec.lastMove = r.lastMove || rec.lastMove; } }
       let via = 'rules';
       // HYBRID: the plan owns the setup (turn 1, and any turn the room is down and the setter can set it); the search
       // owns everything else. Live data: the search declined turn-1 Trick Room in 18/60 games and win rate fell 44% -> 33%.
       const roomDown = !battle.field.pseudoWeather.trickroom;
       const setterCanTR = st.active.p1.some(r => r && ['Oranguru', 'Sinistcha'].includes(r.species) && !r.taunt);
-      const planTurn = b.live.turn <= 2 || (roomDown && setterCanTR && b.live.turn <= 3);   // T1 setup, T2 pivot/Protect (Encore turn), re-set when down
+      const PT = (b.policy && b.policy.PLAN_TURNS != null) ? +b.policy.PLAN_TURNS : +(process.env.PLAN_TURNS || 2);
+      const planTurn = b.live.turn <= PT || (PT > 0 && roomDown && setterCanTR && b.live.turn <= 3);   // PLAN_TURNS=0 -> search decides everything
       if (USE_SEARCH && !planTurn) { const sc = A.searchChoice(battle, req, 'antiTR', Math.random, b.policy || {}); if (sc) { choice = sc; via = 'search'; } else choice = S.ourChoice(req, st, opts); }
       else { choice = S.ourChoice(req, st, opts); via = planTurn ? 'plan' : 'rules'; }
       if (process.env.VERBOSE) console.log(`  [${room(id)}] T${b.live.turn} ${via} ${Date.now() - t0}ms -> ${choice}`);
@@ -177,7 +186,7 @@ function decide(id, b, req) {
 function finish(id, b, winner) {
   if (b.done) return; b.done = true;
   games++;
-  const won = winner === USER;
+  const won = toID(winner) === USERID;
   if (won) wins++;
   console.log(`game ${games}: ${won ? 'WIN' : 'LOSS'} vs ${b.oppName} (${b.oppRating ?? 'unrated'})  running ${wins}/${games}`);
   fs.writeFileSync(path.join(__dirname, 'replays', 'own', id.replace(/^>/, '') + '.json'),

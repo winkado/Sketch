@@ -22,7 +22,8 @@ const PROTECT = /^(Protect|Detect|Spiky Shield|Baneful Bunker|King's Shield|Wide
 
 function analyse(rep) {
   const st = parseReplay(rep.log, rep.players || []);
-  const me = rep.players[1] === 'winkado' || (rep.players[1] || '').toLowerCase().includes('sketch') ? 'p2' : (rep.players[0] === 'winkado' || (rep.players[0] || '').toLowerCase().includes('sketch') ? 'p1' : null);
+  const toID = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9]/g, ''); const ME = toID(process.env.PS_USER || 'winkado');
+  const pl = rep.log.split('\n').filter(x => x.startsWith('|player|')).map(x => x.split('|')); const mineLine = pl.find(x => toID(x[3]) === ME); const me = mineLine ? mineLine[2] : null;
   const my = me || (st.leads.p2.some(s => OUR.has(s)) ? 'p2' : 'p1');
   const opp = my === 'p1' ? 'p2' : 'p1';
   const mine = st.actions.filter(a => a.side === my), theirs = st.actions.filter(a => a.side === opp);

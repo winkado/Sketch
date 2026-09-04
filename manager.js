@@ -114,7 +114,7 @@ function generateChallenger(st) {
   }
   if (!label) {
     // no team mutation left for this cause: try a search-policy variant (same team, different search parameters)
-    const grid = [{ROBUST: 0.15}, {ROBUST: 0.55}, {K: 6}, {ROLL: 12}, {M: 12}, {S: 2}];
+    const grid = [{PLAN_TURNS: 0}, {ROBUST: 0.15}, {ROBUST: 0.55}, {K: 6}, {ROLL: 12}, {M: 12}, {S: 2}];
     for (const g of grid) { const key = 'policy:' + JSON.stringify(g); if (st.tried.includes(key)) continue; st.tried.push(key); const out = `team_chal_${Date.now()}.json`; fs.writeFileSync(path.join(__dirname, out), JSON.stringify(inc, null, 1)); persist(out); return {file: out, label: key, policy: g}; }
     return null;
   }
@@ -128,6 +128,7 @@ function step(st) {
   if (st.gamesSinceRefresh >= REFRESH_GAMES) {
     try { execSync('node replays.js mine', {cwd: __dirname, stdio: 'ignore'}); console.log(new Date().toISOString(), 'opponent model refreshed'); } catch (e) { console.log('refresh failed', e.message); }
     try { execSync(`EPS=0.15 node selfplay.js ${process.env.SELFPLAY_GAMES || 40} 2`, {cwd: __dirname, stdio: 'ignore', timeout: 20 * 60 * 1000}); console.log(new Date().toISOString(), 'self-play batch done'); } catch (e) { console.log('self-play failed', e.message.slice(0, 80)); }
+    try { const p = execSync('node predict2.js train', {cwd: __dirname, timeout: 15 * 60 * 1000}).toString().trim(); console.log(new Date().toISOString(), 'predictor:', p.split('\n')[0].slice(0, 140)); } catch (e) { console.log('predictor training failed', e.message.slice(0, 80)); }
     try { const out = execSync('node value.js train', {cwd: __dirname, env: process.env}).toString().trim(); console.log(new Date().toISOString(), 'value model:', out.split('\n').pop()); } catch (e) { console.log('value training failed', e.message.slice(0, 120)); }
     st.gamesSinceRefresh = 0;
   }

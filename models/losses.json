@@ -1,3280 +1,6 @@
 [
  {
   "won": false,
-  "turns": 3,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Azumarill+Kingambit",
-  "opp": [
-   "Farigiraf",
-   "Milotic",
-   "Sinistcha",
-   "Kingambit",
-   "Drampa",
-   "Azumarill"
-  ],
-  "rating": 1070,
-  "cause": "LATE_GAME",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 2,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Garchomp+Dragonite",
-  "opp": [],
-  "rating": 1000,
-  "cause": "LATE_GAME",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 6,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Tyranitar+Excadrill",
-  "opp": [
-   "Scizor",
-   "Tyranitar",
-   "Slowbro",
-   "Ampharos",
-   "Excadrill",
-   "Torkoal"
-  ],
-  "rating": 1112,
-  "cause": "LATE_GAME",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 3,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Houndoom+Torkoal",
-  "opp": [
-   "Houndoom",
-   "Torkoal",
-   "Venusaur",
-   "Annihilape",
-   "Aerodactyl",
-   "Garchomp"
-  ],
-  "rating": 1046,
-  "cause": "NO_TR_T1",
-  "sub": "setter KOd"
- },
- {
-  "won": true,
-  "turns": 0,
-  "myLead": "",
-  "oppLead": "",
-  "opp": [
-   "Pangoro",
-   "Mr. Rime",
-   "Wyrdeer",
-   "Empoleon",
-   "Infernape",
-   "Roserade"
-  ],
-  "rating": 1037,
-  "cause": "WON_WITHOUT_TR",
-  "sub": "setter did not click TR"
- },
- {
-  "won": false,
-  "turns": 5,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Blaziken+Garchomp",
-  "opp": [
-   "Garchomp",
-   "Raichu",
-   "Gholdengo",
-   "Staraptor",
-   "Toxapex",
-   "Blaziken"
-  ],
-  "rating": 1096,
-  "cause": "LATE_GAME",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 7,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Excadrill+Garchomp",
-  "opp": [
-   "Excadrill",
-   "Tyranitar",
-   "Garchomp",
-   "Charizard",
-   "Staraptor",
-   "Venusaur"
-  ],
-  "rating": 1000,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 6,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Weavile+Froslass",
-  "opp": [
-   "Froslass",
-   "Weavile",
-   "Avalugg",
-   "Mamoswine",
-   "Ninetales-Alola",
-   "Beartic"
-  ],
-  "rating": 1097,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 6,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Aromatisse+Sinistcha-Masterpiece",
-  "opp": [
-   "Aromatisse",
-   "Blastoise",
-   "Slowbro",
-   "Kingambit",
-   "Sinistcha-Masterpiece",
-   "Overqwil"
-  ],
-  "rating": 1000,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 9,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Bellibolt+Morpeko",
-  "opp": [
-   "Raichu",
-   "Jolteon",
-   "Morpeko",
-   "Bellibolt",
-   "Luxray",
-   "Heliolisk"
-  ],
-  "rating": 1099,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 9,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Sinistcha+Incineroar",
-  "opp": [
-   "Hatterene",
-   "Golurk",
-   "Incineroar",
-   "Farigiraf",
-   "Blastoise",
-   "Sinistcha"
-  ],
-  "rating": 1116,
-  "cause": "LATE_GAME",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 3,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Tauros-Paldea-Blaze+Weavile",
-  "opp": [
-   "Manectric",
-   "Rotom-Wash",
-   "Weavile",
-   "Tauros-Paldea-Blaze",
-   "Sceptile",
-   "Corviknight"
-  ],
-  "rating": 1118,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 6,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Hippowdon+Sableye",
-  "opp": [
-   "Venusaur",
-   "Hippowdon",
-   "Sinistcha-Masterpiece",
-   "Incineroar",
-   "Gallade",
-   "Sableye"
-  ],
-  "rating": 1057,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 4,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Oranguru+Sneasler",
-  "opp": [
-   "Oranguru",
-   "Clefable",
-   "Sinistcha-Masterpiece",
-   "Swampert",
-   "Sneasler",
-   "Ceruledge"
-  ],
-  "rating": 1091,
-  "cause": "NO_TR_T1",
-  "sub": "setter did not click TR"
- },
- {
-  "won": false,
-  "turns": 7,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Garchomp+Scizor",
-  "opp": [
-   "Garchomp",
-   "Charizard",
-   "Basculegion",
-   "Whimsicott",
-   "Scizor",
-   "Aerodactyl"
-  ],
-  "rating": 1182,
-  "cause": "PROTECT_STALL",
-  "sub": "3/6"
- },
- {
-  "won": true,
-  "turns": 8,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Staraptor+Incineroar",
-  "opp": [
-   "Staraptor",
-   "Whimsicott",
-   "Incineroar",
-   "Sylveon",
-   "Ninetales-Alola",
-   "Basculegion"
-  ],
-  "rating": 1071,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 4,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Metagross+Incineroar",
-  "opp": [
-   "Metagross",
-   "Incineroar",
-   "Sinistcha",
-   "Whimsicott",
-   "Garchomp",
-   "Kingambit"
-  ],
-  "rating": 1040,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 13,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Wyrdeer+Milotic",
-  "opp": [
-   "Charizard",
-   "Venusaur",
-   "Milotic",
-   "Sneasler",
-   "Altaria",
-   "Wyrdeer"
-  ],
-  "rating": 1000,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 5,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Kingambit+Basculegion",
-  "opp": [
-   "Dragonite",
-   "Basculegion",
-   "Garchomp",
-   "Sneasler",
-   "Kingambit",
-   "Floette-Eternal"
-  ],
-  "rating": 1076,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 6,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Heliolisk+Manectric",
-  "opp": [
-   "Charizard",
-   "Venusaur",
-   "Heliolisk",
-   "Manectric",
-   "Garchomp",
-   "Kingambit"
-  ],
-  "rating": 1074,
-  "cause": "LATE_GAME",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 7,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Kangaskhan+Whimsicott",
-  "opp": [
-   "Kangaskhan",
-   "Whimsicott",
-   "Chandelure",
-   "Lopunny",
-   "Meowscarada",
-   "Maushold"
-  ],
-  "rating": 1026,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 8,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Swampert+Incineroar",
-  "opp": [
-   "Dragonite",
-   "Ninetales-Alola",
-   "Sneasler",
-   "Swampert",
-   "Gengar",
-   "Incineroar"
-  ],
-  "rating": 1076,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 7,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Charizard+Delphox",
-  "opp": [
-   "Charizard",
-   "Kingambit",
-   "Glimmora",
-   "Delphox",
-   "Ditto",
-   "Pikachu"
-  ],
-  "rating": 1000,
-  "cause": "PROTECT_STALL",
-  "sub": "3/7"
- },
- {
-  "won": true,
-  "turns": 3,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Sceptile+Rotom-Heat",
-  "opp": [
-   "Sceptile",
-   "Swampert",
-   "Milotic",
-   "Pelipper",
-   "Rotom-Heat",
-   "Tyranitar"
-  ],
-  "rating": 1014,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 15,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Farigiraf+Dragapult",
-  "opp": [
-   "Charizard",
-   "Basculegion",
-   "Dragapult",
-   "Farigiraf",
-   "Sylveon",
-   "Venusaur"
-  ],
-  "rating": 1000,
-  "cause": "LATE_GAME",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 7,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Delphox+Golurk",
-  "opp": [
-   "Golurk",
-   "Farigiraf",
-   "Delphox",
-   "Sneasler",
-   "Whimsicott",
-   "Milotic"
-  ],
-  "rating": 1066,
-  "cause": "LATE_GAME",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 7,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Staraptor+Tyranitar",
-  "opp": [
-   "Milotic",
-   "Staraptor",
-   "Excadrill",
-   "Gholdengo",
-   "Sinistcha",
-   "Tyranitar"
-  ],
-  "rating": 1062,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 5,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Heliolisk+Kommo-o",
-  "opp": [
-   "Bastiodon",
-   "Mawile",
-   "Reuniclus",
-   "Scizor",
-   "Heliolisk",
-   "Kommo-o"
-  ],
-  "rating": 1000,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 8,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Weavile+Mamoswine",
-  "opp": [
-   "Froslass",
-   "Weavile",
-   "Avalugg",
-   "Mamoswine",
-   "Ninetales-Alola",
-   "Beartic"
-  ],
-  "rating": 1088,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 6,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Polteageist+Salazzle",
-  "opp": [
-   "Polteageist",
-   "Heliolisk",
-   "Altaria",
-   "Salazzle",
-   "Pelipper",
-   "Farigiraf"
-  ],
-  "rating": 1067,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 11,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Mimikyu+Hydreigon",
-  "opp": [
-   "Gholdengo",
-   "Hydreigon",
-   "Talonflame",
-   "Mimikyu",
-   "Tyranitar",
-   "Goodra-Hisui"
-  ],
-  "rating": 1061,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 8,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Corviknight+Jolteon",
-  "opp": [
-   "Sceptile",
-   "Corviknight",
-   "Whimsicott",
-   "Garchomp",
-   "Jolteon",
-   "Basculegion"
-  ],
-  "rating": 1146,
-  "cause": "ROOM_EXPIRED",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 8,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Gallade+Weavile",
-  "opp": [
-   "Delphox",
-   "Weavile",
-   "Ninetales-Alola",
-   "Basculegion",
-   "Farigiraf",
-   "Gallade"
-  ],
-  "rating": 1204,
-  "cause": "ROOM_EXPIRED",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 4,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Beartic+Raichu",
-  "opp": [
-   "Raichu",
-   "Ninetales-Alola",
-   "Beartic",
-   "Sinistcha",
-   "Aerodactyl",
-   "Delphox"
-  ],
-  "rating": 1153,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 7,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Kingambit+Tsareena",
-  "opp": [
-   "Dragapult",
-   "Swampert",
-   "Pelipper",
-   "Tsareena",
-   "Kingambit",
-   "Sylveon"
-  ],
-  "rating": 1124,
-  "cause": "NO_TR_T1",
-  "sub": "setter KOd"
- },
- {
-  "won": true,
-  "turns": 5,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Feraligatr+Kingambit",
-  "opp": [
-   "Feraligatr",
-   "Sneasler",
-   "Blaziken",
-   "Ninetales-Alola",
-   "Clefable",
-   "Kingambit"
-  ],
-  "rating": 1149,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 11,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Toxapex+Hippowdon",
-  "opp": [
-   "Toxapex",
-   "Hippowdon",
-   "Weavile",
-   "Tyranitar",
-   "Sableye",
-   "Farigiraf"
-  ],
-  "rating": 1209,
-  "cause": "ROOM_EXPIRED",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 5,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Sinistcha-Masterpiece+Stunfisk",
-  "opp": [
-   "Stunfisk",
-   "Gyarados",
-   "Sinistcha-Masterpiece",
-   "Farigiraf",
-   "Ninetales-Alola",
-   "Gardevoir"
-  ],
-  "rating": 1086,
-  "cause": "NO_TR_T1",
-  "sub": "setter did not click TR"
- },
- {
-  "won": false,
-  "turns": 8,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Ninetales-Alola+Incineroar",
-  "opp": [
-   "Dragonite",
-   "Ninetales-Alola",
-   "Sneasler",
-   "Swampert",
-   "Gengar",
-   "Incineroar"
-  ],
-  "rating": 1208,
-  "cause": "PROTECT_STALL",
-  "sub": "2/5"
- },
- {
-  "won": true,
-  "turns": 5,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Maushold+Raichu",
-  "opp": [
-   "Raichu",
-   "Maushold",
-   "Tsareena",
-   "Volcarona",
-   "Espathra",
-   "Kommo-o"
-  ],
-  "rating": 1002,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 7,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Talonflame+Mamoswine",
-  "opp": [
-   "Feraligatr",
-   "Sinistcha",
-   "Talonflame",
-   "Mamoswine",
-   "Rotom-Heat",
-   "Lucario"
-  ],
-  "rating": 1163,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 9,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Incineroar+Gengar",
-  "opp": [
-   "Incineroar",
-   "Gengar",
-   "Politoed",
-   "Staraptor",
-   "Archaludon",
-   "Whimsicott"
-  ],
-  "rating": 1000,
-  "cause": "ROOM_EXPIRED",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 7,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Medicham+Whimsicott",
-  "opp": [
-   "Medicham",
-   "Whimsicott",
-   "Incineroar",
-   "Kingambit",
-   "Farigiraf",
-   "Garchomp"
-  ],
-  "rating": 1072,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 7,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Farigiraf+Armarouge",
-  "opp": [
-   "Farigiraf",
-   "Tyranitar",
-   "Armarouge",
-   "Scizor",
-   "Swampert",
-   "Sylveon"
-  ],
-  "rating": 1031,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 2,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Kingambit+Annihilape",
-  "opp": [
-   "Metagross",
-   "Whimsicott",
-   "Kommo-o",
-   "Kingambit",
-   "Kleavor",
-   "Annihilape"
-  ],
-  "rating": 1139,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 6,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Kingambit+Basculegion",
-  "opp": [
-   "Scovillain",
-   "Basculegion",
-   "Kingambit",
-   "Sneasler",
-   "Lycanroc-Dusk",
-   "Froslass"
-  ],
-  "rating": 1156,
-  "cause": "SWEEPER_NEVER",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 2,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Incineroar+Camerupt",
-  "opp": [
-   "Torkoal",
-   "Farigiraf",
-   "Camerupt",
-   "Oranguru",
-   "Drampa",
-   "Incineroar"
-  ],
-  "rating": 1175,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 6,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Blaziken+Primarina",
-  "opp": [
-   "Blaziken",
-   "Primarina",
-   "Torkoal",
-   "Kingambit",
-   "Venusaur",
-   "Farigiraf"
-  ],
-  "rating": 1115,
-  "cause": "NO_TR_T1",
-  "sub": "setter KOd"
- },
- {
-  "won": false,
-  "turns": 8,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Aerodactyl+Garchomp",
-  "opp": [
-   "Charizard",
-   "Kingambit",
-   "Basculegion",
-   "Aerodactyl",
-   "Sylveon",
-   "Garchomp"
-  ],
-  "rating": 1234,
-  "cause": "PROTECT_STALL",
-  "sub": "4/6"
- },
- {
-  "won": true,
-  "turns": 3,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Sableye+Blaziken",
-  "opp": [
-   "Raichu",
-   "Overqwil",
-   "Klefki",
-   "Scovillain",
-   "Sableye",
-   "Blaziken"
-  ],
-  "rating": 1229,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 3,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Whimsicott+Dragapult",
-  "opp": [
-   "Lucario",
-   "Whimsicott",
-   "Pelipper",
-   "Basculegion",
-   "Garchomp",
-   "Dragapult"
-  ],
-  "rating": 1032,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 7,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Sableye+Primarina",
-  "opp": [
-   "Mawile",
-   "Primarina",
-   "Sableye",
-   "Flapple",
-   "Sceptile",
-   "Skarmory"
-  ],
-  "rating": 1132,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 7,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Heliolisk+Toxicroak",
-  "opp": [
-   "Vaporeon",
-   "Politoed",
-   "Heliolisk",
-   "Toxicroak",
-   "Dragonite",
-   "Scovillain"
-  ],
-  "rating": 1199,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 4,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Liepard+Incineroar",
-  "opp": [
-   "Tyranitar",
-   "Rotom-Wash",
-   "Sinistcha-Masterpiece",
-   "Incineroar",
-   "Lucario",
-   "Liepard"
-  ],
-  "rating": 1052,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 5,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Kingambit+Incineroar",
-  "opp": [
-   "Medicham",
-   "Whimsicott",
-   "Incineroar",
-   "Kingambit",
-   "Farigiraf",
-   "Talonflame"
-  ],
-  "rating": 1085,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 7,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Tyranitar+Steelix",
-  "opp": [
-   "Tyranitar",
-   "Talonflame",
-   "Steelix",
-   "Sinistcha-Masterpiece",
-   "Sneasler",
-   "Rotom-Wash"
-  ],
-  "rating": 1190,
-  "cause": "LATE_GAME",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 8,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Gallade+Froslass",
-  "opp": [
-   "Froslass",
-   "Weavile",
-   "Sneasler",
-   "Basculegion",
-   "Gallade",
-   "Ceruledge"
-  ],
-  "rating": 1113,
-  "cause": "NO_TR_T1",
-  "sub": "setter did not click TR"
- },
- {
-  "won": false,
-  "turns": 4,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Venusaur+Charizard",
-  "opp": [
-   "Venusaur",
-   "Pelipper",
-   "Charizard",
-   "Archaludon",
-   "Grimmsnarl",
-   "Basculegion"
-  ],
-  "rating": 1150,
-  "cause": "NO_TR_T1",
-  "sub": "setter KOd"
- },
- {
-  "won": false,
-  "turns": 7,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Malamar+Incineroar",
-  "opp": [
-   "Malamar",
-   "Grimmsnarl",
-   "Sinistcha",
-   "Incineroar",
-   "Archaludon",
-   "Charizard"
-  ],
-  "rating": 1000,
-  "cause": "LATE_GAME",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 6,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Crabominable+Farigiraf",
-  "opp": [
-   "Crabominable",
-   "Farigiraf",
-   "Slowking-Galar",
-   "Incineroar",
-   "Kingambit",
-   "Camerupt"
-  ],
-  "rating": 1047,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 13,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Metagross+Kingambit",
-  "opp": [
-   "Metagross",
-   "Medicham",
-   "Golurk",
-   "Kingambit",
-   "Floette-Eternal",
-   "Basculegion"
-  ],
-  "rating": 1047,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 8,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Scolipede+Pikachu",
-  "opp": [
-   "Eelektross",
-   "Talonflame",
-   "Basculegion",
-   "Pikachu",
-   "Garchomp",
-   "Scolipede"
-  ],
-  "rating": 1126,
-  "cause": "PROTECT_STALL",
-  "sub": "3/7"
- },
- {
-  "won": false,
-  "turns": 8,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Metagross+Ceruledge",
-  "opp": [
-   "Metagross",
-   "Floette-Eternal",
-   "Talonflame",
-   "Hydreigon",
-   "Ceruledge",
-   "Ninetales-Alola"
-  ],
-  "rating": 1055,
-  "cause": "PROTECT_STALL",
-  "sub": "3/7"
- },
- {
-  "won": false,
-  "turns": 8,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Charizard+Basculegion",
-  "opp": [
-   "Charizard",
-   "Tyranitar",
-   "Basculegion",
-   "Archaludon",
-   "Pelipper",
-   "Venusaur"
-  ],
-  "rating": 1042,
-  "cause": "ROOM_EXPIRED",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 9,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Lycanroc-Dusk+Basculegion",
-  "opp": [
-   "Incineroar",
-   "Scovillain",
-   "Lycanroc-Dusk",
-   "Dragonite",
-   "Gholdengo",
-   "Basculegion"
-  ],
-  "rating": 1097,
-  "cause": "ROOM_EXPIRED",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 6,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Glimmora+Staraptor",
-  "opp": [
-   "Staraptor",
-   "Araquanid",
-   "Glimmora",
-   "Garchomp",
-   "Annihilape",
-   "Gholdengo"
-  ],
-  "rating": 1038,
-  "cause": "LATE_GAME",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 8,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Wyrdeer+Milotic",
-  "opp": [
-   "Charizard",
-   "Venusaur",
-   "Milotic",
-   "Sneasler",
-   "Altaria",
-   "Wyrdeer"
-  ],
-  "rating": 1048,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 11,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Gengar+Grimmsnarl",
-  "opp": [
-   "Gengar",
-   "Politoed",
-   "Arcanine-Hisui",
-   "Toxapex",
-   "Grimmsnarl",
-   "Zoroark-Hisui"
-  ],
-  "rating": 1094,
-  "cause": "PROTECT_STALL",
-  "sub": "4/6"
- },
- {
-  "won": false,
-  "turns": 8,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Morpeko+Excadrill",
-  "opp": [
-   "Morpeko",
-   "Talonflame",
-   "Tsareena",
-   "Excadrill",
-   "Blastoise",
-   "Sneasler"
-  ],
-  "rating": 1078,
-  "cause": "PROTECT_STALL",
-  "sub": "4/7"
- },
- {
-  "won": true,
-  "turns": 12,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Goodra-Hisui+Audino",
-  "opp": [
-   "Goodra-Hisui",
-   "Audino",
-   "Tauros-Paldea-Aqua",
-   "Arbok",
-   "Grimmsnarl",
-   "Toxapex"
-  ],
-  "rating": 1049,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 5,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Staraptor+Whimsicott",
-  "opp": [
-   "Staraptor",
-   "Charizard",
-   "Basculegion",
-   "Garchomp",
-   "Whimsicott",
-   "Sinistcha"
-  ],
-  "rating": 1099,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 11,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Mudsdale+Dragonite",
-  "opp": [
-   "Blaziken",
-   "Meowscarada",
-   "Gholdengo",
-   "Dragonite",
-   "Sylveon",
-   "Mudsdale"
-  ],
-  "rating": 1000,
-  "cause": "PROTECT_STALL",
-  "sub": "8/15"
- },
- {
-  "won": true,
-  "turns": 3,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Farigiraf+Dragalge",
-  "opp": [
-   "Scrafty",
-   "Farigiraf",
-   "Staraptor",
-   "Sinistcha-Masterpiece",
-   "Dragalge",
-   "Torkoal"
-  ],
-  "rating": 1029,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 8,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Whimsicott+Liepard",
-  "opp": [
-   "Whimsicott",
-   "Palafin",
-   "Politoed",
-   "Liepard",
-   "Kingambit",
-   "Metagross"
-  ],
-  "rating": 1144,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 7,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Samurott-Hisui+Sneasler",
-  "opp": [
-   "Staraptor",
-   "Raichu",
-   "Sneasler",
-   "Samurott-Hisui",
-   "Whimsicott",
-   "Sinistcha"
-  ],
-  "rating": 1206,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 6,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Camerupt+Farigiraf",
-  "opp": [
-   "Camerupt",
-   "Farigiraf",
-   "Kingambit",
-   "Sneasler",
-   "Sylveon",
-   "Sinistcha-Masterpiece"
-  ],
-  "rating": 1205,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 6,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Metagross+Incineroar",
-  "opp": [
-   "Metagross",
-   "Incineroar",
-   "Sinistcha",
-   "Whimsicott",
-   "Garchomp",
-   "Kingambit"
-  ],
-  "rating": 1051,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 4,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Blaziken+Primarina",
-  "opp": [
-   "Blaziken",
-   "Primarina",
-   "Torkoal",
-   "Kingambit",
-   "Venusaur",
-   "Farigiraf"
-  ],
-  "rating": 1161,
-  "cause": "NO_TR_T1",
-  "sub": "setter KOd"
- },
- {
-  "won": true,
-  "turns": 6,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Raichu+Pikachu",
-  "opp": [
-   "Raichu",
-   "Pikachu",
-   "Espathra",
-   "Jolteon",
-   "Sceptile",
-   "Corviknight"
-  ],
-  "rating": 1057,
-  "cause": "WON_WITHOUT_TR",
-  "sub": "setter KOd"
- },
- {
-  "won": true,
-  "turns": 10,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Scovillain+Polteageist-Antique",
-  "opp": [
-   "Aerodactyl",
-   "Tyranitar",
-   "Scovillain",
-   "Azumarill",
-   "Houndstone",
-   "Polteageist-Antique"
-  ],
-  "rating": 1230,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 11,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Whimsicott+Annihilape",
-  "opp": [
-   "Annihilape",
-   "Whimsicott",
-   "Bellibolt",
-   "Sceptile",
-   "Maushold",
-   "Incineroar"
-  ],
-  "rating": 1040,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 9,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Meowstic+Overqwil",
-  "opp": [
-   "Ceruledge",
-   "Talonflame",
-   "Meowstic",
-   "Scovillain",
-   "Overqwil",
-   "Mudsdale"
-  ],
-  "rating": 1088,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 4,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Maushold-Four+Hydreigon",
-  "opp": [
-   "Floette-Eternal",
-   "Maushold-Four",
-   "Garchomp",
-   "Talonflame",
-   "Hydreigon",
-   "Basculegion"
-  ],
-  "rating": 1247,
-  "cause": "NO_TR_T1",
-  "sub": "taunted"
- },
- {
-  "won": false,
-  "turns": 8,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Corviknight+Raichu",
-  "opp": [
-   "Victreebel",
-   "Sneasler",
-   "Garchomp",
-   "Raichu",
-   "Corviknight",
-   "Rotom-Heat"
-  ],
-  "rating": 1190,
-  "cause": "ROOM_EXPIRED",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 2,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Sceptile+Volcarona",
-  "opp": [
-   "Eelektross",
-   "Medicham",
-   "Sinistcha-Masterpiece",
-   "Tauros",
-   "Sceptile",
-   "Volcarona"
-  ],
-  "rating": 1074,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 10,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Banette+Medicham",
-  "opp": [
-   "Banette",
-   "Toxapex",
-   "Glimmora",
-   "Clefable",
-   "Medicham",
-   "Basculegion"
-  ],
-  "rating": 1042,
-  "cause": "LATE_GAME",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 8,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Meowstic+Aerodactyl",
-  "opp": [
-   "Blastoise",
-   "Aerodactyl",
-   "Meowstic",
-   "Meganium",
-   "Espathra",
-   "Arcanine-Hisui"
-  ],
-  "rating": 1171,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 6,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Milotic+Garchomp",
-  "opp": [
-   "Metagross",
-   "Pelipper",
-   "Garchomp",
-   "Kangaskhan",
-   "Sylveon",
-   "Milotic"
-  ],
-  "rating": 1043,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 6,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Basculegion+Froslass",
-  "opp": [
-   "Mawile",
-   "Basculegion",
-   "Sinistcha",
-   "Incineroar",
-   "Farigiraf",
-   "Froslass"
-  ],
-  "rating": 1043,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 5,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Weavile+Grimmsnarl",
-  "opp": [
-   "Metagross",
-   "Kommo-o",
-   "Weavile",
-   "Grimmsnarl",
-   "Rotom-Wash",
-   "Gardevoir"
-  ],
-  "rating": 1067,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 9,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Slowking-Galar+Toxapex",
-  "opp": [
-   "Slowking-Galar",
-   "Maushold-Four",
-   "Crabominable",
-   "Froslass",
-   "Toxapex",
-   "Ditto"
-  ],
-  "rating": 1000,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 7,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Whimsicott+Sceptile",
-  "opp": [
-   "Sceptile",
-   "Tsareena",
-   "Chesnaught",
-   "Decidueye-Hisui",
-   "Torterra",
-   "Whimsicott"
-  ],
-  "rating": 1044,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 6,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Scovillain+Araquanid",
-  "opp": [
-   "Scovillain",
-   "Araquanid",
-   "Lycanroc-Dusk",
-   "Sylveon",
-   "Hydreigon",
-   "Gholdengo"
-  ],
-  "rating": 1216,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 8,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Malamar+Annihilape",
-  "opp": [
-   "Malamar",
-   "Gholdengo",
-   "Delphox",
-   "Whimsicott",
-   "Annihilape",
-   "Sneasler"
-  ],
-  "rating": 1060,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 7,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Incineroar+Blastoise",
-  "opp": [
-   "Blastoise",
-   "Delphox",
-   "Sinistcha-Masterpiece",
-   "Sneasler",
-   "Kingambit",
-   "Incineroar"
-  ],
-  "rating": 1000,
-  "cause": "LATE_GAME",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 2,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Snorlax+Hawlucha",
-  "opp": [
-   "Snorlax",
-   "Hawlucha",
-   "Sinistcha",
-   "Basculegion",
-   "Archaludon",
-   "Pelipper"
-  ],
-  "rating": 1101,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 13,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Staraptor+Gyarados",
-  "opp": [
-   "Raichu",
-   "Grimmsnarl",
-   "Staraptor",
-   "Sinistcha-Masterpiece",
-   "Gyarados",
-   "Araquanid"
-  ],
-  "rating": 1090,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 6,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Farigiraf+Blastoise",
-  "opp": [
-   "Mawile",
-   "Aerodactyl",
-   "Farigiraf",
-   "Garchomp",
-   "Blastoise",
-   "Sylveon"
-  ],
-  "rating": 1091,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 5,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Raichu+Kingambit",
-  "opp": [
-   "Farigiraf",
-   "Arcanine-Hisui",
-   "Sylveon",
-   "Staraptor",
-   "Raichu",
-   "Kingambit"
-  ],
-  "rating": 1236,
-  "cause": "NO_TR_T1",
-  "sub": "setter KOd"
- },
- {
-  "won": false,
-  "turns": 8,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Mawile+Meowstic",
-  "opp": [
-   "Mawile",
-   "Meowstic",
-   "Zoroark-Hisui",
-   "Garchomp",
-   "Aerodactyl",
-   "Toxapex"
-  ],
-  "rating": 1028,
-  "cause": "LATE_GAME",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 6,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Ninetales-Alola+Raichu",
-  "opp": [
-   "Raichu",
-   "Arcanine-Hisui",
-   "Ninetales-Alola",
-   "Sneasler",
-   "Gholdengo",
-   "Corviknight"
-  ],
-  "rating": 1031,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 6,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Meowscarada+Gallade",
-  "opp": [
-   "Zoroark-Hisui",
-   "Meowscarada",
-   "Dragapult",
-   "Gholdengo",
-   "Sinistcha",
-   "Gallade"
-  ],
-  "rating": 1067,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 3,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Scrafty+Talonflame",
-  "opp": [
-   "Feraligatr",
-   "Glimmora",
-   "Talonflame",
-   "Sneasler",
-   "Scrafty",
-   "Sinistcha"
-  ],
-  "rating": 1054,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 8,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Aerodactyl+Garchomp",
-  "opp": [
-   "Staraptor",
-   "Grimmsnarl",
-   "Sinistcha-Masterpiece",
-   "Incineroar",
-   "Aerodactyl",
-   "Garchomp"
-  ],
-  "rating": 1156,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 8,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Sneasler+Swampert",
-  "opp": [
-   "Glalie",
-   "Swampert",
-   "Ninetales-Alola",
-   "Aerodactyl",
-   "Sneasler",
-   "Kingambit"
-  ],
-  "rating": 1159,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 7,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Whimsicott+Garchomp",
-  "opp": [
-   "Staraptor",
-   "Whimsicott",
-   "Delphox",
-   "Sinistcha",
-   "Garchomp",
-   "Sylveon"
-  ],
-  "rating": 1204,
-  "cause": "ROOM_EXPIRED",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 6,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Rotom-Frost+Garchomp",
-  "opp": [
-   "Rotom-Frost",
-   "Garchomp",
-   "Froslass",
-   "Kingambit",
-   "Whimsicott",
-   "Sneasler"
-  ],
-  "rating": 1183,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 6,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Pelipper+Toxicroak",
-  "opp": [
-   "Heliolisk",
-   "Toxicroak",
-   "Empoleon",
-   "Pelipper",
-   "Vaporeon",
-   "Araquanid"
-  ],
-  "rating": 1015,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 7,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Weavile+Emboar",
-  "opp": [
-   "Banette",
-   "Hatterene",
-   "Emboar",
-   "Weavile",
-   "Farigiraf",
-   "Maushold"
-  ],
-  "rating": 1229,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 4,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Pelipper+Jolteon",
-  "opp": [
-   "Pelipper",
-   "Scizor",
-   "Tyranitar",
-   "Garchomp",
-   "Corviknight",
-   "Jolteon"
-  ],
-  "rating": 1053,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 5,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Pyroar+Kingambit",
-  "opp": [
-   "Pyroar",
-   "Floette-Eternal",
-   "Farigiraf",
-   "Sneasler",
-   "Garchomp",
-   "Kingambit"
-  ],
-  "rating": 1081,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 7,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Whimsicott+Eelektross",
-  "opp": [
-   "Eelektross",
-   "Whimsicott",
-   "Samurott-Hisui",
-   "Incineroar",
-   "Metagross",
-   "Garchomp"
-  ],
-  "rating": 1076,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 7,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Espathra+Diggersby",
-  "opp": [
-   "Diggersby",
-   "Vivillon-Ocean",
-   "Espathra",
-   "Manectric",
-   "Alakazam",
-   "Meowscarada"
-  ],
-  "rating": 1032,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 8,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Sinistcha+Mawile",
-  "opp": [
-   "Garchomp",
-   "Kommo-o",
-   "Sinistcha",
-   "Mawile",
-   "Armarouge",
-   "Milotic"
-  ],
-  "rating": 1085,
-  "cause": "LATE_GAME",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 7,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Farigiraf+Kangaskhan",
-  "opp": [
-   "Aerodactyl",
-   "Garchomp",
-   "Tyranitar",
-   "Farigiraf",
-   "Aegislash",
-   "Kangaskhan"
-  ],
-  "rating": 1252,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 10,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Tyranitar+Sylveon",
-  "opp": [
-   "Tyranitar",
-   "Farigiraf",
-   "Torkoal",
-   "Sylveon",
-   "Basculegion",
-   "Sinistcha"
-  ],
-  "rating": 1196,
-  "cause": "LATE_GAME",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 4,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Ninetales-Alola+Glalie",
-  "opp": [
-   "Glalie",
-   "Swampert",
-   "Ninetales-Alola",
-   "Aerodactyl",
-   "Sneasler",
-   "Kingambit"
-  ],
-  "rating": 1162,
-  "cause": "WON_WITHOUT_TR",
-  "sub": "setter KOd"
- },
- {
-  "won": true,
-  "turns": 5,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Sneasler+Kingambit",
-  "opp": [
-   "Froslass",
-   "Scovillain",
-   "Lycanroc-Dusk",
-   "Basculegion",
-   "Kingambit",
-   "Sneasler"
-  ],
-  "rating": 1151,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 7,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Falinks+Blaziken",
-  "opp": [
-   "Falinks",
-   "Hawlucha",
-   "Blaziken",
-   "Basculegion",
-   "Goodra-Hisui",
-   "Overqwil"
-  ],
-  "rating": 1103,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 11,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Scrafty+Toxapex",
-  "opp": [
-   "Charizard",
-   "Garchomp",
-   "Scrafty",
-   "Sinistcha",
-   "Toxapex",
-   "Kingambit"
-  ],
-  "rating": 1205,
-  "cause": "LATE_GAME",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 2,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Whimsicott+Charizard",
-  "opp": [
-   "Charizard",
-   "Whimsicott",
-   "Kingambit",
-   "Basculegion",
-   "Garchomp",
-   "Glimmora"
-  ],
-  "rating": 1218,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 7,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Eelektross+Garchomp",
-  "opp": [
-   "Eelektross",
-   "Talonflame",
-   "Garchomp",
-   "Tsareena",
-   "Tyranitar",
-   "Excadrill"
-  ],
-  "rating": 1246,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 3,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Drampa+Incineroar",
-  "opp": [
-   "Dragalge",
-   "Staraptor",
-   "Golurk",
-   "Incineroar",
-   "Sinistcha-Masterpiece",
-   "Drampa"
-  ],
-  "rating": 1195,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 5,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Raichu+Kingambit",
-  "opp": [
-   "Farigiraf",
-   "Arcanine-Hisui",
-   "Sylveon",
-   "Staraptor",
-   "Raichu",
-   "Kingambit"
-  ],
-  "rating": 1260,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 6,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Kingambit+Basculegion",
-  "opp": [
-   "Charizard",
-   "Whimsicott",
-   "Garchomp",
-   "Floette-Eternal",
-   "Basculegion",
-   "Kingambit"
-  ],
-  "rating": 1181,
-  "cause": "NO_TR_T1",
-  "sub": "setter KOd"
- },
- {
-  "won": false,
-  "turns": 20,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Sinistcha+Gengar",
-  "opp": [
-   "Gengar",
-   "Politoed",
-   "Archaludon",
-   "Swampert",
-   "Sinistcha",
-   "Annihilape"
-  ],
-  "rating": 1294,
-  "cause": "ROOM_EXPIRED",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 4,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Mawile+Incineroar",
-  "opp": [
-   "Metagross",
-   "Farigiraf",
-   "Incineroar",
-   "Mawile",
-   "Sylveon",
-   "Torkoal"
-  ],
-  "rating": 1135,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 8,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Archaludon+Gengar",
-  "opp": [
-   "Incineroar",
-   "Clefable",
-   "Gengar",
-   "Sableye",
-   "Politoed",
-   "Archaludon"
-  ],
-  "rating": 1129,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 12,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Aerodactyl+Golurk",
-  "opp": [
-   "Golurk",
-   "Farigiraf",
-   "Torkoal",
-   "Aerodactyl",
-   "Raichu",
-   "Malamar"
-  ],
-  "rating": 1163,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 1,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Grimmsnarl+Swampert",
-  "opp": [
-   "Bellibolt",
-   "Grimmsnarl",
-   "Charizard",
-   "Pelipper",
-   "Swampert",
-   "Sinistcha-Masterpiece"
-  ],
-  "rating": 1181,
-  "cause": "WON_WITHOUT_TR",
-  "sub": "setter did not click TR"
- },
- {
-  "won": false,
-  "turns": 9,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Espathra+Scovillain",
-  "opp": [
-   "Espathra",
-   "Sneasler",
-   "Archaludon",
-   "Politoed",
-   "Scovillain",
-   "Dragonite"
-  ],
-  "rating": 1165,
-  "cause": "LATE_GAME",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 12,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Annihilape+Raichu",
-  "opp": [
-   "Annihilape",
-   "Whimsicott",
-   "Hydreigon",
-   "Metagross",
-   "Raichu",
-   "Milotic"
-  ],
-  "rating": 1193,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 8,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Pyroar+Swampert",
-  "opp": [
-   "Pyroar",
-   "Torkoal",
-   "Farigiraf",
-   "Vileplume",
-   "Swampert",
-   "Barbaracle"
-  ],
-  "rating": 1168,
-  "cause": "LATE_GAME",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 7,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Garchomp+Whimsicott",
-  "opp": [
-   "Charizard",
-   "Garchomp",
-   "Basculegion",
-   "Whimsicott",
-   "Kingambit",
-   "Floette-Eternal"
-  ],
-  "rating": 1019,
-  "cause": "LATE_GAME",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 5,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Maushold+Mawile",
-  "opp": [
-   "Mawile",
-   "Maushold",
-   "Runerigus",
-   "Sinistcha",
-   "Farigiraf",
-   "Incineroar"
-  ],
-  "rating": 1034,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 8,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Aerodactyl+Kingambit",
-  "opp": [
-   "Charizard",
-   "Aerodactyl",
-   "Garchomp",
-   "Kingambit",
-   "Sylveon",
-   "Incineroar"
-  ],
-  "rating": 1019,
-  "cause": "PROTECT_STALL",
-  "sub": "5/11"
- },
- {
-  "won": true,
-  "turns": 6,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Metagross+Incineroar",
-  "opp": [
-   "Metagross",
-   "Incineroar",
-   "Sinistcha",
-   "Whimsicott",
-   "Garchomp",
-   "Kingambit"
-  ],
-  "rating": 1100,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 7,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Dragapult+Quaquaval",
-  "opp": [
-   "Starmie",
-   "Dragapult",
-   "Ditto",
-   "Maushold",
-   "Quaquaval",
-   "Sinistcha-Masterpiece"
-  ],
-  "rating": 1000,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 8,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Garchomp+Charizard",
-  "opp": [
-   "Garchomp",
-   "Charizard",
-   "Whimsicott",
-   "Archaludon",
-   "Sneasler",
-   "Basculegion"
-  ],
-  "rating": 1045,
-  "cause": "ROOM_EXPIRED",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 9,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Mawile+Farigiraf",
-  "opp": [
-   "Archaludon",
-   "Pelipper",
-   "Grimmsnarl",
-   "Mawile",
-   "Scovillain",
-   "Farigiraf"
-  ],
-  "rating": 1143,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 8,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Sinistcha+Gengar",
-  "opp": [
-   "Sinistcha",
-   "Incineroar",
-   "Froslass",
-   "Gengar",
-   "Pelipper",
-   "Archaludon"
-  ],
-  "rating": 1000,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 7,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Farigiraf+Beedrill",
-  "opp": [
-   "Beedrill",
-   "Farigiraf",
-   "Garchomp",
-   "Incineroar",
-   "Kingambit",
-   "Raichu"
-  ],
-  "rating": 1072,
-  "cause": "NO_TR_T1",
-  "sub": "setter did not click TR"
- },
- {
-  "won": false,
-  "turns": 8,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Aerodactyl+Charizard",
-  "opp": [
-   "Mawile",
-   "Aerodactyl",
-   "Mamoswine",
-   "Charizard",
-   "Kommo-o",
-   "Sneasler"
-  ],
-  "rating": 1025,
-  "cause": "PROTECT_STALL",
-  "sub": "3/6"
- },
- {
-  "won": false,
-  "turns": 10,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Toxapex+Milotic",
-  "opp": [
-   "Toxapex",
-   "Sinistcha",
-   "Aggron",
-   "Milotic",
-   "Eelektross",
-   "Pelipper"
-  ],
-  "rating": 1000,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 7,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Whimsicott+Alakazam",
-  "opp": [
-   "Basculegion",
-   "Kingambit",
-   "Samurott-Hisui",
-   "Whimsicott",
-   "Froslass",
-   "Alakazam"
-  ],
-  "rating": 1017,
-  "cause": "NO_TR_T1",
-  "sub": "taunted"
- },
- {
-  "won": false,
-  "turns": 7,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Greninja+Gardevoir",
-  "opp": [
-   "Dragapult",
-   "Gardevoir",
-   "Greninja",
-   "Incineroar",
-   "Garchomp",
-   "Aegislash"
-  ],
-  "rating": 1000,
-  "cause": "ROOM_EXPIRED",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 13,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Swampert+Incineroar",
-  "opp": [
-   "Basculegion",
-   "Pelipper",
-   "Sneasler",
-   "Incineroar",
-   "Swampert",
-   "Sinistcha"
-  ],
-  "rating": 1014,
-  "cause": "ROOM_EXPIRED",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 14,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Aromatisse+Banette",
-  "opp": [
-   "Aromatisse",
-   "Banette",
-   "Torkoal",
-   "Vanilluxe",
-   "Machamp",
-   "Snorlax"
-  ],
-  "rating": 1000,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 8,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Farigiraf+Sneasler",
-  "opp": [
-   "Whimsicott",
-   "Gyarados",
-   "Sneasler",
-   "Dragapult",
-   "Gholdengo",
-   "Farigiraf"
-  ],
-  "rating": 1000,
-  "cause": "LATE_GAME",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 9,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Rotom-Wash+Sinistcha",
-  "opp": [
-   "Steelix",
-   "Tyranitar",
-   "Sinistcha",
-   "Rotom-Wash",
-   "Sneasler",
-   "Talonflame"
-  ],
-  "rating": 1128,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 5,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Farigiraf+Kleavor",
-  "opp": [
-   "Lucario",
-   "Kleavor",
-   "Farigiraf",
-   "Whimsicott",
-   "Raichu",
-   "Samurott-Hisui"
-  ],
-  "rating": 1028,
-  "cause": "NO_TR_T1",
-  "sub": "setter did not click TR"
- },
- {
-  "won": false,
-  "turns": 5,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Kommo-o+Incineroar",
-  "opp": [
-   "Mawile",
-   "Incineroar",
-   "Sinistcha",
-   "Swampert",
-   "Pelipper",
-   "Kommo-o"
-  ],
-  "rating": 1060,
-  "cause": "LATE_GAME",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 7,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Whimsicott+Milotic",
-  "opp": [
-   "Whimsicott",
-   "Milotic",
-   "Garchomp",
-   "Tyranitar",
-   "Delphox",
-   "Dragonite"
-  ],
-  "rating": 1062,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 8,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Charizard+Whimsicott",
-  "opp": [
-   "Charizard",
-   "Basculegion",
-   "Whimsicott",
-   "Pelipper",
-   "Archaludon",
-   "Grimmsnarl"
-  ],
-  "rating": 1005,
-  "cause": "ROOM_EXPIRED",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 9,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Runerigus+Medicham",
-  "opp": [
-   "Runerigus",
-   "Medicham",
-   "Torkoal",
-   "Mawile",
-   "Gyarados",
-   "Incineroar"
-  ],
-  "rating": 1000,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 9,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Toxapex+Grimmsnarl",
-  "opp": [
-   "Meganium",
-   "Maushold-Four",
-   "Toxapex",
-   "Tyranitar",
-   "Incineroar",
-   "Grimmsnarl"
-  ],
-  "rating": 1050,
-  "cause": "ROOM_EXPIRED",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 6,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Luxray+Basculegion",
-  "opp": [
-   "Dragapult",
-   "Sneasler",
-   "Luxray",
-   "Basculegion",
-   "Whimsicott",
-   "Charizard"
-  ],
-  "rating": 1066,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 10,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Meowstic+Flareon",
-  "opp": [
-   "Politoed",
-   "Dragonite",
-   "Meowstic",
-   "Gardevoir",
-   "Flareon",
-   "Tauros-Paldea-Combat"
-  ],
-  "rating": 1005,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 5,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Charizard+Garchomp",
-  "opp": [
-   "Sylveon",
-   "Garchomp",
-   "Charizard",
-   "Incineroar",
-   "Aerodactyl",
-   "Kingambit"
-  ],
-  "rating": 1000,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 6,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Staraptor+Tyranitar",
-  "opp": [
-   "Gholdengo",
-   "Staraptor",
-   "Tyranitar",
-   "Farigiraf",
-   "Whimsicott",
-   "Excadrill"
-  ],
-  "rating": 1136,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 7,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Froslass+Sneasler",
-  "opp": [
-   "Froslass",
-   "Basculegion",
-   "Sneasler",
-   "Metagross",
-   "Incineroar",
-   "Aerodactyl"
-  ],
-  "rating": 1117,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 8,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Heracross+Slowking-Galar",
-  "opp": [
-   "Farigiraf",
-   "Heracross",
-   "Kingambit",
-   "Staraptor",
-   "Whimsicott",
-   "Slowking-Galar"
-  ],
-  "rating": 1000,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 7,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Tyranitar+Excadrill",
-  "opp": [
-   "Tyranitar",
-   "Excadrill",
-   "Gholdengo",
-   "Milotic",
-   "Sinistcha-Masterpiece",
-   "Incineroar"
-  ],
-  "rating": 1168,
-  "cause": "PROTECT_STALL",
-  "sub": "3/6"
- },
- {
-  "won": false,
-  "turns": 8,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Malamar+Slowking-Galar",
-  "opp": [
-   "Crabominable",
-   "Slowking-Galar",
-   "Malamar",
-   "Armarouge",
-   "Farigiraf",
-   "Basculegion"
-  ],
-  "rating": 1106,
-  "cause": "ROOM_EXPIRED",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 13,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Grimmsnarl+Sneasler",
-  "opp": [
-   "Raichu",
-   "Froslass",
-   "Sneasler",
-   "Basculegion",
-   "Arcanine-Hisui",
-   "Grimmsnarl"
-  ],
-  "rating": 1032,
-  "cause": "LATE_GAME",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 9,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Ninetales-Alola+Wyrdeer",
-  "opp": [
-   "Kingambit",
-   "Milotic",
-   "Ninetales-Alola",
-   "Metagross",
-   "Annihilape",
-   "Wyrdeer"
-  ],
-  "rating": 1135,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 0,
-  "myLead": "",
-  "oppLead": "",
-  "opp": [
-   "Gyarados",
-   "Farigiraf",
-   "Sinistcha-Masterpiece",
-   "Garchomp",
-   "Metagross",
-   "Sneasler"
-  ],
-  "rating": 1000,
-  "cause": "WON_WITHOUT_TR",
-  "sub": "setter did not click TR"
- },
- {
-  "won": false,
-  "turns": 9,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Aerodactyl+Garchomp",
-  "opp": [
-   "Aerodactyl",
-   "Kingambit",
-   "Sylveon",
-   "Garchomp",
-   "Sinistcha",
-   "Incineroar"
-  ],
-  "rating": 1075,
-  "cause": "NO_TR_T1",
-  "sub": "setter did not click TR"
- },
- {
-  "won": false,
-  "turns": 12,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Grimmsnarl+Gengar",
-  "opp": [
-   "Gengar",
-   "Luxray",
-   "Kleavor",
-   "Orthworm",
-   "Aurorus",
-   "Grimmsnarl"
-  ],
-  "rating": 1000,
-  "cause": "PROTECT_STALL",
-  "sub": "3/7"
- },
- {
-  "won": false,
-  "turns": 7,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Kingambit+Farigiraf",
-  "opp": [
-   "Basculegion",
-   "Kingambit",
-   "Floette-Eternal",
-   "Whimsicott",
-   "Farigiraf",
-   "Camerupt"
-  ],
-  "rating": 1101,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 13,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Sneasler+Excadrill",
-  "opp": [
-   "Sneasler",
-   "Tyranitar",
-   "Excadrill",
-   "Sinistcha",
-   "Annihilape",
-   "Abomasnow"
-  ],
-  "rating": 1000,
-  "cause": "NO_TR_T1",
-  "sub": "setter did not click TR"
- },
- {
-  "won": false,
-  "turns": 8,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Metagross+Incineroar",
-  "opp": [
-   "Metagross",
-   "Incineroar",
-   "Sinistcha",
-   "Whimsicott",
-   "Garchomp",
-   "Kingambit"
-  ],
-  "rating": 1079,
-  "cause": "NO_TR_T1",
-  "sub": "setter did not click TR"
- },
- {
-  "won": false,
-  "turns": 5,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Tyranitar+Excadrill",
-  "opp": [
-   "Tyranitar",
-   "Excadrill",
-   "Milotic",
-   "Sinistcha",
-   "Staraptor",
-   "Gholdengo"
-  ],
-  "rating": 1059,
-  "cause": "NO_TR_T1",
-  "sub": "setter KOd"
- },
- {
-  "won": false,
-  "turns": 8,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Primarina+Raichu",
-  "opp": [
-   "Raichu",
-   "Farigiraf",
-   "Aerodactyl",
-   "Torkoal",
-   "Garchomp",
-   "Primarina"
-  ],
-  "rating": 1000,
-  "cause": "NO_TR_T1",
-  "sub": "setter did not click TR"
- },
- {
-  "won": true,
-  "turns": 6,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Klefki+Infernape",
-  "opp": [
-   "Infernape",
-   "Sceptile",
-   "Zoroark-Hisui",
-   "Scizor",
-   "Rotom-Wash",
-   "Klefki"
-  ],
-  "rating": 1060,
-  "cause": "WON_WITHOUT_TR",
-  "sub": "setter did not click TR"
- },
- {
-  "won": true,
-  "turns": 8,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Metagross+Incineroar",
-  "opp": [
-   "Metagross",
-   "Incineroar",
-   "Sinistcha",
-   "Whimsicott",
-   "Garchomp",
-   "Kingambit"
-  ],
-  "rating": 1087,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 10,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Alakazam+Dragapult",
-  "opp": [
-   "Dragapult",
-   "Lucario",
-   "Alakazam",
-   "Vivillon",
-   "Arcanine-Hisui",
-   "Primarina"
-  ],
-  "rating": 1076,
-  "cause": "NO_TR_T1",
-  "sub": "setter did not click TR"
- },
- {
-  "won": true,
-  "turns": 7,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Glalie+Noivern",
-  "opp": [
-   "Glalie",
-   "Hawlucha",
-   "Noivern",
-   "Mudsdale",
-   "Oranguru",
-   "Liepard"
-  ],
-  "rating": 1000,
-  "cause": "WON_WITHOUT_TR",
-  "sub": "setter did not click TR"
- },
- {
-  "won": false,
-  "turns": 7,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Orthworm+Garchomp",
-  "opp": [
-   "Garchomp",
-   "Sneasler",
-   "Orthworm",
-   "Greninja",
-   "Sinistcha",
-   "Zoroark-Hisui"
-  ],
-  "rating": 1032,
-  "cause": "ROOM_EXPIRED",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 8,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Staraptor+Whimsicott",
-  "opp": [
-   "Staraptor",
-   "Garchomp",
-   "Whimsicott",
-   "Delphox",
-   "Glimmora",
-   "Kingambit"
-  ],
-  "rating": 1044,
-  "cause": "NO_TR_T1",
-  "sub": "setter did not click TR"
- },
- {
-  "won": false,
-  "turns": 10,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Metagross+Incineroar",
-  "opp": [
-   "Metagross",
-   "Incineroar",
-   "Sinistcha",
-   "Whimsicott",
-   "Garchomp",
-   "Kingambit"
-  ],
-  "rating": 1013,
-  "cause": "NO_TR_T1",
-  "sub": "setter did not click TR"
- },
- {
-  "won": false,
-  "turns": 11,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Incineroar+Glimmora",
-  "opp": [
-   "Glimmora",
-   "Scovillain",
-   "Toxapex",
-   "Sinistcha",
-   "Umbreon",
-   "Incineroar"
-  ],
-  "rating": 1000,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 7,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Houndoom+Torkoal",
-  "opp": [
-   "Houndoom",
-   "Torkoal",
-   "Farigiraf",
-   "Sylveon",
-   "Garchomp",
-   "Basculegion"
-  ],
-  "rating": 1000,
-  "cause": "NO_TR_T1",
-  "sub": "setter did not click TR"
- },
- {
-  "won": false,
-  "turns": 5,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Aerodactyl+Garchomp",
-  "opp": [
-   "Sylveon",
-   "Kingambit",
-   "Incineroar",
-   "Aerodactyl",
-   "Garchomp",
-   "Charizard"
-  ],
-  "rating": 1000,
-  "cause": "NO_TR_T1",
-  "sub": "setter did not click TR"
- },
- {
-  "won": true,
-  "turns": 5,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Talonflame+Krookodile",
-  "opp": [
-   "Greninja",
-   "Scrafty",
-   "Talonflame",
-   "Infernape",
-   "Sceptile",
-   "Krookodile"
-  ],
-  "rating": 1019,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 11,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Staraptor+Serperior",
-  "opp": [
-   "Staraptor",
-   "Serperior",
-   "Whimsicott",
-   "Jolteon",
-   "Talonflame",
-   "Milotic"
-  ],
-  "rating": 1006,
-  "cause": "NO_TR_T1",
-  "sub": "setter did not click TR"
- },
- {
-  "won": false,
-  "turns": 6,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Maushold-Four+Weavile",
-  "opp": [
-   "Milotic",
-   "Maushold-Four",
-   "Raichu",
-   "Gallade",
-   "Weavile",
-   "Gholdengo"
-  ],
-  "rating": 1104,
-  "cause": "ROOM_EXPIRED",
-  "sub": null
- },
- {
-  "won": true,
-  "turns": 6,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Tsareena+Scolipede",
-  "opp": [
-   "Archaludon",
-   "Salazzle",
-   "Meowstic-F",
-   "Tsareena",
-   "Pelipper",
-   "Scolipede"
-  ],
-  "rating": 1045,
-  "cause": "WON_WITHOUT_TR",
-  "sub": "setter KOd"
- },
- {
-  "won": false,
-  "turns": 7,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Corviknight+Tyranitar",
-  "opp": [
-   "Tyranitar",
-   "Excadrill",
-   "Garchomp",
-   "Corviknight",
-   "Kingambit",
-   "Whimsicott"
-  ],
-  "rating": 1035,
-  "cause": "NO_TR_T1",
-  "sub": "setter did not click TR"
- },
- {
-  "won": true,
-  "turns": 7,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Garchomp+Whimsicott",
-  "opp": [
-   "Charizard",
-   "Garchomp",
-   "Whimsicott",
-   "Kingambit",
-   "Basculegion",
-   "Sinistcha"
-  ],
-  "rating": 1067,
-  "cause": "WON_WITHOUT_TR",
-  "sub": "setter did not click TR"
- },
- {
-  "won": false,
-  "turns": 11,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Kleavor+Sneasler",
-  "opp": [
-   "Ampharos",
-   "Archaludon",
-   "Pelipper",
-   "Sneasler",
-   "Kleavor",
-   "Sinistcha"
-  ],
-  "rating": 1101,
-  "cause": "SWEEPER_ENTRY",
-  "sub": null
- },
- {
-  "won": false,
-  "turns": 16,
-  "myLead": "Oranguru+Sinistcha",
-  "oppLead": "Morpeko+Charizard",
-  "opp": [
-   "Morpeko",
-   "Charizard",
-   "Milotic",
-   "Sneasler",
-   "Whimsicott",
-   "Kingambit"
-  ],
-  "rating": 1122,
-  "cause": "NO_TR_T1",
-  "sub": "setter did not click TR"
- },
- {
-  "won": true,
-  "turns": 6,
-  "myLead": "Oranguru+Avalugg",
-  "oppLead": "Talonflame+Mawile",
-  "opp": [
-   "Gallade",
-   "Talonflame",
-   "Mawile",
-   "Feraligatr",
-   "Farigiraf",
-   "Torkoal"
-  ],
-  "rating": 1008,
-  "cause": "WIN",
-  "sub": null
- },
- {
-  "won": false,
   "turns": 10,
   "myLead": "Oranguru+Sinistcha",
   "oppLead": "Incineroar+Farigiraf",
@@ -3327,31 +53,31 @@
  {
   "won": false,
   "turns": 8,
-  "myLead": "Incineroar+Rotom-Wash",
-  "oppLead": "Oranguru+Avalugg",
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Incineroar+Rotom-Wash",
   "opp": [],
   "rating": 1061,
-  "cause": "LATE_GAME",
+  "cause": "SWEEPER_ENTRY",
   "sub": null
  },
  {
-  "won": false,
+  "won": true,
   "turns": 6,
   "myLead": "Oranguru+Avalugg",
   "oppLead": "Scrafty+Camerupt",
   "opp": [],
   "rating": 1004,
-  "cause": "NO_TR_T1",
+  "cause": "WON_WITHOUT_TR",
   "sub": "setter did not click TR"
  },
  {
-  "won": false,
+  "won": true,
   "turns": 5,
-  "myLead": "Dragapult+Sylveon",
-  "oppLead": "Oranguru+Avalugg",
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Dragapult+Sylveon",
   "opp": [],
   "rating": 1052,
-  "cause": "LATE_GAME",
+  "cause": "WIN",
   "sub": null
  },
  {
@@ -3367,11 +93,11 @@
  {
   "won": false,
   "turns": 8,
-  "myLead": "Kingambit+Rotom-Wash",
-  "oppLead": "Oranguru+Avalugg",
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kingambit+Rotom-Wash",
   "opp": [],
   "rating": 1156,
-  "cause": "LATE_GAME",
+  "cause": "SWEEPER_ENTRY",
   "sub": null
  },
  {
@@ -3387,21 +113,21 @@
  {
   "won": false,
   "turns": 8,
-  "myLead": "Garganacl+Milotic",
-  "oppLead": "Oranguru+Avalugg",
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Garganacl+Milotic",
   "opp": [],
   "rating": 1108,
-  "cause": "LATE_GAME",
+  "cause": "SWEEPER_ENTRY",
   "sub": null
  },
  {
   "won": false,
   "turns": 9,
-  "myLead": "Oranguru+Hatterene",
-  "oppLead": "Oranguru+Avalugg",
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Oranguru+Hatterene",
   "opp": [],
   "rating": 1087,
-  "cause": "LATE_GAME",
+  "cause": "SWEEPER_ENTRY",
   "sub": null
  },
  {
@@ -3435,34 +161,34 @@
   "sub": "setter did not click TR"
  },
  {
-  "won": false,
+  "won": true,
   "turns": 11,
-  "myLead": "Raichu+Whimsicott",
-  "oppLead": "Oranguru+Avalugg",
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Raichu+Whimsicott",
   "opp": [],
   "rating": 1000,
-  "cause": "LATE_GAME",
+  "cause": "WIN",
   "sub": null
  },
  {
-  "won": false,
+  "won": true,
   "turns": 7,
-  "myLead": "Whimsicott+Torterra",
-  "oppLead": "Oranguru+Avalugg",
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Whimsicott+Torterra",
   "opp": [],
   "rating": 1000,
-  "cause": "LATE_GAME",
+  "cause": "WIN",
   "sub": null
  },
  {
   "won": false,
   "turns": 9,
-  "myLead": "Blastoise+Tsareena",
-  "oppLead": "Oranguru+Avalugg",
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Blastoise+Tsareena",
   "opp": [],
   "rating": 1113,
   "cause": "NO_TR_T1",
-  "sub": "setter did not click TR"
+  "sub": "setter KOd"
  },
  {
   "won": false,
@@ -3481,6 +207,4806 @@
   "oppLead": "Slowking-Galar+Incineroar",
   "opp": [],
   "rating": 1052,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Weavile+Basculegion",
+  "opp": [],
+  "rating": 1135,
+  "cause": "NO_TR_T1",
+  "sub": "setter KOd"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Delphox+Garchomp",
+  "opp": [],
+  "rating": 1105,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Blastoise+Sinistcha-Masterpiece",
+  "opp": [],
+  "rating": 1077,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Aerodactyl+Swampert",
+  "opp": [],
+  "rating": null,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Clefable+Sneasler",
+  "opp": [],
+  "rating": 1041,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Maushold-Four+Glimmora",
+  "opp": [],
+  "rating": 1025,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Tyranitar+Milotic",
+  "opp": [],
+  "rating": 1062,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Altaria+Rotom-Heat",
+  "opp": [],
+  "rating": 1217,
+  "cause": "LATE_GAME",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Lycanroc-Dusk+Sneasler",
+  "opp": [],
+  "rating": 1138,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Whimsicott+Scrafty",
+  "opp": [],
+  "rating": null,
+  "cause": "NO_TR_T1",
+  "sub": "taunted"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Weavile+Incineroar",
+  "opp": [],
+  "rating": 1116,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Typhlosion-Hisui+Staraptor",
+  "opp": [],
+  "rating": 1091,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Whimsicott+Floette-Eternal",
+  "opp": [],
+  "rating": 1043,
+  "cause": "ROOM_EXPIRED",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 4,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Araquanid+Oranguru",
+  "opp": [],
+  "rating": 1141,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Blastoise+Maushold",
+  "opp": [],
+  "rating": 1031,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Mimikyu+Kangaskhan",
+  "opp": [],
+  "rating": 1077,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Garchomp+Whimsicott",
+  "opp": [],
+  "rating": 1027,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Greninja+Noivern",
+  "opp": [],
+  "rating": 1048,
+  "cause": "NO_TR_T1",
+  "sub": "setter KOd"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Blastoise+Clefable",
+  "opp": [],
+  "rating": 1132,
+  "cause": "ROOM_EXPIRED",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Whimsicott+Excadrill",
+  "opp": [],
+  "rating": 1052,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Glimmora+Scovillain",
+  "opp": [],
+  "rating": 1035,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 11,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Araquanid+Scrafty",
+  "opp": [],
+  "rating": 1020,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Clefable+Pinsir",
+  "opp": [],
+  "rating": 1040,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Maushold-Four+Chandelure",
+  "opp": [],
+  "rating": 1040,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Gengar+Incineroar",
+  "opp": [],
+  "rating": 1073,
+  "cause": "PROTECT_STALL",
+  "sub": "4/6"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Dragapult+Sylveon",
+  "opp": [],
+  "rating": 1051,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Delphox+Sneasler",
+  "opp": [],
+  "rating": 1000,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Snorlax+Hawlucha",
+  "opp": [],
+  "rating": 1019,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Pinsir+Kangaskhan",
+  "opp": [],
+  "rating": 1007,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Volcarona+Sneasler",
+  "opp": [],
+  "rating": 1045,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Whimsicott+Swampert",
+  "opp": [],
+  "rating": 1029,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Whimsicott+Charizard",
+  "opp": [],
+  "rating": 1013,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Meowstic+Kommo-o",
+  "opp": [],
+  "rating": 1005,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Overqwil+Araquanid",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 14,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Skarmory+Lopunny",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Slowking-Galar+Mawile",
+  "opp": [],
+  "rating": 1000,
+  "cause": "ROOM_EXPIRED",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Staraptor+Whimsicott",
+  "opp": [],
+  "rating": 1051,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Milotic+Stunfisk-Galar",
+  "opp": [],
+  "rating": 1000,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Hydreigon+Incineroar",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Metagross+Talonflame",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 10,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Garchomp+Whimsicott",
+  "opp": [],
+  "rating": 1040,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Mimikyu+Torkoal",
+  "opp": [],
+  "rating": 1027,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Greninja+Klefki",
+  "opp": [],
+  "rating": null,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Beedrill+Weavile",
+  "opp": [],
+  "rating": 1004,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Metagross+Incineroar",
+  "opp": [],
+  "rating": 1046,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 10,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Garchomp+Whimsicott",
+  "opp": [],
+  "rating": 1033,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Klefki+Manectric",
+  "opp": [],
+  "rating": 1020,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Farigiraf+Kingambit",
+  "opp": [],
+  "rating": 1009,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Metagross+Sableye",
+  "opp": [],
+  "rating": 1011,
+  "cause": "LATE_GAME",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Farigiraf+Scizor",
+  "opp": [],
+  "rating": 1049,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Snorlax+Hawlucha",
+  "opp": [],
+  "rating": 1035,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Raichu+Talonflame",
+  "opp": [],
+  "rating": 1018,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 10,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Slowbro+Sableye",
+  "opp": [],
+  "rating": 1057,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Barbaracle+Ceruledge",
+  "opp": [],
+  "rating": 1033,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Pyroar+Diggersby",
+  "opp": [],
+  "rating": 1022,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Staraptor+Whimsicott",
+  "opp": [],
+  "rating": 1030,
+  "cause": "NO_TR_T1",
+  "sub": "setter KOd"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Pelipper+Archaludon",
+  "opp": [],
+  "rating": 1044,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Tyranitar+Excadrill",
+  "opp": [],
+  "rating": 1027,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Hatterene+Gengar",
+  "opp": [],
+  "rating": 1012,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Tyranitar+Excadrill",
+  "opp": [],
+  "rating": 1001,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Wyrdeer+Meowscarada",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Raichu+Gholdengo",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Farigiraf+Kangaskhan",
+  "opp": [],
+  "rating": null,
+  "cause": "ROOM_EXPIRED",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Barbaracle+Ceruledge",
+  "opp": [],
+  "rating": 1000,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Farigiraf+Kingambit",
+  "opp": [],
+  "rating": 1048,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kleavor+Whimsicott",
+  "opp": [],
+  "rating": 1040,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 11,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sableye+Milotic",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "taunted"
+ },
+ {
+  "won": true,
+  "turns": 2,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Infernape+Palafin",
+  "opp": [],
+  "rating": 1115,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Aggron+Tyranitar",
+  "opp": [],
+  "rating": 1000,
+  "cause": "ROOM_EXPIRED",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kingambit+Whimsicott",
+  "opp": [],
+  "rating": 1018,
+  "cause": "NO_TR_T1",
+  "sub": "taunted"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Dragapult+Gardevoir",
+  "opp": [],
+  "rating": 1021,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 10,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sableye+Milotic",
+  "opp": [],
+  "rating": 1008,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Gengar+Grimmsnarl",
+  "opp": [],
+  "rating": null,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Floette-Eternal+Sneasler",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Blaziken+Kingambit",
+  "opp": [],
+  "rating": 1029,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Pinsir+Blaziken",
+  "opp": [],
+  "rating": 1000,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Metagross+Sneasler",
+  "opp": [],
+  "rating": 1043,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Starmie+Trevenant",
+  "opp": [],
+  "rating": 1072,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 15,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Garganacl+Grimmsnarl",
+  "opp": [],
+  "rating": 1056,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Metagross+Farigiraf",
+  "opp": [],
+  "rating": 1150,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Politoed+Eelektross",
+  "opp": [],
+  "rating": 1060,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Dragapult+Sylveon",
+  "opp": [],
+  "rating": 1087,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Beedrill+Araquanid",
+  "opp": [],
+  "rating": 1065,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Staraptor+Tyranitar",
+  "opp": [],
+  "rating": 1081,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Raichu+Pelipper",
+  "opp": [],
+  "rating": 1116,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Palafin+Garchomp",
+  "opp": [],
+  "rating": 1023,
+  "cause": "ROOM_EXPIRED",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Charizard+Basculegion",
+  "opp": [],
+  "rating": 1155,
+  "cause": "PROTECT_STALL",
+  "sub": "3/6"
+ },
+ {
+  "won": true,
+  "turns": 11,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sandaconda+Whimsicott",
+  "opp": [],
+  "rating": 1148,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Scrafty+Tyranitar",
+  "opp": [],
+  "rating": 1066,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Banette+Medicham",
+  "opp": [],
+  "rating": 1063,
+  "cause": "NO_TR_T1",
+  "sub": "setter KOd"
+ },
+ {
+  "won": false,
+  "turns": 12,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Gallade+Grimmsnarl",
+  "opp": [],
+  "rating": 1056,
+  "cause": "PROTECT_STALL",
+  "sub": "6/8"
+ },
+ {
+  "won": true,
+  "turns": 4,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Maushold-Four+Absol",
+  "opp": [],
+  "rating": 1054,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter KOd"
+ },
+ {
+  "won": true,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Meowstic-F+Whimsicott",
+  "opp": [],
+  "rating": 1032,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 24,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Incineroar+Garchomp",
+  "opp": [],
+  "rating": 1078,
+  "cause": "NO_TR_T1",
+  "sub": "setter KOd"
+ },
+ {
+  "won": false,
+  "turns": 4,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sneasler+Tyranitar",
+  "opp": [],
+  "rating": 1094,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Snorlax+Hawlucha",
+  "opp": [],
+  "rating": 1067,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Hawlucha+Snorlax",
+  "opp": [],
+  "rating": 1048,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Vanilluxe+Liepard",
+  "opp": [],
+  "rating": 1065,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "taunted"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Garchomp+Charizard",
+  "opp": [],
+  "rating": 1020,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kingambit+Garchomp",
+  "opp": [],
+  "rating": 1158,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Charizard+Basculegion",
+  "opp": [],
+  "rating": 1039,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Charizard+Venusaur",
+  "opp": [],
+  "rating": 1026,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Annihilape+Maushold-Four",
+  "opp": [],
+  "rating": 1075,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kommo-o+Maushold",
+  "opp": [],
+  "rating": 1000,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Aerodactyl+Blaziken",
+  "opp": [],
+  "rating": 1000,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Pelipper+Swampert",
+  "opp": [],
+  "rating": 1065,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Torkoal+Farigiraf",
+  "opp": [],
+  "rating": 1000,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Victreebel+Skeledirge",
+  "opp": [],
+  "rating": 1030,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 10,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Incineroar+Tsareena",
+  "opp": [],
+  "rating": 1009,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Staraptor+Tyranitar",
+  "opp": [],
+  "rating": 1050,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 10,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Basculegion+Raichu",
+  "opp": [],
+  "rating": 1037,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sneasler+Basculegion",
+  "opp": [],
+  "rating": 1023,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sneasler+Floette-Eternal",
+  "opp": [],
+  "rating": 1009,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Farigiraf+Kangaskhan",
+  "opp": [],
+  "rating": 1000,
+  "cause": "LATE_GAME",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Mawile+Staraptor",
+  "opp": [],
+  "rating": 1115,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Tyranitar+Avalugg-Hisui",
+  "opp": [],
+  "rating": 1073,
+  "cause": "NO_TR_T1",
+  "sub": "setter KOd"
+ },
+ {
+  "won": true,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Heracross+Rotom-Heat",
+  "opp": [],
+  "rating": 1172,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sneasler+Kingambit",
+  "opp": [],
+  "rating": 1080,
+  "cause": "ROOM_EXPIRED",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 10,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Annihilape+Charizard",
+  "opp": [],
+  "rating": 1075,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 2,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Hatterene+Sneasler",
+  "opp": [],
+  "rating": 1066,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Spiritomb+Swampert",
+  "opp": [],
+  "rating": 1186,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Talonflame+Garchomp",
+  "opp": [],
+  "rating": 1029,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "taunted"
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kingambit+Farigiraf",
+  "opp": [],
+  "rating": 1112,
+  "cause": "NO_TR_T1",
+  "sub": "setter KOd"
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Incineroar+Mamoswine",
+  "opp": [],
+  "rating": 1018,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Tyranitar+Excadrill",
+  "opp": [],
+  "rating": 1000,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kingambit+Scovillain",
+  "opp": [],
+  "rating": 1119,
+  "cause": "LATE_GAME",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 10,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Typhlosion-Hisui+Garchomp",
+  "opp": [],
+  "rating": 1086,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Dragonite+Archaludon",
+  "opp": [],
+  "rating": 1072,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sableye+Floette-Eternal",
+  "opp": [],
+  "rating": 1102,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Floette-Eternal+Kingambit",
+  "opp": [],
+  "rating": 1153,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Farigiraf+Maushold-Four",
+  "opp": [],
+  "rating": 1062,
+  "cause": "NO_TR_T1",
+  "sub": "setter KOd"
+ },
+ {
+  "won": false,
+  "turns": 10,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kommo-o+Volcarona",
+  "opp": [],
+  "rating": 1101,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 11,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Lycanroc-Dusk+Slowking",
+  "opp": [],
+  "rating": 1128,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Annihilape+Maushold-Four",
+  "opp": [],
+  "rating": 1133,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 10,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Scolipede+Whimsicott",
+  "opp": [],
+  "rating": 1036,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Dragonite+Garchomp",
+  "opp": [],
+  "rating": 1143,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 11,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Whimsicott+Audino",
+  "opp": [],
+  "rating": 1000,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Arcanine-Hisui+Politoed",
+  "opp": [],
+  "rating": 1004,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kingambit+Froslass",
+  "opp": [],
+  "rating": 1168,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Scolipede+Chandelure",
+  "opp": [],
+  "rating": 1136,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sableye+Archaludon",
+  "opp": [],
+  "rating": 1102,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Farigiraf+Staraptor",
+  "opp": [],
+  "rating": 1085,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Venusaur+Charizard",
+  "opp": [],
+  "rating": 1040,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Toxapex+Incineroar",
+  "opp": [],
+  "rating": 1055,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 0,
+  "myLead": "",
+  "oppLead": "",
+  "opp": [],
+  "rating": 1036,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Araquanid+Dragalge",
+  "opp": [],
+  "rating": 1072,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Garchomp+Tyranitar",
+  "opp": [],
+  "rating": 1056,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 0,
+  "myLead": "",
+  "oppLead": "",
+  "opp": [],
+  "rating": 1000,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kingambit+Pelipper",
+  "opp": [],
+  "rating": 1060,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Metagross+Incineroar",
+  "opp": [],
+  "rating": 1066,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 12,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Aerodactyl+Garchomp",
+  "opp": [],
+  "rating": 1082,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sableye+Archaludon",
+  "opp": [],
+  "rating": 1108,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sneasler+Swampert",
+  "opp": [],
+  "rating": 1017,
+  "cause": "NO_TR_T1",
+  "sub": "taunted"
+ },
+ {
+  "won": true,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Staraptor+Sneasler",
+  "opp": [],
+  "rating": 1084,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter KOd"
+ },
+ {
+  "won": false,
+  "turns": 12,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sandaconda+Sinistcha",
+  "opp": [],
+  "rating": 1041,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 13,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Ninetales-Alola+Whimsicott",
+  "opp": [],
+  "rating": 1000,
+  "cause": "LATE_GAME",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Infernape+Gardevoir",
+  "opp": [],
+  "rating": 1126,
+  "cause": "ROOM_EXPIRED",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Garchomp+Gallade",
+  "opp": [],
+  "rating": 1038,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Scovillain+Sneasler",
+  "opp": [],
+  "rating": 1021,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Whimsicott+Sneasler",
+  "opp": [],
+  "rating": 1095,
+  "cause": "NO_TR_T1",
+  "sub": "taunted"
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Scovillain+Kingambit",
+  "opp": [],
+  "rating": 1002,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 4,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Charizard+Whimsicott",
+  "opp": [],
+  "rating": 1081,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Steelix+Florges",
+  "opp": [],
+  "rating": 1049,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Farigiraf+Kingambit",
+  "opp": [],
+  "rating": 1074,
+  "cause": "LATE_GAME",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 20,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Floette-Eternal+Grimmsnarl",
+  "opp": [],
+  "rating": 1022,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sneasler+Whimsicott",
+  "opp": [],
+  "rating": 1011,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 4,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Incineroar+Gardevoir",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 14,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Raichu+Chandelure",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 18,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Incineroar+Ceruledge",
+  "opp": [],
+  "rating": 1035,
+  "cause": "NO_TR_T1",
+  "sub": "setter KOd"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Metagross+Incineroar",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 13,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Goodra-Hisui+Aegislash",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 12,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Snorlax+Scrafty",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Whimsicott+Tyranitar",
+  "opp": [],
+  "rating": 1089,
+  "cause": "NO_TR_T1",
+  "sub": "setter KOd"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Staraptor+Whimsicott",
+  "opp": [],
+  "rating": 1000,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Garchomp+Whimsicott",
+  "opp": [],
+  "rating": 1013,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Froslass+Incineroar",
+  "opp": [],
+  "rating": 1041,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 2,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Maushold-Four+Gardevoir",
+  "opp": [],
+  "rating": 1023,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Talonflame+Rotom-Wash",
+  "opp": [],
+  "rating": 1063,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 4,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Charizard+Whimsicott",
+  "opp": [],
+  "rating": 1040,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Arcanine-Hisui+Farigiraf",
+  "opp": [],
+  "rating": 1000,
+  "cause": "PROTECT_STALL",
+  "sub": "3/6"
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Tyranitar+Dragonite",
+  "opp": [],
+  "rating": 1054,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Charizard+Clefable",
+  "opp": [],
+  "rating": 1036,
+  "cause": "SWEEPER_NEVER",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sinistcha+Gholdengo",
+  "opp": [],
+  "rating": 1042,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Glimmora+Farigiraf",
+  "opp": [],
+  "rating": 1008,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 4,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Charizard+Whimsicott",
+  "opp": [],
+  "rating": 1119,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Talonflame+Lucario",
+  "opp": [],
+  "rating": 1113,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kingambit+Lycanroc-Dusk",
+  "opp": [],
+  "rating": 1113,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Meowstic+Farigiraf",
+  "opp": [],
+  "rating": 1033,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Hatterene+Conkeldurr",
+  "opp": [],
+  "rating": 1049,
+  "cause": "ROOM_EXPIRED",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kingambit+Conkeldurr",
+  "opp": [],
+  "rating": 1097,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Farigiraf+Incineroar",
+  "opp": [],
+  "rating": 1159,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 4,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Charizard+Whimsicott",
+  "opp": [],
+  "rating": 1042,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Scovillain+Kingambit",
+  "opp": [],
+  "rating": 1085,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Dragonite+Swampert",
+  "opp": [],
+  "rating": 1067,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Klefki+Archaludon",
+  "opp": [],
+  "rating": 1116,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Gengar+Incineroar",
+  "opp": [],
+  "rating": 1036,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sneasler+Aggron",
+  "opp": [],
+  "rating": 1078,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 10,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Hatterene+Sinistcha",
+  "opp": [],
+  "rating": 1061,
+  "cause": "ROOM_EXPIRED",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 12,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Staraptor+Sneasler",
+  "opp": [],
+  "rating": 1046,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Delphox+Farigiraf",
+  "opp": [],
+  "rating": 1028,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 2,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Whimsicott+Lucario",
+  "opp": [],
+  "rating": 1049,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "taunted"
+ },
+ {
+  "won": true,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Aggron+Grimmsnarl",
+  "opp": [],
+  "rating": 1051,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Arcanine-Hisui+Kingambit",
+  "opp": [],
+  "rating": 1184,
+  "cause": "LATE_GAME",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Garchomp+Sneasler",
+  "opp": [],
+  "rating": 1069,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sneasler+Aerodactyl",
+  "opp": [],
+  "rating": 1000,
+  "cause": "PROTECT_STALL",
+  "sub": "3/6"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Charizard+Whimsicott",
+  "opp": [],
+  "rating": 1069,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 11,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Banette+Vanilluxe",
+  "opp": [],
+  "rating": 1086,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kleavor+Tinkaton",
+  "opp": [],
+  "rating": 1050,
+  "cause": "NO_TR_T1",
+  "sub": "setter KOd"
+ },
+ {
+  "won": true,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Charizard+Whimsicott",
+  "opp": [],
+  "rating": 1120,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Gliscor+Vivillon-Modern",
+  "opp": [],
+  "rating": 1068,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kingambit+Sylveon",
+  "opp": [],
+  "rating": 1099,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Farigiraf+Lucario",
+  "opp": [],
+  "rating": 1034,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Incineroar+Tyranitar",
+  "opp": [],
+  "rating": 1040,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 4,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Annihilape+Maushold-Four",
+  "opp": [],
+  "rating": 1161,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Tyrantrum+Heracross",
+  "opp": [],
+  "rating": 1086,
+  "cause": "NO_TR_T1",
+  "sub": "setter KOd"
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Hatterene+Golurk",
+  "opp": [],
+  "rating": 1139,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Staraptor+Whimsicott",
+  "opp": [],
+  "rating": 1110,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Incineroar+Aerodactyl",
+  "opp": [],
+  "rating": 1174,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sableye+Pelipper",
+  "opp": [],
+  "rating": 1062,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Staraptor+Tyranitar",
+  "opp": [],
+  "rating": 1102,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 3,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Maushold-Four+Gardevoir",
+  "opp": [],
+  "rating": 1074,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Swampert+Pelipper",
+  "opp": [],
+  "rating": 1000,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 0,
+  "myLead": "",
+  "oppLead": "",
+  "opp": [],
+  "rating": 1070,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 12,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Ninetales-Alola+Scrafty",
+  "opp": [],
+  "rating": 1098,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Snorlax+Sableye",
+  "opp": [],
+  "rating": 1116,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Froslass+Glaceon",
+  "opp": [],
+  "rating": 1000,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 19,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sableye+Polteageist-Antique",
+  "opp": [],
+  "rating": 1062,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sneasler+Basculegion",
+  "opp": [],
+  "rating": 1043,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Arcanine-Hisui+Raichu",
+  "opp": [],
+  "rating": 1080,
+  "cause": "LATE_GAME",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Blastoise+Maushold-Four",
+  "opp": [],
+  "rating": 1060,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 11,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Mawile+Annihilape",
+  "opp": [],
+  "rating": 1039,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 13,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Annihilape+Maushold-Four",
+  "opp": [],
+  "rating": 1025,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Primarina+Conkeldurr",
+  "opp": [],
+  "rating": 1000,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 13,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Hatterene+Sinistcha",
+  "opp": [],
+  "rating": 1006,
+  "cause": "ROOM_EXPIRED",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Hatterene+Annihilape",
+  "opp": [],
+  "rating": 1044,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Aerodactyl+Kingambit",
+  "opp": [],
+  "rating": 1030,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Grimmsnarl+Pelipper",
+  "opp": [],
+  "rating": 1016,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Araquanid+Ditto",
+  "opp": [],
+  "rating": 1006,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 10,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Gengar+Incineroar",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Basculegion+Floette-Eternal",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Meowstic+Alcremie",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Golurk+Farigiraf",
+  "opp": [],
+  "rating": 1045,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Polteageist-Antique+Sylveon",
+  "opp": [],
+  "rating": 1000,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Toxapex+Garchomp",
+  "opp": [],
+  "rating": 1045,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Lopunny+Alakazam",
+  "opp": [],
+  "rating": 1074,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 11,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Incineroar+Hydreigon",
+  "opp": [],
+  "rating": 1057,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 10,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Gengar+Incineroar",
+  "opp": [],
+  "rating": 1043,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 14,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sableye+Milotic",
+  "opp": [],
+  "rating": 1031,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Liepard+Quaquaval",
+  "opp": [],
+  "rating": null,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Annihilape+Dragapult",
+  "opp": [],
+  "rating": null,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Incineroar+Grimmsnarl",
+  "opp": [],
+  "rating": 1000,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 14,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Barbaracle+Rotom-Wash",
+  "opp": [],
+  "rating": null,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sinistcha-Masterpiece+Raichu",
+  "opp": [],
+  "rating": 1045,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Starmie+Sneasler",
+  "opp": [],
+  "rating": 1031,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Lopunny+Alakazam",
+  "opp": [],
+  "rating": 1042,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Meganium+Glimmora",
+  "opp": [],
+  "rating": 1154,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Farigiraf+Incineroar",
+  "opp": [],
+  "rating": 1000,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Gholdengo+Incineroar",
+  "opp": [],
+  "rating": 1000,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Maushold+Garchomp",
+  "opp": [],
+  "rating": null,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 4,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Pikachu+Raichu",
+  "opp": [],
+  "rating": 1024,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Gengar+Clefable",
+  "opp": [],
+  "rating": 1000,
+  "cause": "SWEEPER_NEVER",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sylveon+Garchomp",
+  "opp": [],
+  "rating": 1145,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 4,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Floette-Eternal+Basculegion",
+  "opp": [],
+  "rating": 1094,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Weavile+Floette-Eternal",
+  "opp": [],
+  "rating": 1064,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Vivillon-Fancy+Scolipede",
+  "opp": [],
+  "rating": 1049,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Swampert+Sneasler",
+  "opp": [],
+  "rating": 1029,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Toxicroak+Politoed",
+  "opp": [],
+  "rating": 1000,
+  "cause": "ROOM_EXPIRED",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 13,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Banette+Aromatisse",
+  "opp": [],
+  "rating": 1003,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Farigiraf+Ampharos",
+  "opp": [],
+  "rating": 1055,
+  "cause": "LATE_GAME",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 12,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Whimsicott+Roserade",
+  "opp": [],
+  "rating": 1031,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Farigiraf+Kingambit",
+  "opp": [],
+  "rating": 1000,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sneasler+Kingambit",
+  "opp": [],
+  "rating": 1044,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 10,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Scrafty+Rotom-Heat",
+  "opp": [],
+  "rating": 1076,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 4,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Weavile+Gardevoir",
+  "opp": [],
+  "rating": 1057,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sinistcha-Masterpiece+Glimmora",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Tsareena+Lucario",
+  "opp": [],
+  "rating": 1031,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kleavor+Kingambit",
+  "opp": [],
+  "rating": 1015,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Meowscarada+Garchomp",
+  "opp": [],
+  "rating": 1036,
+  "cause": "ROOM_EXPIRED",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 4,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Weavile+Gardevoir",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kleavor+Raichu",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Garchomp+Kingambit",
+  "opp": [],
+  "rating": 1086,
+  "cause": "NO_TR_T1",
+  "sub": "setter KOd"
+ },
+ {
+  "won": false,
+  "turns": 10,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sneasler+Spiritomb",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Farigiraf+Sinistcha",
+  "opp": [],
+  "rating": 1000,
+  "cause": "ROOM_EXPIRED",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Whimsicott+Staraptor",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sableye+Basculegion",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 4,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Torkoal+Gholdengo",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Whimsicott+Basculegion",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kingambit+Floette-Eternal",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 11,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Lopunny+Vivillon",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sneasler+Espathra",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Hydreigon+Krookodile",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Maushold-Four+Talonflame",
+  "opp": [],
+  "rating": 1000,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Farigiraf+Grimmsnarl",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Scolipede+Sneasler",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 11,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Incineroar+Rotom-Wash",
+  "opp": [],
+  "rating": 1045,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Politoed+Scrafty",
+  "opp": [],
+  "rating": 1000,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Dragonite+Incineroar",
+  "opp": [],
+  "rating": 1077,
+  "cause": "ROOM_EXPIRED",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sableye+Swampert",
+  "opp": [],
+  "rating": 1000,
+  "cause": "ROOM_EXPIRED",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 12,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sableye+Chimecho",
+  "opp": [],
+  "rating": 1035,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Dragonite+Farigiraf",
+  "opp": [],
+  "rating": 1073,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Aerodactyl+Lucario",
+  "opp": [],
+  "rating": 1066,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Blastoise+Farigiraf",
+  "opp": [],
+  "rating": 1055,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Scovillain+Dragapult",
+  "opp": [],
+  "rating": 1044,
+  "cause": "NO_TR_T1",
+  "sub": "setter KOd"
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Farigiraf+Kangaskhan",
+  "opp": [],
+  "rating": 1082,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sneasler+Aerodactyl",
+  "opp": [],
+  "rating": 1029,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 4,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sneasler+Metagross",
+  "opp": [],
+  "rating": 1000,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Pelipper+Archaludon",
+  "opp": [],
+  "rating": 1054,
+  "cause": "LATE_GAME",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Spiritomb+Meowstic",
+  "opp": [],
+  "rating": 1076,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Basculegion+Kingambit",
+  "opp": [],
+  "rating": 1023,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter KOd"
+ },
+ {
+  "won": true,
+  "turns": 17,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Toxicroak+Scrafty",
+  "opp": [],
+  "rating": 1074,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 2,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Garchomp+Aerodactyl",
+  "opp": [],
+  "rating": 1144,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Tyranitar+Staraptor",
+  "opp": [],
+  "rating": 1030,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kingambit+Garchomp",
+  "opp": [],
+  "rating": 1040,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Staraptor+Meowstic",
+  "opp": [],
+  "rating": 1044,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sneasler+Maushold-Four",
+  "opp": [],
+  "rating": 1178,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Garchomp+Floette-Eternal",
+  "opp": [],
+  "rating": 1085,
+  "cause": "NO_TR_T1",
+  "sub": "setter KOd"
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Pelipper+Swampert",
+  "opp": [],
+  "rating": 1077,
+  "cause": "LATE_GAME",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kingambit+Slowking-Galar",
+  "opp": [],
+  "rating": 1148,
+  "cause": "ROOM_EXPIRED",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 10,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Whimsicott+Aegislash",
+  "opp": [],
+  "rating": 1118,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Farigiraf+Gallade",
+  "opp": [],
+  "rating": 1059,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 3,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Toxicroak+Politoed",
+  "opp": [],
+  "rating": 1063,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 10,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Staraptor+Archaludon",
+  "opp": [],
+  "rating": 1000,
+  "cause": "LATE_GAME",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Falinks+Floette-Eternal",
+  "opp": [],
+  "rating": 1065,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Incineroar+Blaziken",
+  "opp": [],
+  "rating": 1026,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sneasler+Dragonite",
+  "opp": [],
+  "rating": 1028,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Dragonite+Garchomp",
+  "opp": [],
+  "rating": 1015,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kangaskhan+Farigiraf",
+  "opp": [],
+  "rating": 1126,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Aggron+Farigiraf",
+  "opp": [],
+  "rating": 1048,
+  "cause": "LATE_GAME",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Gengar+Incineroar",
+  "opp": [],
+  "rating": 1028,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Staraptor+Falinks",
+  "opp": [],
+  "rating": 1013,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Garchomp+Charizard",
+  "opp": [],
+  "rating": 1146,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 4,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Incineroar+Staraptor",
+  "opp": [],
+  "rating": 1097,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kleavor+Kingambit",
+  "opp": [],
+  "rating": 1113,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Charizard+Basculegion",
+  "opp": [],
+  "rating": 1165,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kangaskhan+Golurk",
+  "opp": [],
+  "rating": 1203,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kingambit+Charizard",
+  "opp": [],
+  "rating": 1138,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Torkoal+Scrafty",
+  "opp": [],
+  "rating": 1237,
+  "cause": "LATE_GAME",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Charizard+Basculegion",
+  "opp": [],
+  "rating": 1137,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 11,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sableye+Gengar",
+  "opp": [],
+  "rating": 1110,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Charizard+Whimsicott",
+  "opp": [],
+  "rating": 1051,
+  "cause": "NO_TR_T1",
+  "sub": "taunted"
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Staraptor+Whimsicott",
+  "opp": [],
+  "rating": 1089,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Talonflame+Sylveon",
+  "opp": [],
+  "rating": 1103,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Gengar+Incineroar",
+  "opp": [],
+  "rating": 1106,
+  "cause": "PROTECT_STALL",
+  "sub": "4/5"
+ },
+ {
+  "won": true,
+  "turns": 4,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Charizard+Sneasler",
+  "opp": [],
+  "rating": 1058,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Incineroar+Hydreigon",
+  "opp": [],
+  "rating": 1042,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Farigiraf+Sneasler",
+  "opp": [],
+  "rating": 1063,
+  "cause": "LATE_GAME",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 10,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Starmie+Sneasler",
+  "opp": [],
+  "rating": 1049,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Swampert+Charizard",
+  "opp": [],
+  "rating": 1000,
+  "cause": "PROTECT_STALL",
+  "sub": "3/7"
+ },
+ {
+  "won": true,
+  "turns": 3,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Steelix+Blaziken",
+  "opp": [],
+  "rating": 1000,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Basculegion+Incineroar",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter KOd"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kingambit+Kleavor",
+  "opp": [],
+  "rating": 1156,
+  "cause": "NO_TR_T1",
+  "sub": "setter KOd"
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Floette-Eternal+Garchomp",
+  "opp": [],
+  "rating": 1054,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 13,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Klefki+Dedenne",
+  "opp": [],
+  "rating": 1019,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Incineroar+Sneasler",
+  "opp": [],
+  "rating": 1019,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Banette+Tinkaton",
+  "opp": [],
+  "rating": 1102,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Gholdengo+Incineroar",
+  "opp": [],
+  "rating": 1000,
+  "cause": "SWEEPER_NEVER",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 4,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Pelipper+Mawile",
+  "opp": [],
+  "rating": 1071,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Charizard+Venusaur",
+  "opp": [],
+  "rating": 1023,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Araquanid+Venusaur",
+  "opp": [],
+  "rating": 1065,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Emboar+Hydrapple",
+  "opp": [],
+  "rating": 1047,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Avalugg-Hisui+Slowking-Galar",
+  "opp": [],
+  "rating": 1033,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Charizard+Sneasler",
+  "opp": [],
+  "rating": 1018,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Liepard+Meganium",
+  "opp": [],
+  "rating": 1092,
+  "cause": "LATE_GAME",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 0,
+  "myLead": "",
+  "oppLead": "",
+  "opp": [],
+  "rating": 1078,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 4,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Lucario+Maushold-Four",
+  "opp": [],
+  "rating": 1049,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 12,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Banette+Emboar",
+  "opp": [],
+  "rating": 1034,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Houndoom+Incineroar",
+  "opp": [],
+  "rating": 1000,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Garchomp+Aerodactyl",
+  "opp": [],
+  "rating": 1051,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Raichu+Bellibolt",
+  "opp": [],
+  "rating": 1181,
+  "cause": "LATE_GAME",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 4,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Maushold-Four+Gardevoir",
+  "opp": [],
+  "rating": 1109,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Chesnaught+Meowscarada",
+  "opp": [],
+  "rating": 1089,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Incineroar+Alcremie",
+  "opp": [],
+  "rating": 1075,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Scovillain+Kingambit",
+  "opp": [],
+  "rating": 1000,
+  "cause": "PROTECT_STALL",
+  "sub": "4/7"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sneasler+Garchomp",
+  "opp": [],
+  "rating": 1027,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Froslass+Mamoswine",
+  "opp": [],
+  "rating": 1015,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Scovillain+Kingambit",
+  "opp": [],
+  "rating": 1084,
+  "cause": "NO_TR_T1",
+  "sub": "setter KOd"
+ },
+ {
+  "won": true,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Aggron+Farigiraf",
+  "opp": [],
+  "rating": 1056,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Gholdengo+Malamar",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Staraptor+Whimsicott",
+  "opp": [],
+  "rating": 1000,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Hydreigon+Malamar",
+  "opp": [],
+  "rating": 1027,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 11,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Talonflame+Maushold",
+  "opp": [],
+  "rating": 1015,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 12,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Venusaur+Sableye",
+  "opp": [],
+  "rating": 1051,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Incineroar+Slowking-Galar",
+  "opp": [],
+  "rating": 1120,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Incineroar+Lucario",
+  "opp": [],
+  "rating": 1021,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 10,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Blastoise+Tinkaton",
+  "opp": [],
+  "rating": 1011,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sinistcha-Masterpiece+Blastoise",
+  "opp": [],
+  "rating": 1000,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Whimsicott+Staraptor",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Staraptor+Whimsicott",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Dragapult+Mimikyu",
+  "opp": [],
+  "rating": 1057,
+  "cause": "NO_TR_T1",
+  "sub": "taunted"
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Farigiraf+Blastoise",
+  "opp": [],
+  "rating": 1022,
+  "cause": "LATE_GAME",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sneasler+Whimsicott",
+  "opp": [],
+  "rating": 1010,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sableye+Meowscarada",
+  "opp": [],
+  "rating": 1002,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Staraptor+Grimmsnarl",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Venusaur+Appletun",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Pelipper+Archaludon",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kangaskhan+Excadrill",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Starmie+Tinkaton",
+  "opp": [],
+  "rating": 1057,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "flinched"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Farigiraf+Araquanid",
+  "opp": [],
+  "rating": 1080,
+  "cause": "LATE_GAME",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 11,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Altaria+Aromatisse",
+  "opp": [],
+  "rating": 1000,
+  "cause": "ROOM_EXPIRED",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 10,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Whimsicott+Garchomp",
+  "opp": [],
+  "rating": 1005,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 12,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Blaziken+Grimmsnarl",
+  "opp": [],
+  "rating": 1104,
+  "cause": "ROOM_EXPIRED",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kommo-o+Samurott-Hisui",
+  "opp": [],
+  "rating": 1145,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Gardevoir+Scovillain",
+  "opp": [],
+  "rating": 1041,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Garchomp+Dragonite",
+  "opp": [],
+  "rating": 1024,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 1,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Golurk+Volcarona",
+  "opp": [],
+  "rating": 1070,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 12,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Metagross+Incineroar",
+  "opp": [],
+  "rating": 1004,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Blaziken+Froslass",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Gengar+Incineroar",
+  "opp": [],
+  "rating": 1094,
+  "cause": "PROTECT_STALL",
+  "sub": "4/5"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Tinkaton+Blastoise",
+  "opp": [],
+  "rating": 1030,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Delphox+Whimsicott",
+  "opp": [],
+  "rating": 1018,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Gholdengo+Lucario",
+  "opp": [],
+  "rating": 1009,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 4,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Corviknight+Scizor",
+  "opp": [],
+  "rating": 1064,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sneasler+Basculegion",
+  "opp": [],
+  "rating": 1066,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Incineroar+Garchomp",
+  "opp": [],
+  "rating": 1172,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Annihilape+Sableye",
+  "opp": [],
+  "rating": 1111,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Farigiraf+Sylveon",
+  "opp": [],
+  "rating": 1146,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Floette-Eternal+Grimmsnarl",
+  "opp": [],
+  "rating": 1150,
+  "cause": "ROOM_EXPIRED",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 11,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Incineroar+Corviknight",
+  "opp": [],
+  "rating": 1053,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kingambit+Sneasler",
+  "opp": [],
+  "rating": 1040,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Farigiraf+Maushold-Four",
+  "opp": [],
+  "rating": 1063,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Staraptor+Tyranitar",
+  "opp": [],
+  "rating": 1019,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Venusaur+Charizard",
+  "opp": [],
+  "rating": 1059,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Pelipper+Swampert",
+  "opp": [],
+  "rating": null,
+  "cause": "NO_TR_T1",
+  "sub": "setter KOd"
+ },
+ {
+  "won": false,
+  "turns": 11,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Garchomp+Sinistcha",
+  "opp": [],
+  "rating": 1111,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Gengar+Maushold-Four",
+  "opp": [],
+  "rating": 1183,
+  "cause": "LATE_GAME",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Lopunny+Torkoal",
+  "opp": [],
+  "rating": 1064,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Staraptor+Whimsicott",
+  "opp": [],
+  "rating": 1051,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Basculegion+Toxicroak",
+  "opp": [],
+  "rating": 1092,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Heliolisk+Swampert",
+  "opp": [],
+  "rating": 1000,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Basculegion+Sinistcha",
+  "opp": [],
+  "rating": 1087,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Aggron+Sylveon",
+  "opp": [],
+  "rating": 1002,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Delphox+Grimmsnarl",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 11,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sinistcha-Masterpiece+Pelipper",
+  "opp": [],
+  "rating": 1050,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Gengar+Farigiraf",
+  "opp": [],
+  "rating": null,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Mamoswine+Aerodactyl",
+  "opp": [],
+  "rating": 1104,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Dragonite+Sneasler",
+  "opp": [],
+  "rating": 1014,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 11,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Mimikyu+Diggersby",
+  "opp": [],
+  "rating": 1080,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Eelektross+Grimmsnarl",
+  "opp": [],
+  "rating": 1104,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 11,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Talonflame+Farigiraf",
+  "opp": [],
+  "rating": 1026,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kangaskhan+Archaludon",
+  "opp": [],
+  "rating": 1000,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Clawitzer+Venusaur",
+  "opp": [],
+  "rating": 1105,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Tinkaton+Tsareena",
+  "opp": [],
+  "rating": 1026,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Pelipper+Swampert",
+  "opp": [],
+  "rating": 1113,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 0,
+  "myLead": "",
+  "oppLead": "",
+  "opp": [],
+  "rating": 1186,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Incineroar+Sneasler",
+  "opp": [],
+  "rating": 1161,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Floette-Eternal+Dragonite",
+  "opp": [],
+  "rating": 1128,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 10,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Greninja+Incineroar",
+  "opp": [],
+  "rating": 1102,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Medicham+Greninja",
+  "opp": [],
+  "rating": 1001,
+  "cause": "NO_TR_T1",
+  "sub": "setter KOd"
+ },
+ {
+  "won": true,
+  "turns": 3,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Whimsicott+Metagross",
+  "opp": [],
+  "rating": 1057,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Glimmora+Whimsicott",
+  "opp": [],
+  "rating": 1075,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Glimmora+Medicham",
+  "opp": [],
+  "rating": 1071,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 11,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Mawile+Sinistcha",
+  "opp": [],
+  "rating": 1101,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kingambit+Floette-Eternal",
+  "opp": [],
+  "rating": 1119,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kingambit+Vivillon-Pokeball",
+  "opp": [],
+  "rating": 1191,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 10,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Vanilluxe+Weavile",
+  "opp": [],
+  "rating": 1000,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 10,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Sneasler+Swampert",
+  "opp": [],
+  "rating": 1038,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kingambit+Glimmora",
+  "opp": [],
+  "rating": 1000,
+  "cause": "NO_TR_T1",
+  "sub": "setter KOd"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Milotic+Wyrdeer",
+  "opp": [],
+  "rating": 1125,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Charizard+Dragapult",
+  "opp": [],
+  "rating": 1075,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Ninetales-Alola+Rotom-Frost",
+  "opp": [],
+  "rating": 1000,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 4,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Clefable+Sneasler",
+  "opp": [],
+  "rating": 1054,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Incineroar+Sneasler",
+  "opp": [],
+  "rating": 1008,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 10,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Charizard+Venusaur",
+  "opp": [],
+  "rating": 1062,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Floette-Eternal+Skeledirge",
+  "opp": [],
+  "rating": 1046,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Kingambit+Delphox",
+  "opp": [],
+  "rating": 1000,
+  "cause": "LATE_GAME",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Swampert+Gyarados",
+  "opp": [],
+  "rating": 1115,
+  "cause": "NO_TR_T1",
+  "sub": "setter KOd"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Delphox+Blastoise",
+  "opp": [],
+  "rating": 1002,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": true,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Incineroar+Farigiraf",
+  "opp": [],
+  "rating": 1042,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 5,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Whimsicott+Raichu",
+  "opp": [],
+  "rating": 1072,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 11,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Toxapex+Grimmsnarl",
+  "opp": [],
+  "rating": 1110,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Farigiraf+Torkoal",
+  "opp": [],
+  "rating": 1081,
+  "cause": "LATE_GAME",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Blaziken+Torkoal",
+  "opp": [],
+  "rating": 1144,
+  "cause": "LATE_GAME",
+  "sub": null
+ },
+ {
+  "won": true,
+  "turns": 3,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Rotom-Heat+Sceptile",
+  "opp": [],
+  "rating": 1022,
+  "cause": "WIN",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Staraptor+Mr. Rime",
+  "opp": [],
+  "rating": 1137,
+  "cause": "SWEEPER_ENTRY",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Farigiraf+Sylveon",
+  "opp": [],
+  "rating": 1143,
+  "cause": "LATE_GAME",
+  "sub": null
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Whimsicott+Sneasler",
+  "opp": [],
+  "rating": 1140,
+  "cause": "NO_TR_T1",
+  "sub": "taunted"
+ },
+ {
+  "won": false,
+  "turns": 8,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Grimmsnarl+Kommo-o",
+  "opp": [],
+  "rating": 1029,
+  "cause": "NO_TR_T1",
+  "sub": "taunted"
+ },
+ {
+  "won": true,
+  "turns": 7,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Aerodactyl+Scolipede",
+  "opp": [],
+  "rating": 1034,
+  "cause": "WON_WITHOUT_TR",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 9,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Incineroar+Steelix",
+  "opp": [],
+  "rating": 1019,
+  "cause": "NO_TR_T1",
+  "sub": "setter did not click TR"
+ },
+ {
+  "won": false,
+  "turns": 6,
+  "myLead": "Oranguru+Avalugg",
+  "oppLead": "Delphox+Tsareena",
+  "opp": [],
+  "rating": 1054,
   "cause": "NO_TR_T1",
   "sub": "setter did not click TR"
  },

@@ -31,7 +31,7 @@ services:
       SPRT_MAX: "400"
       REFRESH_GAMES: "50"
       GAMES: "300"
-      CONCURRENT: "2"          # M4: ~3-4 s/decision; two battles stay well inside the 45 s timer
+      CONCURRENT: "5"          # per account; ~3 s/decision serialised -> ~15 s worst case vs the 45 s timer
       SEARCH: "1"              # expectimax over the rebuilt battle; "0" = plan rules
       M: "8"
       K: "4"

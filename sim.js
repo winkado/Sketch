@@ -170,7 +170,7 @@ function parseLine(st, l) {
     const m = pos(parts[2]); if (m && m[1] === 'p1') st.events[`cant_${m[3]}_${parts[3]}`] ??= st.turn;
   } else if (tag === 'move') {
     const m = pos(parts[2]); if (!m) return;
-    const rec = st.sides[m[1]][m[3]]; if (rec) { rec.fresh = false; rec.lastMove = parts[3]; try { const mvd = D.moves.get(parts[3]); rec.lastWasSpread = ['allAdjacentFoes', 'allAdjacent'].includes(mvd.target) && mvd.category !== 'Status'; } catch { rec.lastWasSpread = false; } rec.protectedLast = /Protect|Detect|Wide Guard/.test(parts[3]) && !l.includes('[still]'); }
+    const rec = st.sides[m[1]][m[3]]; if (rec) { rec.fresh = false; rec.lastMove = parts[3]; (rec.revealed ??= new Set()).add(parts[3]); rec.usedCount ??= {}; rec.usedCount[parts[3]] = (rec.usedCount[parts[3]] || 0) + 1; try { const mvd = D.moves.get(parts[3]); rec.lastWasSpread = ['allAdjacentFoes', 'allAdjacent'].includes(mvd.target) && mvd.category !== 'Status'; } catch { rec.lastWasSpread = false; } rec.protectedLast = /Protect|Detect|Wide Guard/.test(parts[3]) && !l.includes('[still]'); }
     if (rec) rec.wgStreak = parts[3] === 'Wide Guard' ? (rec.wgStreak || 0) + 1 : 0;
     if (m[1] === 'p1' && parts[3] === 'Trick Room') st.events['tr_attempt_turn'] ??= st.turn;
     if (m[1] === 'p2' && parts[3] === 'Trick Room') st.events['opp_tr_turn'] ??= st.turn;
@@ -473,15 +473,24 @@ function replayMoveDist(species, turn) {
   const src = byElo && byElo.actions >= 30 ? byElo : pooled;
   return src ? {moves: src.moves[tb] || {}, protectTR: (byElo && byElo.protectRateUnderTR) ?? (pooled && pooled.protectRate && pooled.protectRate.underTR), switchRate: src.switchRate} : null;
 }
+let PRED = null; try { PRED = require('./predict2.js'); } catch {}
+function contextualDist(me, st) {
+  if (!PRED) return null;
+  const foes = st.active.p1.filter(Boolean);
+  const ctx = {species: me.species, foes: foes.map(f => f.species), foeHp: foes.map(f => f.hp / f.maxhp), hp: me.hp / me.maxhp, turn: st.turn, tr: !!st.tr,
+    lastMove: me.lastMove || null, usedCount: me.usedCount || {}, elo: st.oppElo || ELO_BUCKET, revealed: me.revealed || new Set()};
+  try { const d = PRED.predictDist(ctx); return Object.keys(d).length ? d : null; } catch { return null; }
+}
 function replayChoice(req, st, core, rng) {
   // per active mon: sample a move from the real distribution restricted to this set, else fall back to heuristic
   const choices = [];
   req.active.forEach((act, i) => {
     const me = st.active.p2[i];
     if (!me) { choices.push('pass'); return; }
-    const dist = replayMoveDist(me.species, st.turn);
     const legal = act.moves.filter(m => !m.disabled);
     let pick = null;
+    const cdist = contextualDist(me, st);
+    const dist = cdist ? {moves: cdist} : replayMoveDist(me.species, st.turn);
     if (dist) {
       const w = legal.map(m => (dist.moves[m.move] || 0) + 0.01);
       const tot = w.reduce((a, b) => a + b, 0);

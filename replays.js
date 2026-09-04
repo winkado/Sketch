@@ -76,7 +76,8 @@ function parseReplay(log, players) {
       for (const p of parts.slice(4)) { const fi = p.match(/\[from\] (item|ability): (.+)/); if (fi) { const key = m[1] + ':' + (st.mons[m[1]][m[3]] || m[3]); (fi[1] === 'item' ? st.items : st.abilities)[key] = fi[2]; } }
       const tgt = pos(parts[4]);
       const targetSpecies = tgt ? (st.mons[tgt[1]][tgt[3]] || tgt[3]) : '';
-      st.actions.push({side: m[1], turn: st.turn, species: st.mons[m[1]][m[3]] || m[3], kind: 'move', move: parts[3],
+      const otherSide = m[1] === 'p1' ? 'p2' : 'p1';
+      st.actions.push({side: m[1], turn: st.turn, species: st.mons[m[1]][m[3]] || m[3], kind: 'move', move: parts[3], foes: st.active[otherSide].filter(Boolean), foeHp: st.active[otherSide].filter(Boolean).map(s => st.hp[otherSide + ':' + s] ?? 1), partner: st.active[m[1]].find(s => s && s !== (st.mons[m[1]][m[3]] || m[3])) || null,
         target: targetSpecies, targetSide: tgt ? tgt[1] : '', tr: st.tr, hp: st.hp[m[1] + ':' + (st.mons[m[1]][m[3]] || m[3])] ?? 1, faints: st.faints[m[1]]});
     } else if (tag === '-fieldstart' && /Trick Room/.test(parts[2])) st.tr = true;
     else if (tag === '-fieldend' && /Trick Room/.test(parts[2])) st.tr = false;

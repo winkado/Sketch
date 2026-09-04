@@ -108,3 +108,10 @@ Bo3 uses a parent game room with child battle rooms; the client only handles `ba
 parent room kept the game count non-zero, which blocked draining. Disabled in compose. To enable it properly I need one
 captured Bo3 start: run with VERBOSE=1 and PS_FORMATS including the bo3 format for a single game, and paste every log
 line whose room id does not start with `battle-`. Drain now also exits when no tracked battle is running.
+
+## 10. Contextual opponent model (`predict2.js`)
+Candidate moves per opposing decision = revealed this game + the species' common moves (sets.json). Features per
+candidate: estimated damage into our actives, KO threat, Protect/status/priority/spread flags, user HP, Protect x
+(low HP / T1 / room up / protected last turn), used last turn, times used this game, revealed, species prior and Elo
+prior, turn, room. Softmax over candidates. Trained on 6,142 games: held-out top-1/top-3 44.4/84.9 vs 39.4/81.1 for
+frequencies. The search samples opponent replies from it (falls back to frequencies if untrained). Refit on refresh.
