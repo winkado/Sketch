@@ -59,15 +59,15 @@ fs.watchFile && fs.existsSync(MODEL) && fs.watchFile(MODEL, {interval: 60000}, (
 function train() {
   const {LiveState} = require('./live.js');
   const S = require('./sim.js');
-  const dir = path.join(__dirname, 'replays', 'own');
-  const files = fs.readdirSync(dir).filter(f => f.endsWith('.json'));
-  const X = [], Y = [], base = [];
+  const dirs = [[path.join(__dirname, 'replays', 'own'), 1.0], [path.join(__dirname, 'replays', 'selfplay'), 0.5]].filter(([d]) => fs.existsSync(d));
+  const files = dirs.flatMap(([d, w]) => fs.readdirSync(d).filter(f => f.endsWith('.json')).map(f => ({p: path.join(d, f), w})));
+  const X = [], Y = [], base = [], WGT = [];
   let games = 0;
-  for (const fname of files) {
-    let rep; try { rep = JSON.parse(fs.readFileSync(path.join(dir, fname), 'utf8')); } catch { continue; }
+  for (const {p: fpath, w: wgt} of files) {
+    let rep; try { rep = JSON.parse(fs.readFileSync(fpath, 'utf8')); } catch { continue; }
     if (!rep.log || rep.won == null) continue;
     let team; try { team = JSON.parse(fs.readFileSync(path.join(__dirname, rep.team || 'team_trickroom_v7.json'), 'utf8')); } catch { continue; }
-    const my = rep.log.includes(`|player|p2|${process.env.PS_USER || rep.players[1]}|`) ? 'p2' : 'p1';
+    const my = rep.selfplay ? 'p1' : (rep.log.includes(`|player|p2|${process.env.PS_USER || rep.players[1]}|`) ? 'p2' : 'p1');
     const live = new LiveState(team, my, process.env.PS_USER || rep.players[my === 'p1' ? 0 : 1]);
     live.rng = () => 0.5;
     let turn = 0, ok = 0;
@@ -78,7 +78,7 @@ function train() {
         try {
           const fakeReq = {side: {pokemon: team.map(t => ({details: t.name}))}};
           const b = live.build(fakeReq);
-          X.push(features(b)); Y.push(rep.won ? 1 : 0);
+          X.push(features(b)); Y.push(rep.won ? 1 : 0); WGT.push(wgt);
           const A = require('./arena.js'); base.push(sigmoid(1.2 * A.material(b)));
           ok++;
         } catch {}
@@ -93,13 +93,13 @@ function train() {
   const lr = 0.05, l2 = 1e-3, epochs = 40;
   for (let e = 0; e < epochs; e++) for (let i = 0; i < cut; i++) {
     const x = X[i]; let z = 0; for (let j = 0; j < d; j++) z += w[j] * x[j];
-    const g = sigmoid(z) - Y[i];
+    const g = (sigmoid(z) - Y[i]) * WGT[i];
     for (let j = 0; j < d; j++) w[j] -= lr * (g * x[j] + l2 * w[j]);
   }
   const acc = (pred) => { let c = 0; for (let i = cut; i < n; i++) c += ((pred(i) >= 0.5) === (Y[i] === 1)) ? 1 : 0; return c / (n - cut); };
   const learned = acc(i => { let z = 0; for (let j = 0; j < d; j++) z += w[j] * X[i][j]; return sigmoid(z); });
   const hand = acc(i => base[i]);
-  console.log(`trained on ${cut} states (${games} games), held-out ${n - cut}: learned ${(100 * learned).toFixed(1)}% vs hand-written material ${(100 * hand).toFixed(1)}%`);
+  console.log(`trained on ${cut} states (${games} games incl. self-play), held-out ${n - cut}: learned ${(100 * learned).toFixed(1)}% vs hand-written material ${(100 * hand).toFixed(1)}%`);
   if (learned > hand) { fs.mkdirSync(path.dirname(MODEL), {recursive: true}); fs.writeFileSync(MODEL, JSON.stringify({w, trainedOn: cut, games, heldout: {learned, hand}, at: new Date().toISOString()}, null, 1)); console.log('saved models/value.json'); }
   else console.log('learned model not better than the hand-written score on held-out states; NOT saved (search keeps the hand-written one)');
 }

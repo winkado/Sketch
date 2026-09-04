@@ -156,6 +156,9 @@ function searchChoice(b, req, oppPolicy, rng, policy = {}) {
     if (!best || v > best.v) best = {c, v};
   }
   explain.sort((x, y) => y.v - x.v);
+  // exploration (self-play only): with probability EPS choose uniformly among lines within MARGIN of the best
+  const eps = policy.EPS != null ? +policy.EPS : +(process.env.EPS || 0), margin = +(process.env.EXPLORE_MARGIN || 0.08);
+  if (eps > 0 && explain.length > 1 && rng() < eps) { const near = explain.filter(x => explain[0].v - x.v <= margin); const pick = near[Math.floor(rng() * near.length)]; if (pick) { module.exports.lastExplain = {turn: b.turn, considered: explain.slice(0, 4), explored: pick.c}; return pick.c; } }
   module.exports.lastExplain = {turn: b.turn, considered: explain.slice(0, 4), oppReplies: oppList, heuristicPick: heur,
     oppSample: b.p2.pokemon.map(p => `${p.species.name}@${p.item || '-'}(${p.ability}) [${p.moveSlots.map(m => m.move).join('/')}]`)};
   return best ? best.c : heur;

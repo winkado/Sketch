@@ -127,6 +127,7 @@ function step(st) {
   const added = ingest(st);
   if (st.gamesSinceRefresh >= REFRESH_GAMES) {
     try { execSync('node replays.js mine', {cwd: __dirname, stdio: 'ignore'}); console.log(new Date().toISOString(), 'opponent model refreshed'); } catch (e) { console.log('refresh failed', e.message); }
+    try { execSync(`EPS=0.15 node selfplay.js ${process.env.SELFPLAY_GAMES || 40} 2`, {cwd: __dirname, stdio: 'ignore', timeout: 20 * 60 * 1000}); console.log(new Date().toISOString(), 'self-play batch done'); } catch (e) { console.log('self-play failed', e.message.slice(0, 80)); }
     try { const out = execSync('node value.js train', {cwd: __dirname, env: process.env}).toString().trim(); console.log(new Date().toISOString(), 'value model:', out.split('\n').pop()); } catch (e) { console.log('value training failed', e.message.slice(0, 120)); }
     st.gamesSinceRefresh = 0;
   }
