@@ -66,7 +66,20 @@ function enumerate(req, limit) {
 // ------------------------------------------------ evaluation: rollout with heuristics, else material
 function material(b) {
   const f = (side) => side.pokemon.reduce((s, p) => s + (p.fainted ? 0 : p.hp / p.maxhp), 0) + 0.35 * side.pokemon.filter(p => !p.fainted).length;
-  return f(b.p1) - f(b.p2);
+  let v = f(b.p1) - f(b.p2);
+  // tempo: who benefits from the current speed-control state? (the thing a body count misses)
+  const spd = (side) => side.active.filter(p => p && !p.fainted).map(p => p.getStat ? p.getStat('spe') : p.storedStats.spe);
+  const my = spd(b.p1), op = spd(b.p2);
+  if (my.length && op.length) {
+    const mySlow = Math.max(...my) < Math.min(...op);   // all of ours move first under Trick Room
+    const myFast = Math.min(...my) > Math.max(...op);
+    const tr = b.field.pseudoWeather.trickroom; const trLeft = tr ? (tr.duration || 0) : 0;
+    if (tr) v += (mySlow ? 0.35 : myFast ? -0.35 : 0) * Math.min(1, trLeft / 3);
+    const tw1 = b.p1.sideConditions.tailwind, tw2 = b.p2.sideConditions.tailwind;
+    if (tw1 && !tr) v += 0.25 * Math.min(1, (tw1.duration || 0) / 2); if (tw2 && !tr) v -= 0.25 * Math.min(1, (tw2.duration || 0) / 2);
+  }
+  for (const [side, sign] of [[b.p1, 1], [b.p2, -1]]) for (const sc of ['reflect', 'lightscreen', 'auroraveil']) if (side.sideConditions[sc]) v += 0.08 * sign;
+  return v;
 }
 function playout(b, oppPolicy, maxTurns) {
   const end = b.turn + maxTurns;
@@ -75,7 +88,9 @@ function playout(b, oppPolicy, maxTurns) {
     if (!stepHeuristics(b, oppPolicy, 'heuristic')) break;
   }
   if (b.ended) return b.winner === 'TR' ? 1 : b.winner === 'META' ? 0 : 0.5;
-  return 1 / (1 + Math.exp(-1.2 * material(b)));
+  const lv = (() => { try { return require('./value.js').evaluate(b); } catch { return null; } })();
+  const hand = 1 / (1 + Math.exp(-1.2 * material(b)));
+  return lv == null ? hand : 0.7 * lv + 0.3 * hand;   // learned evaluation when trained; blended so a bad early fit can't wreck play
 }
 // make one decision for every side that has a pending request, using heuristics
 function stepHeuristics(b, oppPolicy, p1kind, rng = Math.random) {
@@ -96,24 +111,25 @@ function stepHeuristics(b, oppPolicy, p1kind, rng = Math.random) {
 }
 
 // ------------------------------------------------ the search policy for P1
-function searchChoice(b, req, oppPolicy, rng) {
+function searchChoice(b, req, oppPolicy, rng, policy = {}) {
+  const Mx = policy.M || M, Kx = policy.K || K, SEEDSx = policy.S || SEEDS, ROLLx = policy.ROLL || ROLL, robustX = policy.ROBUST != null ? +policy.ROBUST : +(process.env.ROBUST || 0.35);
   const ours = enumerate(req, M);
   if (!ours) return null; // team preview / force switch handled by heuristic
   const st = stFromBattle(b);
   // rank our candidates by the heuristic's own pick first, then a cheap material lookahead
   const heur = (() => { try { return S.ourChoice(req, st, {pivot: 'sinistcha'}); } catch { return null; } })();
-  const cand = [...new Set([heur, ...ours].filter(Boolean))].slice(0, Math.max(M, 1) + 24);
+  const cand = [...new Set([heur, ...ours].filter(Boolean))].slice(0, Math.max(Mx, 1) + 24);
   // opponent candidates: heuristic picks under both policies with different randomness
   const oppReq = b.p2.activeRequest;
   const oppCands = new Set();
-  for (let k = 0; k < K * 3 && oppCands.size < K; k++) {
+  for (let k = 0; k < Kx * 3 && oppCands.size < Kx; k++) {
     const r = S.mulberry ? S.mulberry(k * 7919 + b.turn) : (() => { let s = k * 7919 + b.turn; return () => { s = (s * 9301 + 49297) % 233280; return s / 233280; }; })();
     try { oppCands.add(S.oppChoice(oppReq, st, b._core, k % 2 ? 'greedy' : oppPolicy, r)); } catch {}
   }
   if (!oppCands.size) oppCands.add('default');
   const oppList = [...oppCands];
   const json = JSON.stringify(b.toJSON());
-  let best = null;
+  let best = null; const explain = [];
   // quick pre-screen of our candidates by 1-step material (cheap), keep top M
   const screened = cand.map(c => {
     let v = 0;
@@ -123,18 +139,24 @@ function searchChoice(b, req, oppPolicy, rng) {
       v += material(cb);
     }
     return {c, v};
-  }).sort((x, y) => y.v - x.v).slice(0, M);
+  }).sort((x, y) => y.v - x.v).slice(0, Mx);
   for (const {c} of screened) {
-    let total = 0, n = 0;
-    for (const o of oppList) for (let s = 0; s < SEEDS; s++) {
+    let total = 0, n = 0; const perOpp = [];
+    for (const o of oppList) { let ot = 0, on = 0; for (let s = 0; s < SEEDSx; s++) {
       const cb = Battle.fromJSON(json); cb._core = b._core; cb.sentLogPos = cb.log.length;
       cb.prng = new PRNG([1 + s, 2 + b.turn, 3, 4 + n]);
       ch(cb, 'p1', c); ch(cb, 'p2', o);
-      total += playout(cb, oppPolicy, ROLL); n++;
-    }
-    const v = total / n;
+      const pv = playout(cb, oppPolicy, ROLLx); total += pv; n++; ot += pv; on++;
+    } perOpp.push(ot / on); }
+    // ROBUST in [0,1]: 0 = pure expectation (take the coin flip), 1 = pure worst case (never enter a mind game)
+    const robust = robustX;
+    const v = (1 - robust) * (total / n) + robust * Math.min(...perOpp);
+    explain.push({c, v: +v.toFixed(3), mean: +(total / n).toFixed(3), worst: +Math.min(...perOpp).toFixed(3)});
     if (!best || v > best.v) best = {c, v};
   }
+  explain.sort((x, y) => y.v - x.v);
+  module.exports.lastExplain = {turn: b.turn, considered: explain.slice(0, 4), oppReplies: oppList, heuristicPick: heur,
+    oppSample: b.p2.pokemon.map(p => `${p.species.name}@${p.item || '-'}(${p.ability}) [${p.moveSlots.map(m => m.move).join('/')}]`)};
   return best ? best.c : heur;
 }
 
@@ -198,4 +220,4 @@ if (!isMainThread) {
   }
   parentPort.postMessage(out);
 } else if (require.main === module) main().catch(e => { console.error(e); process.exit(1); });
-module.exports = {runGame, searchChoice, stFromBattle, enumerate};
+module.exports = {runGame, searchChoice, stFromBattle, enumerate, material, playout};

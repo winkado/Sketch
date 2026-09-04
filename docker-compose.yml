@@ -23,6 +23,7 @@ services:
       PS_USER: ${PS_USER_1}
       PS_PASS: ${PS_PASS_1}
       TEAM: team_trickroom_v8.json
+      PS_FORMATS: gen9championsvgc2026regmb,gen9championsvgc2026regmbbo3   # search both; Bo3 = 3 games vs the same human
       MANAGER: "1"             # champion/challenger A/B + model refresh, unattended
       INCUMBENT: team_trickroom_v8.json
       SPRT_DELTA: "0.05"
@@ -35,4 +36,5 @@ services:
       M: "8"
       K: "4"
       ROLL: "8"
-      VERBOSE: "1"             # logs every decision: turn, path (search/rules), milliseconds, choice
+      VERBOSE: "1"
+      EXPLAIN: "1"             # per decision: sampled opp sets, opp replies considered, top lines with mean/worst values             # logs every decision: turn, path (search/rules), milliseconds, choice

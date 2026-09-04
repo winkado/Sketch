@@ -25,7 +25,7 @@ console.log(`policy: ${USE_SEARCH ? `SEARCH (expectimax, M=${process.env.M || 8}
 const USER = process.env.PS_USER, PASS = process.env.PS_PASS;
 const TEAMFILE = process.argv[2] || 'team_trickroom_v7.json';
 const MAX_GAMES = +(process.argv[3] || 50);
-const FORMAT = 'gen9championsvgc2026regmb';
+const FORMATS = (process.env.PS_FORMATS || 'gen9championsvgc2026regmb').split(',').map(s => s.trim()).filter(Boolean);   // search all of these at once
 const SERVER = process.env.PS_SERVER || 'wss://sim3.psim.us/showdown/websocket';
 const CONCURRENT = +(process.env.CONCURRENT || 3);   // battles open at once on this account (one pending search at a time is the server's rule)
 if (!USER || !PASS) { console.error('set PS_USER and PS_PASS'); process.exit(1); }
@@ -36,9 +36,10 @@ function loadTeam(file) { if (!teamCache[file]) { const t = JSON.parse(fs.readFi
 let gameCounter = 0;
 function nextTeamFile() {
   // manager present: alternate incumbent / challenger game by game; else the fixed TEAMFILE
-  try { if (fs.existsSync(ASSIGN)) { const a = JSON.parse(fs.readFileSync(ASSIGN, 'utf8')); if (a.alternate && a.challenger) return (gameCounter++ % 2 === 0) ? a.incumbent : a.challenger; if (a.incumbent) return a.incumbent; } } catch {}
-  return TEAMFILE;
+  try { if (fs.existsSync(ASSIGN)) { const a = JSON.parse(fs.readFileSync(ASSIGN, 'utf8')); if (a.alternate && a.challenger) { const chal = (gameCounter++ % 2 === 1); currentPolicy = chal ? (a.challengerPolicy || a.incumbentPolicy || {}) : (a.incumbentPolicy || {}); return chal ? a.challenger : a.incumbent; } if (a.incumbent) { currentPolicy = a.incumbentPolicy || {}; return a.incumbent; } } } catch {}
+  currentPolicy = {}; return TEAMFILE;
 }
+let currentPolicy = {};
 let current = loadTeam(nextTeamFile()); let team = current.team; let packed = current.packed; let currentFile = TEAMFILE;
 fs.mkdirSync(path.join(__dirname, 'replays', 'own'), {recursive: true});
 
@@ -94,8 +95,8 @@ function search() {
   searching = true;
   currentFile = nextTeamFile(); current = loadTeam(currentFile); team = current.team; packed = current.packed;
   send(`|/utm ${packed}`);
-  send(`|/search ${FORMAT}`);
-  console.log(`searching ${FORMAT} (active ${activeGames}/${CONCURRENT}, finished ${games}/${MAX_GAMES})`);
+  for (const f of FORMATS) send(`|/search ${f}`);
+  console.log(`searching ${FORMATS.join(' + ')} (active ${activeGames}/${CONCURRENT}, finished ${games}/${MAX_GAMES})`);
 }
 function onUpdateSearch(json) {
   let j; try { j = JSON.parse(json); } catch { return; }
@@ -110,12 +111,13 @@ function handleBattleLine(id, line) {
   b.lines.push(line);
   const parts = line.split('|');
   const tag = parts[1];
-  if (tag === 'init') { b.teamFile = currentFile; b.team = team; send(`${room(id)}|/timer on`); console.log(`  battle started: https://play.pokemonshowdown.com/${room(id)}`); }
+  if (tag === 'init') { b.teamFile = currentFile; b.team = team; b.policy = currentPolicy; b.format = ''; send(`${room(id)}|/timer on`); console.log(`  battle started: https://play.pokemonshowdown.com/${room(id)}`); }
   if (tag === 'player' && parts[3]) {
     if (parts[3] === USER) { b.mySide = parts[2]; b.live = new LiveState(b.team || team, b.mySide, USER); }
     else { b.oppName = parts[3]; b.oppRating = parts[5] ? +parts[5] : null; }
     return;
   }
+  if (tag === 'tier') b.format = parts[2] || '';
   if (tag === 'poke' && b.mySide && parts[2] !== b.mySide) b.oppSpecies.push(parts[3].split(',')[0].replace(/-\*$/, ''));
   if (tag === 'request') {
     if (!parts[2]) return;
@@ -145,9 +147,15 @@ function decide(id, b, req) {
       const battle = b.live.build(req);                      // real engine state, us as p1
       const st = A.stFromBattle(battle, 'p1');
       let via = 'rules';
-      if (USE_SEARCH) { const sc = A.searchChoice(battle, req, 'antiTR', Math.random); if (sc) { choice = sc; via = 'search'; } else choice = S.ourChoice(req, st, opts); }
+      if (USE_SEARCH) { const sc = A.searchChoice(battle, req, 'antiTR', Math.random, b.policy || {}); if (sc) { choice = sc; via = 'search'; } else choice = S.ourChoice(req, st, opts); }
       else choice = S.ourChoice(req, st, opts);
       if (process.env.VERBOSE) console.log(`  [${room(id)}] T${b.live.turn} ${via} ${Date.now() - t0}ms -> ${choice}`);
+      if (process.env.EXPLAIN && via === 'search' && A.lastExplain) {
+        const e = A.lastExplain;
+        console.log(`    opp sample: ${e.oppSample.join(' | ')}`);
+        console.log(`    opp replies considered: ${e.oppReplies.join('  ||  ')}`);
+        for (const x of e.considered) console.log(`    ${x.v.toFixed(3)} (mean ${x.mean} worst ${x.worst})  ${x.c}${x.c === e.heuristicPick ? '   <- rules would pick this' : ''}`);
+      }
     } else choice = S.ourChoice(req, b.st, opts);
   } catch (e) { console.log('  live/search error, falling back:', e.message); try { choice = S.ourChoice(req, b.st, opts); } catch (e2) { choice = 'default'; } }
   // live server reverts Megas to base forme: press the button on the first move
@@ -165,8 +173,8 @@ function finish(id, b, winner) {
   if (won) wins++;
   console.log(`game ${games}: ${won ? 'WIN' : 'LOSS'} vs ${b.oppName} (${b.oppRating ?? 'unrated'})  running ${wins}/${games}`);
   fs.writeFileSync(path.join(__dirname, 'replays', 'own', id.replace(/^>/, '') + '.json'),
-    JSON.stringify({id: id.replace(/^>/, ''), team: b.teamFile || currentFile, players: b.mySide === 'p1' ? [USER, b.oppName] : [b.oppName, USER], rating: b.oppRating, leads: b.leads, oppSpecies: b.oppSpecies, won, log: b.lines.join('\n')}));
-  fs.appendFileSync(path.join(__dirname, 'replays', 'own', 'results.csv'), `${new Date().toISOString()},${USER},${id.replace(/^>/, '')},${b.oppName},${b.oppRating ?? ''},${won ? 1 : 0},${b.leads.join('+')},${b.oppSpecies.join('+')},${b.teamFile || currentFile}\n`);
+    JSON.stringify({id: id.replace(/^>/, ''), team: b.teamFile || currentFile, format: b.format, players: b.mySide === 'p1' ? [USER, b.oppName] : [b.oppName, USER], rating: b.oppRating, leads: b.leads, oppSpecies: b.oppSpecies, won, log: b.lines.join('\n')}));
+  fs.appendFileSync(path.join(__dirname, 'replays', 'own', 'results.csv'), `${new Date().toISOString()},${USER},${id.replace(/^>/, '')},${b.oppName},${b.oppRating ?? ''},${won ? 1 : 0},${b.leads.join('+')},${b.oppSpecies.join('+')},${b.teamFile || currentFile},${(b.format || '').replace(/,/g, ' ')}\n`);
   send(`${room(id)}|/leave`);
   delete battles[id];
   if ((draining || games >= MAX_GAMES) && activeGames <= 1) { console.log(draining ? 'drained, exiting' : 'done'); setTimeout(() => process.exit(0), 1000); }

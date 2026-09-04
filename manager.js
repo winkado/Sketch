@@ -41,7 +41,7 @@ function load() {
 }
 const save = (st) => fs.writeFileSync(STATE, JSON.stringify(st, null, 1));
 function publish(st) {
-  fs.writeFileSync(path.join(DIR, 'assignment.json'), JSON.stringify({incumbent: st.incumbent, challenger: st.challenger, alternate: !!st.challenger}, null, 1));
+  fs.writeFileSync(path.join(DIR, 'assignment.json'), JSON.stringify({incumbent: st.incumbent, challenger: st.challenger, challengerPolicy: st.challengerPolicy || null, incumbentPolicy: st.incumbentPolicy || null, alternate: !!st.challenger}, null, 1));
 }
 
 // ---- SPRT on paired sequence: LLR of challenger having win rate p0+DELTA vs p0 (p0 = incumbent's observed rate, floored)
@@ -112,17 +112,27 @@ function generateChallenger(st) {
   } else if (cause === 'PROTECT_STALL' || cause === 'ROOM_EXPIRED') {
     const ora = team.find(m => m.name === 'Oranguru'); const key = 'moves:Oranguru:FoulPlay'; if (!st.tried.includes(key) && ora.moves.includes('Imprison')) { st.tried.push(key); ora.moves = ora.moves.map(m => m === 'Imprison' ? 'Foul Play' : m); label = key; }
   }
-  if (!label || !validTeam(team)) return null;
+  if (!label) {
+    // no team mutation left for this cause: try a search-policy variant (same team, different search parameters)
+    const grid = [{ROBUST: 0.15}, {ROBUST: 0.55}, {K: 6}, {ROLL: 12}, {M: 12}, {S: 2}];
+    for (const g of grid) { const key = 'policy:' + JSON.stringify(g); if (st.tried.includes(key)) continue; st.tried.push(key); const out = `team_chal_${Date.now()}.json`; fs.writeFileSync(path.join(__dirname, out), JSON.stringify(inc, null, 1)); persist(out); return {file: out, label: key, policy: g}; }
+    return null;
+  }
+  if (!validTeam(team)) return null;
   const out = `team_chal_${Date.now()}.json`; fs.writeFileSync(path.join(__dirname, out), JSON.stringify(team, null, 1)); persist(out);
   return {file: out, label};
 }
 
 function step(st) {
   const added = ingest(st);
-  if (st.gamesSinceRefresh >= REFRESH_GAMES) { try { execSync('node replays.js mine', {cwd: __dirname, stdio: 'ignore'}); console.log(new Date().toISOString(), 'models refreshed'); } catch (e) { console.log('refresh failed', e.message); } st.gamesSinceRefresh = 0; }
+  if (st.gamesSinceRefresh >= REFRESH_GAMES) {
+    try { execSync('node replays.js mine', {cwd: __dirname, stdio: 'ignore'}); console.log(new Date().toISOString(), 'opponent model refreshed'); } catch (e) { console.log('refresh failed', e.message); }
+    try { const out = execSync('node value.js train', {cwd: __dirname, env: process.env}).toString().trim(); console.log(new Date().toISOString(), 'value model:', out.split('\n').pop()); } catch (e) { console.log('value training failed', e.message.slice(0, 120)); }
+    st.gamesSinceRefresh = 0;
+  }
   if (!st.challenger) {
     const c = generateChallenger(st);
-    if (c) { st.challenger = c.file; st.challengerLabel = c.label; st.chal = {w: 0, n: 0}; st.inc = {w: 0, n: 0}; console.log(new Date().toISOString(), 'new challenger', c.label); }
+    if (c) { st.challenger = c.file; st.challengerLabel = c.label; st.challengerPolicy = c.policy || null; st.chal = {w: 0, n: 0}; st.inc = {w: 0, n: 0}; console.log(new Date().toISOString(), 'new challenger', c.label); }
   } else {
     const L = llr(st); const total = st.inc.n + st.chal.n;
     const decided = total >= MIN_GAMES && (L >= LLR_ACCEPT || L <= LLR_REJECT || total >= MAX_GAMES);
@@ -131,7 +141,8 @@ function step(st) {
       const accept = L >= LLR_ACCEPT;
       st.history.push({challenger: st.challengerLabel, file: st.challenger, inc: st.inc, chal: st.chal, llr: +L.toFixed(2), accepted: accept, at: new Date().toISOString()});
       console.log(new Date().toISOString(), accept ? `ACCEPT ${st.challengerLabel} -> new incumbent` : `reject ${st.challengerLabel}`);
-      if (accept) { const newName = `team_incumbent_${Date.now()}.json`; fs.copyFileSync(path.join(__dirname, st.challenger), path.join(__dirname, newName)); persist(newName); st.incumbent = newName; }
+      if (accept) { const newName = `team_incumbent_${Date.now()}.json`; fs.copyFileSync(path.join(__dirname, st.challenger), path.join(__dirname, newName)); persist(newName); st.incumbent = newName; if (st.challengerPolicy) st.incumbentPolicy = {...(st.incumbentPolicy || {}), ...st.challengerPolicy}; }
+      st.challengerPolicy = null;
       st.challenger = null; st.challengerLabel = null; st.inc = {w: 0, n: 0}; st.chal = {w: 0, n: 0};
     }
   }
