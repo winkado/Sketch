@@ -20,6 +20,7 @@ const {LiveState} = require('./live.js');
 const A = require('./arena.js');
 const USE_SEARCH = process.env.SEARCH === '1';   // expectimax over the rebuilt Battle; else the plan logic
 const DEBOUNCE_MS = +(process.env.DEBOUNCE_MS || 400);
+console.log(`policy: ${USE_SEARCH ? `SEARCH (expectimax, M=${process.env.M || 8} K=${process.env.K || 4} S=${process.env.S || 1} ROLL=${process.env.ROLL || 8})` : 'RULES (plan logic)'} | live state layer: on | concurrent battles: ${process.env.CONCURRENT || 3}`);
 
 const USER = process.env.PS_USER, PASS = process.env.PS_PASS;
 const TEAMFILE = process.argv[2] || 'team_trickroom_v7.json';
@@ -140,9 +141,13 @@ function decide(id, b, req) {
   const opts = {leads: b.leads || (b.leads = chooseLeads(b.oppSpecies, b.team || team)), pivot: 'sinistcha', imprisonFirst: false};
   try {
     if (!req.teamPreview && !req.forceSwitch && b.live && b.live.turn >= 1) {
+      const t0 = Date.now();
       const battle = b.live.build(req);                      // real engine state, us as p1
       const st = A.stFromBattle(battle, 'p1');
-      choice = USE_SEARCH ? (A.searchChoice(battle, req, 'antiTR', Math.random) || S.ourChoice(req, st, opts)) : S.ourChoice(req, st, opts);
+      let via = 'rules';
+      if (USE_SEARCH) { const sc = A.searchChoice(battle, req, 'antiTR', Math.random); if (sc) { choice = sc; via = 'search'; } else choice = S.ourChoice(req, st, opts); }
+      else choice = S.ourChoice(req, st, opts);
+      if (process.env.VERBOSE) console.log(`  [${room(id)}] T${b.live.turn} ${via} ${Date.now() - t0}ms -> ${choice}`);
     } else choice = S.ourChoice(req, b.st, opts);
   } catch (e) { console.log('  live/search error, falling back:', e.message); try { choice = S.ourChoice(req, b.st, opts); } catch (e2) { choice = 'default'; } }
   // live server reverts Megas to base forme: press the button on the first move
@@ -150,7 +155,6 @@ function decide(id, b, req) {
     choice = choice.split(', ').map((part, i) => (req.active[i] && req.active[i].canMegaEvo && part.startsWith('move ') && !/ mega$/.test(part)) ? part + ' mega' : part).join(', ');
   }
   if (req.teamPreview) console.log(`  vs ${b.oppName} (${b.oppRating ?? 'unrated'}) six: ${b.oppSpecies.join(', ')} -> lead ${b.leads[0]} + ${b.leads[1]}`);
-  if (process.env.VERBOSE) console.log(`  [${room(id)}] T${b.st.turn} -> ${choice}`);
   send(`${room(id)}|/choose ${choice}|${req.rqid}`);
 }
 
