@@ -93,6 +93,7 @@ async function login(challstr) {
   if (!j.assertion) throw new Error('login failed: ' + r.slice(0, 200));
   send(`|/trn ${USER},0,${j.assertion}`);
   console.log('logged in as', USER);
+  for (const id of Object.keys(battles)) if (!battles[id].done) { send(`|/join ${room(id)}`); console.log('  rejoining', room(id)); }
   setTimeout(search, 1500);
 }
 function search() {
@@ -108,13 +109,18 @@ function onUpdateSearch(json) {
   searching = !!(j.searching && j.searching.length);
   activeGames = j.games ? Object.keys(j.games).length : 0;
   // leave any game room we are not tracking as a live battle (dead Bo3 lobbies, stale rooms after reconnect)
-  if (j.games) for (const r of Object.keys(j.games)) { if (!battles['>' + r] || battles['>' + r].done) { send(`${r}|/leave`); console.log('  left untracked room', r); } }
+  if (j.games) for (const r of Object.keys(j.games)) {
+    if (battles['>' + r] && !battles['>' + r].done) continue;
+    if (r.startsWith('battle-') && !battles['>' + r]) { send(`|/join ${r}`); console.log('  joining battle the server says we are in:', r); }   // resume after a restart; the server replays its log
+    else if (!r.startsWith('battle-') || battles['>' + r].done) { send(`${r}|/leave`); console.log('  left room', r); }
+  }
   activeGames = Object.values(battles).filter(x => !x.done).length;
   if (!searching) setTimeout(search, 500);   // a search just resolved into a battle (or ended): queue the next one
 }
 
 function room(id) { return id.replace(/^>/, ''); }   // server room id has no leading '>'
 function handleBattleLine(id, line) {
+  if (line.startsWith('|init|') && battles[id] && !battles[id].done) { battles[id].st = S.newState(); battles[id].live = null; battles[id].lines = []; battles[id].oppSpecies = []; }
   const b = battles[id] ??= {st: S.newState(), live: null, lines: [], mySide: null, oppName: null, oppRating: null, leads: null, oppSpecies: [], done: false, lastRq: 0, pending: null, timer: null};
   b.lines.push(line);
   const parts = line.split('|');
@@ -199,7 +205,7 @@ function finish(id, b, winner) {
 
 function connect() {
   ws = new WebSocket(SERVER);
-  ws.on('open', () => console.log('connected'));
+  ws.on('open', () => { console.log('connected'); clearInterval(ws._ka); ws._ka = setInterval(() => { try { ws.ping(); } catch {} }, 60000); });
   ws.on('message', (data) => {
     const text = data.toString();
     let room = '';

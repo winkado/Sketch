@@ -263,11 +263,14 @@ function ourChoice(req, st, opts) {
   if (who === 'adaptive') who = (sin && sin.hp / sin.maxhp >= (opts.pivotHp || 0.6)) ? 'oranguru' : 'sinistcha';
   const pivotSlot = (st.tr && !attackerOut && benchIsAttacker && st.turn >= 2)
     ? st.active.p1.findIndex(r => r && r.species === (who === 'oranguru' ? 'Oranguru' : 'Sinistcha')) : -1;
+  // request.active[k] corresponds to the k-th ACTIVE, UNFAINTED entry of side.pokemon (server omits fainted slots)
+  const activeIdents = (req.side && req.side.pokemon ? req.side.pokemon.filter(p => p.active && !/fnt/.test(p.condition)) : []).map(p => p.details.split(',')[0]);
+  const byIdent = (k) => { const name = activeIdents[k]; if (!name) return st.active.p1[k]; return st.active.p1.find(r => r && (r.species === name || r.species.replace(/-Mega.*$/, '') === name.replace(/-Mega.*$/, '') || name.startsWith(r.species.replace(/-Mega.*$/, '')))) || st.active.p1[k]; };
   req.active.forEach((act, i) => {
-    const me = st.active.p1[i];
+    const me = byIdent(i);
     if (!me || !act || !act.moves) { choices.push('pass'); return; }
     const mv = (n) => act.moves.find(m => m.move === n && !m.disabled);
-    const partner = st.active.p1[1 - i];
+    const slotIdx = st.active.p1.indexOf(me); const partner = st.active.p1[1 - (slotIdx >= 0 ? slotIdx : i)];
     let c = null;
     if (i === pivotSlot && !act.trapped) { choices.push('switch ' + benchAttacker); return; }
     const bestTarget = (moveName) => {
@@ -278,7 +281,7 @@ function ourChoice(req, st, opts) {
     if (me.species === 'Oranguru') {
       if (!st.tr && mv('Trick Room') && !(st.turn === 1 && oppCanTR && opts.imprisonFirst && mv('Imprison'))) c = 'move Trick Room';
       else if (st.turn === 1 && mv('Imprison') && !st.tr) c = 'move Imprison';
-      else if (partner && !['Sinistcha', 'Farigiraf'].includes(partner.species) && mv('Instruct') && st.tr && !(opts.foProtect !== false && st.active.p2.some(f => f && f.fresh && (() => { const ls = D.species.getLearnsetData(D.species.get(f.species).id); return !!(ls && ls.learnset && ls.learnset.fakeout); })()))) c = 'move Instruct ' + allyTarget(i);
+      else if (partner && !['Sinistcha', 'Farigiraf'].includes(partner.species) && mv('Instruct') && st.tr && !(opts.foProtect !== false && st.active.p2.some(f => f && f.fresh && (() => { const ls = D.species.getLearnsetData(D.species.get(f.species).id); return !!(ls && ls.learnset && ls.learnset.fakeout); })()))) c = 'move Instruct ' + allyTarget(slotIdx >= 0 ? slotIdx : i);
       else if (partner && !['Sinistcha', 'Farigiraf'].includes(partner.species) && st.tr && mv('Imprison') && me.lastMove !== 'Imprison') c = 'move Imprison';
       else if (mv('Protect') && !me.protectedLast) c = 'move Protect';
       else if (mv('Imprison') && me.lastMove !== 'Imprison') c = 'move Imprison';
@@ -347,7 +350,10 @@ function ourChoice(req, st, opts) {
     } else c = 'move ' + act.moves.find(m => !m.disabled).move;
     choices.push(c);
   });
-  return choices.join(', ');
+  const alive = req.active.length;
+  let out = choices.slice(0, alive);
+  while (out.length > alive) { const k = out.indexOf('pass'); if (k >= 0) out.splice(k, 1); else out.pop(); }
+  return out.join(', ');
 }
 
 // ---- opponent heuristic AI
