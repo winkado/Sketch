@@ -1,7 +1,7 @@
 {
  "weather_2": {
   "games": 50,
-  "wins": 47,
+  "wins": 46,
   "ties": 0,
   "trT1": 50,
   "trT2": 50,
@@ -11,7 +11,7 @@
   "flinched": 0,
   "encored": 0,
   "oppTR": 0,
-  "turns": 340,
+  "turns": 327,
   "fails": {}
  }
 }

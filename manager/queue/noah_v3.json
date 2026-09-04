@@ -20,17 +20,17 @@
   "name": "Sinistcha",
   "ability": "Hospitality",
   "item": "Focus Sash",
-  "nature": "Bold",
+  "nature": "Relaxed",
   "evs": {
    "hp": 32,
    "def": 32,
-   "spd": 2
+   "spa": 2
   },
   "moves": [
+   "Life Dew",
    "Rage Powder",
    "Trick Room",
-   "Protect",
-   "Strength Sap"
+   "Protect"
   ]
  },
  {
@@ -46,7 +46,7 @@
   "moves": [
    "Eruption",
    "Earth Power",
-   "Burning Jealousy",
+   "Solar Beam",
    "Protect"
   ]
  },
@@ -58,12 +58,12 @@
   "evs": {
    "hp": 32,
    "atk": 32,
-   "def": 2
+   "spd": 2
   },
   "moves": [
-   "Drain Punch",
    "Ice Punch",
-   "Wide Guard",
+   "Drain Punch",
+   "Mach Punch",
    "Protect"
   ]
  },
