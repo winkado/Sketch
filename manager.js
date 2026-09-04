@@ -86,7 +86,7 @@ function whoDiesOnEntry() {
     try { const rep = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')); if (!rep.log || rep.won) continue;
       const my = rep.players[1] && rep.players[1] !== rep.oppName && rep.leads ? (rep.log.includes('|player|p2|' + rep.players[1]) && rep.players[1] === process.env.PS_USER ? 'p2' : 'p1') : 'p1';
       let turn = 0; const entry = {};
-      for (const l of rep.log.split('\n')) { if (l.startsWith('|turn|')) turn = +l.split('|')[2]; const sw = l.match(/^\|switch\|(p[12])[ab]: ([^|]+)\|([^,|]+)/); if (sw && sw[1] === my) entry[sw[2]] = [turn, sw[3]]; const ft = l.match(/^\|faint\|(p[12])[ab]: ([^|]+)/); if (ft && ft[1] === my && entry[ft[2]] && turn - entry[ft[2]][0] <= 1) who[entry[ft[2]][1]] = (who[entry[ft[2]][1]] || 0) + 1; }
+      for (const l of rep.log.split('\n')) { if (l.startsWith('|turn|')) turn = +l.split('|')[2]; const sw = l.match(/^\|switch\|(p[12])[ab]: ([^|]+)\|([^,|]+)/); if (sw && sw[1] === my && !/Oranguru|Sinistcha|Avalugg|Farigiraf/.test(sw[3])) entry[sw[2]] = [turn, sw[3]]; const ft = l.match(/^\|faint\|(p[12])[ab]: ([^|]+)/); if (ft && ft[1] === my && entry[ft[2]] && turn - entry[ft[2]][0] <= 1) who[entry[ft[2]][1]] = (who[entry[ft[2]][1]] || 0) + 1; }
     } catch {}
   }
   return Object.entries(who).sort((a, b) => b[1] - a[1])[0];
