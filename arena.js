@@ -29,7 +29,8 @@ function stFromBattle(b, mySide = 'p1') {
     for (const p of side.pokemon) {
       const rec = {nick: p.name, species: p.species.name, hp: p.hp, maxhp: p.maxhp, slot: p.isActive ? 'ab'[p.position] : '',
         taunt: p.volatiles.taunt ? 1 : 0, protectedLast: !!(p.lastMove && /protect|detect|wideguard/.test(p.lastMove.id) && p.moveThisTurnResult !== false),
-        fainted: p.fainted, firstTurn: p.activeTurns <= 1 ? b.turn : 0, lastMove: p.lastMove ? p.lastMove.name : undefined, side: id};
+        fainted: p.fainted, firstTurn: p.activeTurns <= 1 ? b.turn : 0, lastMove: p.lastMove ? p.lastMove.name : undefined, side: id,
+        lastWasSpread: !!(p.lastMove && ['allAdjacentFoes', 'allAdjacent'].includes(p.lastMove.target) && p.lastMove.category !== 'Status'), wgStreak: p.lastMove && p.lastMove.id === 'wideguard' ? 1 : 0};
       st.sides[id][p.name] = rec;
     }
     st.active[id] = [0, 1].map(i => { const p = side.active[i]; return p && !p.fainted ? st.sides[id][p.name] : null; });

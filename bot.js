@@ -151,7 +151,7 @@ function decide(id, b, req) {
       // owns everything else. Live data: the search declined turn-1 Trick Room in 18/60 games and win rate fell 44% -> 33%.
       const roomDown = !battle.field.pseudoWeather.trickroom;
       const setterCanTR = st.active.p1.some(r => r && ['Oranguru', 'Sinistcha'].includes(r.species) && !r.taunt);
-      const planTurn = b.live.turn === 1 || (roomDown && setterCanTR && b.live.turn <= 3);
+      const planTurn = b.live.turn <= 2 || (roomDown && setterCanTR && b.live.turn <= 3);   // T1 setup, T2 pivot/Protect (Encore turn), re-set when down
       if (USE_SEARCH && !planTurn) { const sc = A.searchChoice(battle, req, 'antiTR', Math.random, b.policy || {}); if (sc) { choice = sc; via = 'search'; } else choice = S.ourChoice(req, st, opts); }
       else { choice = S.ourChoice(req, st, opts); via = planTurn ? 'plan' : 'rules'; }
       if (process.env.VERBOSE) console.log(`  [${room(id)}] T${b.live.turn} ${via} ${Date.now() - t0}ms -> ${choice}`);
