@@ -1,0 +1,104 @@
+[
+ {
+  "name": "Oranguru",
+  "ability": "Inner Focus",
+  "item": "Mental Herb",
+  "nature": "Relaxed",
+  "evs": {
+   "hp": 32,
+   "def": 26,
+   "spd": 8
+  },
+  "moves": [
+   "Instruct",
+   "Imprison",
+   "Trick Room",
+   "Protect"
+  ]
+ },
+ {
+  "name": "Sinistcha",
+  "ability": "Hospitality",
+  "item": "Focus Sash",
+  "nature": "Bold",
+  "evs": {
+   "hp": 32,
+   "def": 32,
+   "spd": 2
+  },
+  "moves": [
+   "Rage Powder",
+   "Trick Room",
+   "Protect",
+   "Strength Sap"
+  ]
+ },
+ {
+  "name": "Torkoal",
+  "ability": "Drought",
+  "item": "Charcoal",
+  "nature": "Quiet",
+  "evs": {
+   "hp": 32,
+   "spa": 32,
+   "spd": 2
+  },
+  "moves": [
+   "Eruption",
+   "Earth Power",
+   "Burning Jealousy",
+   "Protect"
+  ]
+ },
+ {
+  "name": "Crabominable-Mega",
+  "ability": "Iron Fist",
+  "item": "Crabominite",
+  "nature": "Brave",
+  "evs": {
+   "hp": 32,
+   "atk": 32,
+   "def": 2
+  },
+  "moves": [
+   "Drain Punch",
+   "Ice Punch",
+   "Wide Guard",
+   "Protect"
+  ]
+ },
+ {
+  "name": "Gengar-Mega",
+  "ability": "Shadow Tag",
+  "item": "Gengarite",
+  "nature": "Timid",
+  "evs": {
+   "hp": 2,
+   "spa": 32,
+   "spe": 32
+  },
+  "moves": [
+   "Shadow Ball",
+   "Imprison",
+   "Trick Room",
+   "Protect"
+  ]
+ },
+ {
+  "name": "Garchomp",
+  "ability": "Rough Skin",
+  "item": "Life Orb",
+  "nature": "Jolly",
+  "evs": {
+   "hp": 2,
+   "atk": 32,
+   "spe": 32
+  },
+  "moves": [
+   "Earthquake",
+   "Dragon Claw",
+   "Stomping Tantrum",
+   "Protect"
+  ]
+ }
+]
