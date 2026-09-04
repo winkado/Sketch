@@ -66,7 +66,20 @@ function enumerate(req, limit) {
 // ------------------------------------------------ evaluation: rollout with heuristics, else material
 function material(b) {
   const f = (side) => side.pokemon.reduce((s, p) => s + (p.fainted ? 0 : p.hp / p.maxhp), 0) + 0.35 * side.pokemon.filter(p => !p.fainted).length;
-  return f(b.p1) - f(b.p2);
+  let v = f(b.p1) - f(b.p2);
+  // tempo: who benefits from the current speed-control state? (the thing a body count misses)
+  const spd = (side) => side.active.filter(p => p && !p.fainted).map(p => p.getStat ? p.getStat('spe') : p.storedStats.spe);
+  const my = spd(b.p1), op = spd(b.p2);
+  if (my.length && op.length) {
+    const mySlow = Math.max(...my) < Math.min(...op);   // all of ours move first under Trick Room
+    const myFast = Math.min(...my) > Math.max(...op);
+    const tr = b.field.pseudoWeather.trickroom; const trLeft = tr ? (tr.duration || 0) : 0;
+    if (tr) v += (mySlow ? 0.35 : myFast ? -0.35 : 0) * Math.min(1, trLeft / 3);
+    const tw1 = b.p1.sideConditions.tailwind, tw2 = b.p2.sideConditions.tailwind;
+    if (tw1 && !tr) v += 0.25 * Math.min(1, (tw1.duration || 0) / 2); if (tw2 && !tr) v -= 0.25 * Math.min(1, (tw2.duration || 0) / 2);
+  }
+  for (const [side, sign] of [[b.p1, 1], [b.p2, -1]]) for (const sc of ['reflect', 'lightscreen', 'auroraveil']) if (side.sideConditions[sc]) v += 0.08 * sign;
+  return v;
 }
 function playout(b, oppPolicy, maxTurns) {
   const end = b.turn + maxTurns;
@@ -125,14 +138,16 @@ function searchChoice(b, req, oppPolicy, rng) {
     return {c, v};
   }).sort((x, y) => y.v - x.v).slice(0, M);
   for (const {c} of screened) {
-    let total = 0, n = 0;
-    for (const o of oppList) for (let s = 0; s < SEEDS; s++) {
+    let total = 0, n = 0; const perOpp = [];
+    for (const o of oppList) { let ot = 0, on = 0; for (let s = 0; s < SEEDS; s++) {
       const cb = Battle.fromJSON(json); cb._core = b._core; cb.sentLogPos = cb.log.length;
       cb.prng = new PRNG([1 + s, 2 + b.turn, 3, 4 + n]);
       ch(cb, 'p1', c); ch(cb, 'p2', o);
-      total += playout(cb, oppPolicy, ROLL); n++;
-    }
-    const v = total / n;
+      const pv = playout(cb, oppPolicy, ROLL); total += pv; n++; ot += pv; on++;
+    } perOpp.push(ot / on); }
+    // ROBUST in [0,1]: 0 = pure expectation (take the coin flip), 1 = pure worst case (never enter a mind game)
+    const robust = +(process.env.ROBUST || 0.35);
+    const v = (1 - robust) * (total / n) + robust * Math.min(...perOpp);
     if (!best || v > best.v) best = {c, v};
   }
   return best ? best.c : heur;
