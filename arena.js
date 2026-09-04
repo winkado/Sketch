@@ -126,7 +126,7 @@ function searchChoice(b, req, oppPolicy, rng) {
   if (!oppCands.size) oppCands.add('default');
   const oppList = [...oppCands];
   const json = JSON.stringify(b.toJSON());
-  let best = null;
+  let best = null; const explain = [];
   // quick pre-screen of our candidates by 1-step material (cheap), keep top M
   const screened = cand.map(c => {
     let v = 0;
@@ -148,8 +148,12 @@ function searchChoice(b, req, oppPolicy, rng) {
     // ROBUST in [0,1]: 0 = pure expectation (take the coin flip), 1 = pure worst case (never enter a mind game)
     const robust = +(process.env.ROBUST || 0.35);
     const v = (1 - robust) * (total / n) + robust * Math.min(...perOpp);
+    explain.push({c, v: +v.toFixed(3), mean: +(total / n).toFixed(3), worst: +Math.min(...perOpp).toFixed(3)});
     if (!best || v > best.v) best = {c, v};
   }
+  explain.sort((x, y) => y.v - x.v);
+  module.exports.lastExplain = {turn: b.turn, considered: explain.slice(0, 4), oppReplies: oppList, heuristicPick: heur,
+    oppSample: b.p2.pokemon.map(p => `${p.species.name}@${p.item || '-'}(${p.ability}) [${p.moveSlots.map(m => m.move).join('/')}]`)};
   return best ? best.c : heur;
 }
 

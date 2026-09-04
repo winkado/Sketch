@@ -149,6 +149,12 @@ function decide(id, b, req) {
       if (USE_SEARCH) { const sc = A.searchChoice(battle, req, 'antiTR', Math.random); if (sc) { choice = sc; via = 'search'; } else choice = S.ourChoice(req, st, opts); }
       else choice = S.ourChoice(req, st, opts);
       if (process.env.VERBOSE) console.log(`  [${room(id)}] T${b.live.turn} ${via} ${Date.now() - t0}ms -> ${choice}`);
+      if (process.env.EXPLAIN && via === 'search' && A.lastExplain) {
+        const e = A.lastExplain;
+        console.log(`    opp sample: ${e.oppSample.join(' | ')}`);
+        console.log(`    opp replies considered: ${e.oppReplies.join('  ||  ')}`);
+        for (const x of e.considered) console.log(`    ${x.v.toFixed(3)} (mean ${x.mean} worst ${x.worst})  ${x.c}${x.c === e.heuristicPick ? '   <- rules would pick this' : ''}`);
+      }
     } else choice = S.ourChoice(req, b.st, opts);
   } catch (e) { console.log('  live/search error, falling back:', e.message); try { choice = S.ourChoice(req, b.st, opts); } catch (e2) { choice = 'default'; } }
   // live server reverts Megas to base forme: press the button on the first move

@@ -36,4 +36,5 @@ services:
       M: "8"
       K: "4"
       ROLL: "8"
-      VERBOSE: "1"             # logs every decision: turn, path (search/rules), milliseconds, choice
+      VERBOSE: "1"
+      EXPLAIN: "1"             # per decision: sampled opp sets, opp replies considered, top lines with mean/worst values             # logs every decision: turn, path (search/rules), milliseconds, choice
