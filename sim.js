@@ -330,8 +330,10 @@ function ourChoice(req, st, opts) {
       c = 'move Protect';
     } else if (/^(Gengar|Alakazam)/.test(me.species) && st.turn === 1 && mv('Imprison')) {
       c = 'move Imprison';
+    } else if (me.species === 'Weavile' && st.turn === 1 && st.active.p2.some(f => f && /Farigiraf/.test(f.species)) && mv('Knock Off')) {
+      let t = 0; st.active.p2.forEach((f, j) => { if (f && /Farigiraf/.test(f.species)) t = j; }); c = 'move Knock Off ' + foeSlotTarget(t);   // Armor Tail: no priority into it, so KO it instead
     } else if (me.species === 'Weavile' && me.fresh !== false && st.turn === 1 && mv('Fake Out')) {
-      let t = 0; st.active.p2.forEach((f, j) => { if (f && /Farigiraf|Oranguru|Sinistcha|Hatterene|Delphox|Slowking/.test(f.species)) t = j; }); c = 'move Fake Out ' + foeSlotTarget(t);
+      let t = 0; st.active.p2.forEach((f, j) => { if (f && /Oranguru|Sinistcha|Hatterene|Delphox|Slowking/.test(f.species)) t = j; }); c = 'move Fake Out ' + foeSlotTarget(t);
     } else if (me.species === 'Weavile' && mv('Taunt') && st.turn <= 2 && st.active.p2.some(f => f && /Farigiraf|Oranguru|Sinistcha|Hatterene|Delphox|Slowking/.test(f.species) && !f.taunt)) {
       let t = 0; st.active.p2.forEach((f, j) => { if (f && /Farigiraf|Oranguru|Sinistcha|Hatterene|Delphox|Slowking/.test(f.species) && !f.taunt) t = j; }); c = 'move Taunt ' + foeSlotTarget(t);
     } else if (me.species === 'Whimsicott' && st.turn === 1 && mv('Tailwind')) {

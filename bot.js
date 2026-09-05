@@ -56,6 +56,10 @@ function chooseLeads(oppSpecies, team) {
     const rest = team.map(m => m.name).filter(n => !/Whimsicott|Kingambit|Oranguru|Sinistcha|Clefable|Indeedee/.test(n));
     return ['Whimsicott', 'Kingambit', ...rest.slice(0, 2)];
   }
+  if ((setters >= 2 || perish) && team.some(m => m.name.startsWith('Alakazam')) && team.some(m => m.name === 'Weavile')) {
+    const redirect = team.find(m => /Indeedee|Clefable/.test(m.name)); const rest = team.map(m => m.name).filter(n => !/Alakazam|Weavile|Oranguru|Indeedee|Clefable|Sinistcha/.test(n));
+    return ['Alakazam-Mega', redirect ? redirect.name : 'Weavile', ...(redirect ? ['Weavile'] : []), ...rest].slice(0, 4);   // Alakazam + redirect lead, Weavile third
+  }
   if (setters >= 2 && team.some(m => m.name.startsWith('Gengar')) && team.some(m => m.name === 'Garchomp')) {
     const rest = team.map(m => m.name).filter(n => !n.startsWith('Gengar') && n !== 'Garchomp' && !/Sinistcha|Avalugg|Raichu/.test(n));
     return ['Gengar-Mega', 'Garchomp', ...rest.slice(0, 2)];

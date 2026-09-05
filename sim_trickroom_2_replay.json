@@ -1,19 +1,19 @@
 {
  "trickroom_2": {
-  "games": 40,
-  "wins": 12,
+  "games": 30,
+  "wins": 13,
   "ties": 0,
-  "trT1": 19,
-  "trT2": 19,
-  "trEver": 27,
+  "trT1": 13,
+  "trT2": 13,
+  "trEver": 23,
   "oranguruDeadT1": 0,
   "taunted": 0,
   "flinched": 0,
   "encored": 0,
-  "oppTR": 25,
-  "turns": 244,
+  "oppTR": 23,
+  "turns": 175,
   "fails": {
-   "setter KOd before TR": 13
+   "other": 7
   }
  }
 }
