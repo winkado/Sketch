@@ -123,3 +123,9 @@ frequencies. The search samples opponent replies from it (falls back to frequenc
 - `REALTEAMS=1 node sim.js ...` adds real teams as opponent cores (PER_ARCH, MIN_SEEN). `STYLE=aggressive|defensive|variance|tournament`.
 - `REALTEAMS=1 node matrix.js team.json 200` -> win rate vs every real core x style; mean by archetype; worst cells. models/matrix.json.
 Sims screen; the ladder promotes. A 90% cell against the sim population is a claim about the sim, not about humans.
+
+## 12. Shadow test — the bot vs your own replays
+`M=4 K=2 ROLL=5 node shadow.js path/to/replay.html team_main.json` replays one of your games through the bot's decision
+function and prints, per turn, what you clicked vs what the bot would have clicked (plan / plan-default / position / read).
+Disagreements are the to-do list. First run (Mawile game): bot Protected through both double-KO turns -> fixed by pruning
+Instruct-into-Protecting-partner and Trick-Room-while-room-up from the candidate set and making the plan line the default.

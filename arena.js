@@ -5,7 +5,7 @@
 // usage:  node arena.js <core|all> <games> <p1=search|heuristic> <p2policy=antiTR|greedy> [teamfile] [workers]
 // env:    M (our candidate joint actions, default 8)  K (opp candidates, 4)  S (rng seeds per pair, 1)  ROLL (rollout turns, 8)
 'use strict';
-const {Battle, Teams, PRNG} = require(require('./ps.js'));
+const {Battle, Teams, PRNG, Dex} = require(require('./ps.js'));
 const S = require('./sim.js');
 const fs = require('fs');
 const os = require('os');
@@ -40,6 +40,7 @@ function stFromBattle(b, mySide = 'p1') {
 }
 
 // ------------------------------------------------ enumerate legal joint choices for a side from its request
+let reqBattle = null;
 function enumerate(req, limit) {
   if (req.teamPreview || req.forceSwitch) return null;
   const per = req.active.map((act, i) => {
@@ -57,8 +58,17 @@ function enumerate(req, limit) {
   });
   const joint = [];
   const a = per[0] || ['pass'], bb = per[1] || ['pass'];
+  const isAttack = (c) => { const m = c.match(/^move (.+?)(?: -?\d)?$/); if (!m) return false; const mv = Dex.moves.get(m[1]); return mv.exists && mv.category !== 'Status'; };
+  const isAllyBuff = (c) => /^move (Instruct|Helping Hand|After You)\b/.test(c);
+  const roomUp = !!(reqBattle && reqBattle.field && reqBattle.field.pseudoWeather.trickroom);
   for (const x of a) for (const y of bb) {
     if (x.startsWith('switch') && x === y) continue;
+    if (req.active.length === 2) {
+      if (isAllyBuff(x) && !isAttack(y)) continue;          // Instruct/Helping Hand into a partner that isn't attacking = nothing
+      if (isAllyBuff(y) && !isAttack(x)) continue;
+      if (roomUp && (/^move Trick Room/.test(x) || /^move Trick Room/.test(y))) continue;   // never cancel our own room
+      if (isAllyBuff(x) && isAllyBuff(y)) continue;
+    } else if (roomUp && /^move Trick Room/.test(x)) continue;
     joint.push(req.active.length === 2 ? `${x}, ${y}` : x);
   }
   return joint;
@@ -113,6 +123,7 @@ function stepHeuristics(b, oppPolicy, p1kind, rng = Math.random) {
 
 // ------------------------------------------------ the search policy for P1
 function searchChoice(b, req, oppPolicy, rng, policy = {}) {
+  reqBattle = b;
   const Mx = policy.M || M, Kx = policy.K || K, SEEDSx = policy.S || SEEDS, ROLLx = policy.ROLL || ROLL, robustX = policy.ROBUST != null ? +policy.ROBUST : +(process.env.ROBUST || 0.35);
   const ours = enumerate(req, M);
   if (!ours) return null; // team preview / force switch handled by heuristic
@@ -162,6 +173,9 @@ function searchChoice(b, req, oppPolicy, rng, policy = {}) {
     const byWorst = [...explain].sort((x, y) => y.worst - x.worst)[0];
     const byMean = [...explain].sort((x, y) => y.mean - x.mean)[0];
     if (byWorst.worst >= floor || byMean.mean - byWorst.mean < gain) best = {c: byWorst.c, v: byWorst.v, via: 'position'}; else best = {c: byMean.c, v: byMean.v, via: 'read'};
+    // the plan's line (sweeper attacks, Oranguru Instructs) is the default: the search overrides it only when it is clearly better
+    const planLine = explain.find(x => x.c === heur);
+    if (planLine && /Instruct|Eruption|Earth Power|Body Press|Ice Fang|Rock Slide|Gigaton Hammer|Psychic|Shadow Ball|Drain Punch|Ice Punch|Thunderbolt|Dragon Pulse|Solar Beam|Earthquake/.test(heur) && !(best.mean - planLine.mean >= 0.08 && best.worst >= planLine.worst - 0.03)) best = {c: planLine.c, v: planLine.v, via: 'plan-default'};
   }
   if (false) {}
   explain.sort((x, y) => y.v - x.v);

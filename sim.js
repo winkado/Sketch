@@ -391,7 +391,7 @@ function ourChoice(req, st, opts) {
         }
       }
       if (best) c = best.c;
-      else if (mv('Protect') && !me.protectedLast) c = 'move Protect';
+      else if (mv('Protect') && !me.protectedLast) c = 'move Protect';   // only when no attack exists
       else c = 'move ' + act.moves.find(m => !m.disabled).move;
     } else if (me.species === 'Farigiraf') {
       if (!st.tr && mv('Trick Room')) c = 'move Trick Room';
