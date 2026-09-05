@@ -76,11 +76,11 @@
   "nature": "Timid",
   "evs": {
    "hp": 2,
-   "spd": 32,
+   "spa": 32,
    "spe": 32
   },
   "moves": [
-   "Expanding Force",
+   "Psychic",
    "Shadow Ball",
    "Imprison",
    "Trick Room"
