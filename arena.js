@@ -155,11 +155,20 @@ function searchChoice(b, req, oppPolicy, rng, policy = {}) {
     explain.push({c, v: +v.toFixed(3), mean: +(total / n).toFixed(3), worst: +Math.min(...perOpp).toFixed(3)});
     if (!best || v > best.v) best = {c, v};
   }
+  // POSITIONING FIRST: take the best worst-case line unless it is genuinely losing (worst < READ_FLOOR) and a
+  // read gains at least READ_GAIN in expectation. "Statistics when forced."
+  const floor = policy.READ_FLOOR != null ? +policy.READ_FLOOR : +(process.env.READ_FLOOR || 0.35), gain = policy.READ_GAIN != null ? +policy.READ_GAIN : +(process.env.READ_GAIN || 0.12);
+  if (explain.length > 1) {
+    const byWorst = [...explain].sort((x, y) => y.worst - x.worst)[0];
+    const byMean = [...explain].sort((x, y) => y.mean - x.mean)[0];
+    if (byWorst.worst >= floor || byMean.mean - byWorst.mean < gain) best = {c: byWorst.c, v: byWorst.v, via: 'position'}; else best = {c: byMean.c, v: byMean.v, via: 'read'};
+  }
+  if (false) {}
   explain.sort((x, y) => y.v - x.v);
   // exploration (self-play only): with probability EPS choose uniformly among lines within MARGIN of the best
   const eps = policy.EPS != null ? +policy.EPS : +(process.env.EPS || 0), margin = +(process.env.EXPLORE_MARGIN || 0.08);
   if (eps > 0 && explain.length > 1 && rng() < eps) { const near = explain.filter(x => explain[0].v - x.v <= margin); const pick = near[Math.floor(rng() * near.length)]; if (pick) { module.exports.lastExplain = {turn: b.turn, considered: explain.slice(0, 4), explored: pick.c}; return pick.c; } }
-  module.exports.lastExplain = {turn: b.turn, considered: explain.slice(0, 4), oppReplies: oppList, heuristicPick: heur,
+  module.exports.lastExplain = {turn: b.turn, mode: best && best.via, considered: explain.slice(0, 4), oppReplies: oppList, heuristicPick: heur,
     oppSample: b.p2.pokemon.map(p => `${p.species.name}@${p.item || '-'}(${p.ability}) [${p.moveSlots.map(m => m.move).join('/')}]`)};
   return best ? best.c : heur;
 }

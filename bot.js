@@ -74,7 +74,9 @@ function chooseLeads(oppSpecies, team) {
     return ['Gengar-Mega', 'Garchomp', ...rest.slice(0, 2)];
   }
   const fo = oppSpecies.some(sp => FO_CORE.has(sp.replace(/-Mega.*$/, '')));
-  const second = fo && team.some(m => m.name === 'Sinistcha') ? 'Sinistcha' : (team.some(m => m.name === 'Avalugg') ? 'Avalugg' : 'Sinistcha');
+  // default opening is positional: Oranguru + the redirect. Avalugg only leads if it still carries Wide Guard.
+  const avaWG = team.find(m => m.name.startsWith('Avalugg') && m.moves.includes('Wide Guard'));
+  const second = team.some(m => m.name === 'Sinistcha') ? 'Sinistcha' : (avaWG ? avaWG.name : (team.find(m => /Indeedee|Clefable/.test(m.name)) || {name: 'Sinistcha'}).name);
   const SUPPORT = new Set(['Oranguru', 'Sinistcha', 'Avalugg', 'Farigiraf', 'Raichu-Mega-Y', 'Dragapult']);
   const sweepers = team.map(m => m.name.replace(/-Mega.*$/, '')).filter(n => !SUPPORT.has(n) && n !== second);
   return ['Oranguru', second, ...sweepers.slice(0, 2)];
