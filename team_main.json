@@ -24,70 +24,72 @@
   "evs": {
    "hp": 32,
    "def": 32,
-   "spa": 2
+   "spd": 2
   },
   "moves": [
    "Life Dew",
-   "Rage Powder",
    "Trick Room",
+   "Rage Powder",
    "Protect"
   ]
  },
  {
-  "name": "Torkoal",
-  "ability": "Drought",
-  "item": "Charcoal",
+  "name": "Camerupt-Mega",
+  "ability": "Sheer Force",
+  "baseAbility": "Solid Rock",
+  "item": "Cameruptite",
   "nature": "Quiet",
   "evs": {
    "hp": 32,
-   "spa": 32,
-   "spd": 2
+   "def": 2,
+   "spa": 32
   },
   "moves": [
    "Eruption",
-   "Earth Power",
+   "Earthquake",
    "Solar Beam",
-   "Protect"
+   "Sunny Day"
   ]
  },
  {
-  "name": "Crabominable-Mega",
-  "ability": "Iron Fist",
-  "item": "Crabominite",
-  "nature": "Brave",
+  "name": "Avalugg-Hisui",
+  "ability": "Strong Jaw",
+  "item": "Never-Melt Ice",
+  "nature": "Relaxed",
   "evs": {
    "hp": 32,
    "atk": 32,
-   "spd": 2
+   "def": 2
   },
   "moves": [
-   "Ice Punch",
-   "Drain Punch",
-   "Mach Punch",
+   "Ice Fang",
+   "Body Press",
+   "Rock Slide",
    "Protect"
   ]
  },
  {
-  "name": "Gengar-Mega",
-  "ability": "Shadow Tag",
-  "item": "Gengarite",
+  "name": "Alakazam-Mega",
+  "ability": "Trace",
+  "baseAbility": "Inner Focus",
+  "item": "Alakazite",
   "nature": "Timid",
   "evs": {
    "hp": 2,
-   "spa": 32,
+   "spd": 32,
    "spe": 32
   },
   "moves": [
-   "Perish Song",
+   "Expanding Force",
    "Shadow Ball",
-   "Protect",
-   "Sludge Bomb"
+   "Imprison",
+   "Trick Room"
   ]
  },
  {
-  "name": "Garchomp",
-  "ability": "Rough Skin",
-  "item": "Life Orb",
+  "name": "Tinkaton",
+  "ability": "Mold Breaker",
+  "item": "Occa Berry",
   "nature": "Jolly",
   "evs": {
    "hp": 2,
@@ -95,10 +97,10 @@
    "spe": 32
   },
   "moves": [
-   "Earthquake",
-   "Dragon Claw",
-   "Stomping Tantrum",
-   "Protect"
+   "Gigaton Hammer",
+   "Play Rough",
+   "Fake Out",
+   "Feint"
   ]
  }
 ]

@@ -93,6 +93,7 @@ function whoDiesOnEntry() {
 }
 const SPREADS = [ {hp: 32, def: 32, spa: 2}, {hp: 32, spd: 32, spa: 2}, {hp: 32, def: 16, spa: 18}, {hp: 32, spd: 16, spa: 18}, {hp: 18, def: 29, spa: 19}, {hp: 32, def: 24, spd: 10} ];
 function generateChallenger(st) {
+  if (process.env.TEAM_FIXED === '1') return policyChallenger(st);   // fixed team: only search-parameter variants
   // 1) hand-written queue first
   const queued = fs.readdirSync(QUEUE).filter(f => f.endsWith('.json')).sort();
   for (const f of queued) { const p = path.join(QUEUE, f); const team = JSON.parse(fs.readFileSync(p, 'utf8')); fs.unlinkSync(p); if (validTeam(team)) { const out = `team_chal_${Date.now()}.json`; fs.writeFileSync(path.join(__dirname, out), JSON.stringify(team, null, 1)); persist(out); return {file: out, label: 'queued:' + f}; } }
@@ -112,15 +113,18 @@ function generateChallenger(st) {
   } else if (cause === 'PROTECT_STALL' || cause === 'ROOM_EXPIRED') {
     const ora = team.find(m => m.name === 'Oranguru'); const key = 'moves:Oranguru:FoulPlay'; if (!st.tried.includes(key) && ora.moves.includes('Imprison')) { st.tried.push(key); ora.moves = ora.moves.map(m => m === 'Imprison' ? 'Foul Play' : m); label = key; }
   }
-  if (!label) {
-    // no team mutation left for this cause: try a search-policy variant (same team, different search parameters)
-    const grid = [{PLAN_TURNS: 0}, {ROBUST: 0.15}, {ROBUST: 0.55}, {K: 6}, {ROLL: 12}, {M: 12}, {S: 2}];
-    for (const g of grid) { const key = 'policy:' + JSON.stringify(g); if (st.tried.includes(key)) continue; st.tried.push(key); const out = `team_chal_${Date.now()}.json`; fs.writeFileSync(path.join(__dirname, out), JSON.stringify(inc, null, 1)); persist(out); return {file: out, label: key, policy: g}; }
-    return null;
-  }
+  if (!label) return policyChallenger(st);
   if (!validTeam(team)) return null;
   const out = `team_chal_${Date.now()}.json`; fs.writeFileSync(path.join(__dirname, out), JSON.stringify(team, null, 1)); persist(out);
   return {file: out, label};
+}
+function policyChallenger(st) {
+  const inc = JSON.parse(fs.readFileSync(path.join(__dirname, st.incumbent), 'utf8'));
+  {
+    const grid = [{PLAN_TURNS: 0}, {ROBUST: 0.15}, {ROBUST: 0.55}, {K: 6}, {ROLL: 12}, {M: 12}, {S: 2}, {READ_FLOOR: 0.25}, {READ_FLOOR: 0.45}];
+    for (const g of grid) { const key = 'policy:' + JSON.stringify(g); if (st.tried.includes(key)) continue; st.tried.push(key); const out = `team_chal_${Date.now()}.json`; fs.writeFileSync(path.join(__dirname, out), JSON.stringify(inc, null, 1)); persist(out); return {file: out, label: key, policy: g}; }
+    return null;
+  }
 }
 
 function step(st) {

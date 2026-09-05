@@ -22,10 +22,11 @@ services:
     environment:
       PS_USER: ${PS_USER_1}
       PS_PASS: ${PS_PASS_1}
-      TEAM: team_trickroom_v8.json
+      TEAM: team_main.json
       PS_FORMATS: gen9championsvgc2026regmb   # Bo3 disabled until its room protocol is captured (see README)
       MANAGER: "1"             # champion/challenger A/B + model refresh, unattended
-      INCUMBENT: team_trickroom_v8.json
+      INCUMBENT: team_main.json
+      TEAM_FIXED: "1"           # never swap teams; manager only A/Bs search parameters
       SPRT_DELTA: "0.05"
       SPRT_MIN: "60"
       SPRT_MAX: "400"
