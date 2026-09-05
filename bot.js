@@ -34,7 +34,11 @@ if (!USER || !PASS) { console.error('set PS_USER and PS_PASS'); process.exit(1);
 
 const ASSIGN = path.join(__dirname, 'manager', 'assignment.json');
 const teamCache = {};
-function loadTeam(file) { if (!teamCache[file]) { const t = JSON.parse(fs.readFileSync(path.join(__dirname, file), 'utf8')); if (!S.validate(t, file)) throw new Error('invalid team ' + file); teamCache[file] = {team: t, packed: Teams.pack(Teams.import(t.map(S.setText).join('\n\n')))}; } return teamCache[file]; }
+function liveSet(m) {   // what the server should see: base forme + pre-Mega ability when declared
+  if (/-Mega/.test(m.name) && m.baseAbility) return {...m, name: m.name.replace(/-Mega.*$/, ''), ability: m.baseAbility};
+  return m;
+}
+function loadTeam(file) { if (!teamCache[file]) { const t = JSON.parse(fs.readFileSync(path.join(__dirname, file), 'utf8')); if (!S.validate(t, file)) throw new Error('invalid team ' + file); teamCache[file] = {team: t, packed: Teams.pack(Teams.import(t.map(liveSet).map(S.setText).join('\n\n')))}; } return teamCache[file]; }
 let gameCounter = 0;
 function nextTeamFile() {
   // manager present: alternate incumbent / challenger game by game; else the fixed TEAMFILE
@@ -229,7 +233,13 @@ function decide(id, b, req) {
   }
   // live server reverts Megas to base forme: press the button on the first move
   if (req.active && !req.teamPreview && !req.forceSwitch) {
-    choice = choice.split(', ').map((part, i) => (req.active[i] && req.active[i].canMegaEvo && part.startsWith('move ') && !/ mega$/.test(part)) ? part + ' mega' : part).join(', ');
+    const foeCanFO = b.live ? Object.values(b.live.mons[b.live.oppSide]).some(r => r.isActive && !r.fainted && r.activeTurns === 0 && (() => { const ls = require(require('./ps.js')).Dex.mod('champions').species.getLearnsetData(require(require('./ps.js')).Dex.mod('champions').species.get(r.species).id); return !!(ls && ls.learnset && ls.learnset.fakeout); })()) : false;
+    choice = choice.split(', ').map((part, i) => {
+      if (!(req.active[i] && req.active[i].canMegaEvo && part.startsWith('move ') && !/ mega$/.test(part))) return part;
+      const mine = (b.team || team).find(m => (req.side.pokemon.filter(p => p.active && !/fnt/.test(p.condition))[i] || {details: ''}).details.startsWith(m.name.replace(/-Mega.*$/, '')));
+      if (b.live && b.live.turn === 1 && foeCanFO && mine && mine.baseAbility === 'Inner Focus') { if (process.env.VERBOSE) console.log(`  [${room(id)}] holding Mega on ${mine.name}: Inner Focus vs possible Fake Out`); return part; }
+      return part + ' mega';
+    }).join(', ');
   }
   if (req.teamPreview) console.log(`  vs ${b.oppName} (${b.oppRating ?? 'unrated'}) six: ${b.oppSpecies.join(', ')} -> lead ${b.leads[0]} + ${b.leads[1]}`);
   send(`${room(id)}|/choose ${choice}|${req.rqid}`);

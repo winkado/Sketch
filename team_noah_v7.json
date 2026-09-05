@@ -1,0 +1,106 @@
+[
+ {
+  "name": "Oranguru",
+  "ability": "Inner Focus",
+  "item": "Mental Herb",
+  "nature": "Relaxed",
+  "evs": {
+   "hp": 32,
+   "def": 26,
+   "spd": 8
+  },
+  "moves": [
+   "Instruct",
+   "Imprison",
+   "Trick Room",
+   "Protect"
+  ]
+ },
+ {
+  "name": "Sinistcha",
+  "ability": "Hospitality",
+  "item": "Focus Sash",
+  "nature": "Relaxed",
+  "evs": {
+   "hp": 32,
+   "def": 32,
+   "spd": 2
+  },
+  "moves": [
+   "Life Dew",
+   "Trick Room",
+   "Rage Powder",
+   "Protect"
+  ]
+ },
+ {
+  "name": "Camerupt-Mega",
+  "ability": "Sheer Force",
+  "baseAbility": "Solid Rock",
+  "item": "Cameruptite",
+  "nature": "Quiet",
+  "evs": {
+   "hp": 32,
+   "def": 2,
+   "spa": 32
+  },
+  "moves": [
+   "Eruption",
+   "Earthquake",
+   "Solar Beam",
+   "Sunny Day"
+  ]
+ },
+ {
+  "name": "Avalugg-Hisui",
+  "ability": "Strong Jaw",
+  "item": "Never-Melt Ice",
+  "nature": "Relaxed",
+  "evs": {
+   "hp": 32,
+   "atk": 32,
+   "def": 2
+  },
+  "moves": [
+   "Ice Fang",
+   "Body Press",
+   "Rock Slide",
+   "Wide Guard"
+  ]
+ },
+ {
+  "name": "Alakazam-Mega",
+  "ability": "Trace",
+  "baseAbility": "Inner Focus",
+  "item": "Alakazite",
+  "nature": "Timid",
+  "evs": {
+   "hp": 2,
+   "spa": 32,
+   "spe": 32
+  },
+  "moves": [
+   "Expanding Force",
+   "Shadow Ball",
+   "Imprison",
+   "Trick Room"
+  ]
+ },
+ {
+  "name": "Tinkaton",
+  "ability": "Mold Breaker",
+  "item": "Occa Berry",
+  "nature": "Jolly",
+  "evs": {
+   "hp": 2,
+   "atk": 32,
+   "spe": 32
+  },
+  "moves": [
+   "Gigaton Hammer",
+   "Play Rough",
+   "Fake Out",
+   "Feint"
+  ]
+ }
+]
