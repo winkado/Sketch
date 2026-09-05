@@ -1,17 +1,17 @@
 {
  "trickroom_1": {
-  "games": 50,
+  "games": 40,
   "wins": 7,
   "ties": 0,
-  "trT1": 50,
-  "trT2": 50,
-  "trEver": 50,
+  "trT1": 40,
+  "trT2": 40,
+  "trEver": 40,
   "oranguruDeadT1": 0,
   "taunted": 0,
   "flinched": 0,
   "encored": 0,
   "oppTR": 0,
-  "turns": 374,
+  "turns": 289,
   "fails": {}
  }
 }

@@ -1,0 +1,19 @@
+{
+ "tsareena": {
+  "games": 60,
+  "wins": 32,
+  "ties": 0,
+  "trT1": 56,
+  "trT2": 56,
+  "trEver": 57,
+  "oranguruDeadT1": 0,
+  "taunted": 1,
+  "flinched": 0,
+  "encored": 0,
+  "oppTR": 33,
+  "turns": 431,
+  "fails": {
+   "setter KOd before TR": 3
+  }
+ }
+}

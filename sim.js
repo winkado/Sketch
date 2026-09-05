@@ -328,8 +328,14 @@ function ourChoice(req, st, opts) {
       c = 'move Perish Song';   // trap both non-Ghost actives; then Protect / attack while the counter runs
     } else if (me.species.startsWith('Gengar') && me.lastMove === 'Perish Song' && mv('Protect') && !me.protectedLast) {
       c = 'move Protect';
-    } else if (me.species.startsWith('Gengar') && st.turn === 1 && mv('Imprison')) {
+    } else if (/^(Gengar|Alakazam)/.test(me.species) && st.turn === 1 && mv('Imprison')) {
       c = 'move Imprison';
+    } else if (me.species === 'Weavile' && me.fresh !== false && st.turn === 1 && mv('Fake Out')) {
+      let t = 0; st.active.p2.forEach((f, j) => { if (f && /Farigiraf|Oranguru|Sinistcha|Hatterene|Delphox|Slowking/.test(f.species)) t = j; }); c = 'move Fake Out ' + foeSlotTarget(t);
+    } else if (me.species === 'Weavile' && mv('Taunt') && st.turn <= 2 && st.active.p2.some(f => f && /Farigiraf|Oranguru|Sinistcha|Hatterene|Delphox|Slowking/.test(f.species) && !f.taunt)) {
+      let t = 0; st.active.p2.forEach((f, j) => { if (f && /Farigiraf|Oranguru|Sinistcha|Hatterene|Delphox|Slowking/.test(f.species) && !f.taunt) t = j; }); c = 'move Taunt ' + foeSlotTarget(t);
+    } else if (me.species === 'Whimsicott' && st.turn === 1 && mv('Tailwind')) {
+      c = 'move Tailwind';
     } else if (me.species.startsWith('Avalugg') && mv('Wide Guard') && (me.wgStreak || 0) < 2 && st.active.p2.some(f => f && f.lastWasSpread) && st.active.p2.some(f => f && (() => {
         // real-player data: is this species' most likely click right now a spread move?
         const d = (typeof replayMoveDist === 'function') ? replayMoveDist(f.species, st.turn) : null;

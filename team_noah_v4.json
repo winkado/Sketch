@@ -1,0 +1,104 @@
+[
+ {
+  "name": "Oranguru",
+  "ability": "Inner Focus",
+  "item": "Mental Herb",
+  "nature": "Relaxed",
+  "evs": {
+   "hp": 32,
+   "def": 26,
+   "spd": 8
+  },
+  "moves": [
+   "Instruct",
+   "Imprison",
+   "Trick Room",
+   "Protect"
+  ]
+ },
+ {
+  "name": "Clefable",
+  "ability": "Magic Guard",
+  "item": "Leftovers",
+  "nature": "Bold",
+  "evs": {
+   "hp": 32,
+   "def": 32,
+   "spd": 2
+  },
+  "moves": [
+   "Follow Me",
+   "Helping Hand",
+   "Moonblast",
+   "Protect"
+  ]
+ },
+ {
+  "name": "Camerupt-Mega",
+  "ability": "Sheer Force",
+  "item": "Cameruptite",
+  "nature": "Quiet",
+  "evs": {
+   "hp": 32,
+   "def": 2,
+   "spa": 32
+  },
+  "moves": [
+   "Eruption",
+   "Earthquake",
+   "Solar Beam",
+   "Sunny Day"
+  ]
+ },
+ {
+  "name": "Avalugg-Hisui",
+  "ability": "Strong Jaw",
+  "item": "Never-Melt Ice",
+  "nature": "Brave",
+  "evs": {
+   "hp": 32,
+   "atk": 32,
+   "def": 2
+  },
+  "moves": [
+   "Ice Spinner",
+   "Body Press",
+   "Rock Slide",
+   "Wide Guard"
+  ]
+ },
+ {
+  "name": "Kingambit",
+  "ability": "Defiant",
+  "item": "Black Glasses",
+  "nature": "Adamant",
+  "evs": {
+   "atk": 32,
+   "hp": 32,
+   "spe": 2
+  },
+  "moves": [
+   "Kowtow Cleave",
+   "Sucker Punch",
+   "Iron Head",
+   "Protect"
+  ]
+ },
+ {
+  "name": "Whimsicott",
+  "ability": "Prankster",
+  "item": "Focus Sash",
+  "nature": "Timid",
+  "evs": {
+   "spa": 32,
+   "spe": 32,
+   "hp": 2
+  },
+  "moves": [
+   "Tailwind",
+   "Encore",
+   "Taunt",
+   "Moonblast"
+  ]
+ }
+]

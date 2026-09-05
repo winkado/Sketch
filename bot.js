@@ -51,6 +51,11 @@ const TR_SETTERS = new Set(['Farigiraf', 'Oranguru', 'Hatterene', 'Sinistcha', '
 function chooseLeads(oppSpecies, team) {
   // anti-Trick-Room bring when the team carries it and their six has 2+ setter species
   const setters = oppSpecies.filter(sp => TR_SETTERS.has(sp.replace(/-Mega.*$/, ''))).length;
+  const perish = oppSpecies.some(sp => /^Gengar/.test(sp));
+  if ((setters >= 2 || perish) && team.some(m => m.name === 'Whimsicott') && team.some(m => m.name === 'Kingambit')) {
+    const rest = team.map(m => m.name).filter(n => !/Whimsicott|Kingambit|Oranguru|Sinistcha|Clefable|Indeedee/.test(n));
+    return ['Whimsicott', 'Kingambit', ...rest.slice(0, 2)];
+  }
   if (setters >= 2 && team.some(m => m.name.startsWith('Gengar')) && team.some(m => m.name === 'Garchomp')) {
     const rest = team.map(m => m.name).filter(n => !n.startsWith('Gengar') && n !== 'Garchomp' && !/Sinistcha|Avalugg|Raichu/.test(n));
     return ['Gengar-Mega', 'Garchomp', ...rest.slice(0, 2)];
