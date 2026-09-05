@@ -1,19 +1,17 @@
 {
  "metatr": {
   "games": 60,
-  "wins": 51,
+  "wins": 35,
   "ties": 0,
-  "trT1": 11,
-  "trT2": 11,
-  "trEver": 11,
+  "trT1": 60,
+  "trT2": 60,
+  "trEver": 60,
   "oranguruDeadT1": 0,
   "taunted": 0,
   "flinched": 0,
   "encored": 0,
-  "oppTR": 11,
-  "turns": 265,
-  "fails": {
-   "other": 49
-  }
+  "oppTR": 53,
+  "turns": 545,
+  "fails": {}
  }
 }

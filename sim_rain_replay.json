@@ -1,17 +1,19 @@
 {
  "rain": {
-  "games": 300,
-  "wins": 175,
+  "games": 60,
+  "wins": 0,
   "ties": 0,
-  "trT1": 300,
-  "trT2": 300,
-  "trEver": 300,
+  "trT1": 0,
+  "trT2": 0,
+  "trEver": 0,
   "oranguruDeadT1": 0,
   "taunted": 0,
-  "flinched": 2,
+  "flinched": 0,
   "encored": 0,
   "oppTR": 0,
-  "turns": 2486,
-  "fails": {}
+  "turns": 285,
+  "fails": {
+   "other": 60
+  }
  }
 }

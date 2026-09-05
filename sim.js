@@ -330,6 +330,12 @@ function ourChoice(req, st, opts) {
       c = 'move Protect';
     } else if (/^(Gengar|Alakazam)/.test(me.species) && st.turn === 1 && mv('Imprison')) {
       c = 'move Imprison';
+    } else if (me.species === 'Tinkaton' && st.turn === 1 && mv('Fake Out')) {
+      let t = 0; st.active.p2.forEach((f, j) => { if (f && /Farigiraf|Oranguru|Sinistcha|Hatterene|Delphox|Slowking|Gengar/.test(f.species) && !D.species.get(f.species).types.includes('Ghost')) t = j; }); c = 'move Fake Out ' + foeSlotTarget(t);   // Mold Breaker: goes through Armor Tail and Inner Focus
+    } else if (/^Alakazam/.test(me.species) && st.turn === 1 && st.active.p2.some(f => f && f.species === 'Torkoal') && mv('Psychic')) {
+      let t = 0; st.active.p2.forEach((f, j) => { if (f && f.species === 'Torkoal') t = j; }); c = 'move Psychic ' + foeSlotTarget(t);   // neuter Eruption first, Imprison next turn
+    } else if (/^Alakazam/.test(me.species) && st.turn === 2 && !st.tr && mv('Imprison') && me.lastMove !== 'Imprison') {
+      c = 'move Imprison';
     } else if (me.species === 'Weavile' && st.turn === 1 && st.active.p2.some(f => f && /Farigiraf/.test(f.species)) && mv('Knock Off')) {
       let t = 0; st.active.p2.forEach((f, j) => { if (f && /Farigiraf/.test(f.species)) t = j; }); c = 'move Knock Off ' + foeSlotTarget(t);   // Armor Tail: no priority into it, so KO it instead
     } else if (me.species === 'Weavile' && me.fresh !== false && st.turn === 1 && mv('Fake Out')) {
