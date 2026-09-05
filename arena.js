@@ -61,6 +61,7 @@ function enumerate(req, limit) {
   const isAttack = (c) => { const m = c.match(/^move (.+?)(?: -?\d)?$/); if (!m) return false; const mv = Dex.moves.get(m[1]); return mv.exists && mv.category !== 'Status'; };
   const isAllyBuff = (c) => /^move (Instruct|Helping Hand|After You)\b/.test(c);
   const roomUp = !!(reqBattle && reqBattle.field && reqBattle.field.pseudoWeather.trickroom);
+  const redirectorUp = !!(reqBattle && reqBattle.p2 && reqBattle.p2.active.some(p => p && !p.fainted && (p.moveSlots.some(m => /ragepowder|followme/.test(m.id)) || /Sinistcha|Clefable|Indeedee|Maushold/.test(p.species.name))));
   for (const x of a) for (const y of bb) {
     if (x.startsWith('switch') && x === y) continue;
     if (req.active.length === 2) {
@@ -68,6 +69,7 @@ function enumerate(req, limit) {
       if (isAllyBuff(y) && !isAttack(x)) continue;
       if (roomUp && (/^move Trick Room/.test(x) || /^move Trick Room/.test(y))) continue;   // never cancel our own room
       if (isAllyBuff(x) && isAllyBuff(y)) continue;
+      if (redirectorUp && (/^move Instruct/.test(x) || /^move Instruct/.test(y))) continue;   // Instruct gets redirected by Rage Powder / Follow Me
     } else if (roomUp && /^move Trick Room/.test(x)) continue;
     joint.push(req.active.length === 2 ? `${x}, ${y}` : x);
   }
