@@ -324,6 +324,10 @@ function ourChoice(req, st, opts) {
       else if (mv('Trick Room') && !st.tr) c = 'move Trick Room';
       else if (mv('Protect') && !me.protectedLast) c = 'move Protect';
       else c = 'move ' + act.moves.find(m => !m.disabled).move;
+    } else if (me.species.startsWith('Gengar') && mv('Perish Song') && me.lastMove !== 'Perish Song' && st.active.p2.filter(Boolean).length === 2 && !st.active.p2.some(f => f && D.species.get(f.species).types.includes('Ghost'))) {
+      c = 'move Perish Song';   // trap both non-Ghost actives; then Protect / attack while the counter runs
+    } else if (me.species.startsWith('Gengar') && me.lastMove === 'Perish Song' && mv('Protect') && !me.protectedLast) {
+      c = 'move Protect';
     } else if (me.species.startsWith('Gengar') && st.turn === 1 && mv('Imprison')) {
       c = 'move Imprison';
     } else if (me.species.startsWith('Avalugg') && mv('Wide Guard') && (me.wgStreak || 0) < 2 && st.active.p2.some(f => f && f.lastWasSpread) && st.active.p2.some(f => f && (() => {
