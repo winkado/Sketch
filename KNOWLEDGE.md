@@ -83,3 +83,14 @@ Status: [x] implemented  [~] partial  [ ] missing.  Work down the [ ] items; re-
 - [x] Loss attribution (losses.js)
 
 Priority order for the [ ] items: damage/speed-based set inference (3) -> target & switch & adaptation models (4) -> depth + endgame solve (5) -> imitation from expert replays (11).
+
+## Formulas the inference uses (from the engine source, verbatim semantics)
+- Champions stats (data/mods/champions/scripts.ts): `HP = base + pts + 75`; `stat = base + pts + 20`; nature `tr(stat*110/100)` / `tr(stat*90/100)`; pts 0..32, total <= 66; no IVs.
+- Stage multipliers: `tr(stat*(2+b)/2)` for b>0, `tr(stat*2/(2-b))` for b<0.
+- Damage (sim/battle-actions.ts getDamage/modifyDamage): base-power modifiers first (type items 1.2, Charcoal etc., Helping Hand 1.5, Sheer Force 1.3, Technician 1.5);
+  `base = tr(tr(tr(tr(2*50/5+2)*BP*A)/D)/50)+2`; spread `modify(0.75)`; weather `modify(1.5|0.5)`; crit `tr(x*1.5)`; random `tr(tr(x*(100-r))/100)`, r in 0..15;
+  STAB `modify(1.5)`; type effectiveness x2 / tr(/2) per step; burn `modify(0.5)`; damage modifiers (Life Orb 1.3, Expert Belt 1.2, screens 2/3 in doubles, Multiscale 0.5, Huge Power on the stat); final `tr`, min 1.
+- `modify(v, num, den)`: `m = tr(num*4096/den); tr((tr(v*m) + 2047) / 4096)` (round half down).
+- Spectator/opponent HP display: `floor(100*hp/maxhp) || 1` -> an interval, never a value. Own HP is exact.
+- Turn order within a priority bracket: higher effective speed first; reversed under Trick Room; Tailwind x2, paralysis x0.5, Scarf x1.5.
+Inference (infer.js / live.js): each observation multiplies candidate weights by its likelihood under Showdown's arithmetic, marginalised over item hypotheses weighted by usage; role-aware priors; 90% credible intervals; rebuilt battles use the posterior spread.

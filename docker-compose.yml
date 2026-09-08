@@ -5,7 +5,7 @@ x-bot: &bot
   restart: unless-stopped
   stop_grace_period: 30m     # docker stop -> SIGTERM -> bot finishes open battles instead of forfeiting
   volumes:
-    - ./replays/own:/app/replays/own
+    - ./replays:/app/replays          # own/ ladder games, selfplay/, and the public dump (unpacked on first start)
     - ./manager:/app/manager          # A/B state, assignment, hand-written challengers in manager/queue/
     - ./models:/app/models            # behaviour.json / sets.json refreshed from own games
     - ./:/app/teams_out               # generated team_chal_*.json land in /app; copied here by the manager
@@ -31,6 +31,8 @@ services:
       SPRT_MIN: "60"
       SPRT_MAX: "400"
       REFRESH_GAMES: "50"
+      CRAWL: "1"               # each refresh crawls the public archive for CRAWL_MINUTES, resumable
+      CRAWL_MINUTES: "20"
       GAMES: "300"
       CONCURRENT: "5"          # per account; ~3 s/decision serialised -> ~15 s worst case vs the 45 s timer
       SEARCH: "1"              # expectimax over the rebuilt battle; "0" = plan rules

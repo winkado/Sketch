@@ -11,6 +11,10 @@
 const {Battle, Teams, Dex} = require(require('./ps.js'));
 const S = require('./sim.js');
 const {sampleTeam} = require('./sets.js');
+const {StatBelief, statValue, boosted} = require('./infer.js');
+const fs = require('fs');
+const BP_ITEM = {'Life Orb': {mods: [[5324, 4096]]}, 'Expert Belt': {mods: [[4915, 4096]], seOnly: true}, 'Muscle Band': {bpMods: [[4505, 4096]], phys: true}, 'Wise Glasses': {bpMods: [[4505, 4096]], spec: true}};
+const TYPE_ITEMS = new Set(['Charcoal','Mystic Water','Magnet','Miracle Seed','Never-Melt Ice','Black Belt','Poison Barb','Soft Sand','Sharp Beak','Twisted Spoon','Silver Powder','Hard Stone','Spell Tag','Dragon Fang','Black Glasses','Metal Coat','Silk Scarf','Fairy Feather']);
 const D = Dex.mod('champions');
 const FORMAT = S.FORMAT;
 
@@ -30,7 +34,61 @@ class LiveState {
     this.tr = false; this.trTurn = 0;
     this.side = {p1: {}, p2: {}};          // side conditions -> start turn
     this.sampled = null;                   // current sampled opponent team (resampled when a reveal contradicts it)
+    this.belief = {};                      // opp species -> StatBelief (inferred stat points / nature)
+    this.ctx = {move: null, crit: false, turnMoves: []};   // per-line context for damage attribution / speed order
     this.rng = Math.random;
+  }
+  beliefFor(species) { const base = D.species.get(species); if (!base.exists) return null; return this.belief[species] ??= new StatBelief(base.baseStats); }
+  ourSet(species) { return this.myTeam.find(m => m.name === species || m.name.replace(/-Mega.*$/, '') === species.replace(/-Mega.*$/, '')); }
+  ourStat(species, key, stage = 0, rec = null) {
+    const set = this.ourSet(species); if (!set) return null;
+    // pre-Mega, our stats are the BASE forme's (the record's species tells us which forme is on the field)
+    const megaNow = rec ? /-Mega/.test(rec.species) : /-Mega/.test(species);
+    const sp = D.species.get(megaNow ? set.name : set.name.replace(/-Mega.*$/, ''));
+    const nat = D.natures.get(set.nature); const n = nat.plus === key ? 1 : nat.minus === key ? -1 : 0;
+    return boosted(statValue(sp.baseStats[key], (set.evs || {})[key] || 0, n, key === 'hp'), stage);
+  }
+  ourTypes(species, rec = null) { const set = this.ourSet(species); if (!set) return []; const megaNow = rec ? /-Mega/.test(rec.species) : /-Mega/.test(species); return D.species.get(megaNow ? set.name : set.name.replace(/-Mega.*$/, '')).types; }
+  weatherMult(moveType) { const w = this.weather || ''; if (/Sunny/.test(w)) return moveType === 'Fire' ? 1.5 : moveType === 'Water' ? 0.5 : 1; if (/Rain/.test(w)) return moveType === 'Water' ? 1.5 : moveType === 'Fire' ? 0.5 : 1; return 1; }
+  // ---- observation: a move just did `damage` (exact) to our mon, or changed their mon from pctBefore to pctAfter
+  onDamage(attRec, attSide, move, tgtRec, tgtSide, exactDamage, pctBefore, pctAfter, fainted) {
+    const mv = D.moves.get(move); if (!mv.exists || mv.category === 'Status' || !mv.basePower || mv.basePowerCallback || mv.multihit || mv.damage) return;
+    const phys = mv.category === 'Physical';
+    const attTypes = attSide === this.mySide ? this.ourTypes(attRec.species, attRec) : D.species.get(attRec.species).types;
+    const tgtTypes = tgtSide === this.mySide ? this.ourTypes(tgtRec.species, tgtRec) : D.species.get(tgtRec.species).types;
+    if (!D.getImmunity(mv.type, tgtTypes)) return;
+    const typeMod = D.getEffectiveness(mv.type, tgtTypes);
+    const m = {spread: this.ctx.spread, crit: this.ctx.crit, stab: attTypes.includes(mv.type), typeMod, burn: attRec.status === 'brn' && phys && attRec.ability !== 'Guts', weather: this.weatherMult(mv.type), mods: [], bpMods: []};
+    if (this.ctx.helpingHand) m.bpMods.push([6144, 4096]);
+    const tgtSideConds = this.side[tgtSide] || {}; if ((phys && tgtSideConds['Reflect']) || (!phys && tgtSideConds['Light Screen']) || tgtSideConds['Aurora Veil']) m.mods.push([2732, 4096]);
+    const atkKey = phys ? 'atk' : 'spa', defKey = phys ? 'def' : 'spd';
+    if (tgtSide === this.mySide && attSide === this.oppSide && exactDamage > 0) {
+      // THEIR attack into OUR exact HP -> constrain their attacking stat (item hypotheses unless revealed)
+      const B = this.beliefFor(attRec.species); if (!B) return;
+      const ourD = this.ourStat(tgtRec.species, defKey, (tgtRec.boosts || {})[defKey] || 0, tgtRec); if (!ourD) return;
+      m.atkStage = (attRec.boosts || {})[atkKey] || 0;
+      let hyps;
+      const item = attRec.item;
+      if (item && BP_ITEM[item] && (!BP_ITEM[item].seOnly || typeMod > 0) && !(BP_ITEM[item].phys && !phys) && !(BP_ITEM[item].spec && phys)) hyps = [BP_ITEM[item]];
+      else if (item && TYPE_ITEMS.has(item)) hyps = [{bpMods: [[4915, 4096]]}];   // assume it matches the move type; harmless if not
+      else if (item === '' || (item && !BP_ITEM[item] && !TYPE_ITEMS.has(item))) hyps = [{}];
+      else { let lo = 0.25; try { const SETS = JSON.parse(fs.readFileSync(require('path').join(__dirname, 'models', 'sets.json'), 'utf8')); const s = SETS[attRec.species] || SETS[attRec.species.replace(/-Mega.*$/, '')]; const li = s && s.items.find(([i]) => i === 'Life Orb'); if (li) lo = Math.min(0.8, Math.max(0.05, li[1])); } catch {}
+        hyps = [{p: (1 - lo) * 0.5}, {p: (1 - lo) * 0.5, bpMods: [[4915, 4096]]}, {p: lo, mods: [[5324, 4096]]}]; }   // none / type item / Life Orb, weighted by usage
+      if (attRec.ability === 'Sheer Force' && mv.secondary) hyps = hyps.map(h => ({...h, bpMods: [...(h.bpMods || []), [5325, 4096]]}));
+      if (/Huge Power|Pure Power/.test(attRec.ability || '') && phys) hyps = hyps.map(h => ({...h, mods: [...(h.mods || []), [8192, 4096]]}));
+      const rem = B.observeOutgoing(atkKey, ourD, mv.basePower, exactDamage, m, hyps);
+      if (process.env.INFER_DEBUG) console.error(`  dmg obs: ${attRec.species} ${move} -> our ${tgtRec.species} ${exactDamage} (D=${ourD}) removed ${rem}, left ${B.c[atkKey].length}`);
+    } else if (attSide === this.mySide && tgtSide === this.oppSide && pctBefore != null) {
+      // OUR exact attack into THEIR percent -> joint constraint on their HP and defending stat
+      const B = this.beliefFor(tgtRec.species); if (!B) return;
+      const set = this.ourSet(attRec.species); if (!set) return;
+      const ourA = this.ourStat(attRec.species, atkKey, (attRec.boosts || {})[atkKey] || 0, attRec);
+      if (set.item && BP_ITEM[set.item] && (!BP_ITEM[set.item].seOnly || typeMod > 0)) { m.mods.push(...(BP_ITEM[set.item].mods || [])); m.bpMods.push(...(BP_ITEM[set.item].bpMods || [])); }
+      else if (set.item && TYPE_ITEMS.has(set.item) && D.items.get(set.item).onBasePower) m.bpMods.push([4915, 4096]);
+      if (set.ability === 'Sheer Force' && mv.secondary) m.bpMods.push([5325, 4096]);
+      m.defStage = (tgtRec.boosts || {})[defKey] || 0;
+      B.observeIncoming(defKey, ourA, mv.basePower, pctBefore, pctAfter, m, fainted);
+    }
   }
   rec(side, nick, species) {
     const r = this.mons[side][nick] ??= {nick, species: species || nick, hp: 1, status: '', boosts: {}, fainted: false, item: undefined, ability: undefined, moves: new Set(), ppUsed: {}, volatiles: {}, lastMove: null, activeTurns: 0, mega: false};
@@ -39,7 +97,9 @@ class LiveState {
   }
   feed(line) {
     const parts = line.split('|'); const tag = parts[1];
-    if (tag === 'turn') { this.turn = +parts[2]; for (const s of ['p1', 'p2']) for (const r of this.active[s]) if (r) r.activeTurns++; return; }
+    if (tag === 'turn') { this.finishTurnSpeed(); this.turn = +parts[2]; this.ctx = {move: null, crit: false, turnMoves: []}; for (const s of ['p1', 'p2']) for (const r of this.active[s]) if (r) r.activeTurns++; return; }
+    if (tag === '-crit') { this.ctx.crit = true; return; }
+    if (tag === '-singleturn') { const m = pos(parts[2]); if (m && /Helping Hand/.test(parts[3] || '')) this.rec(m[1], m[3]).helpingHand = true; return; }
     if (tag === 'poke') { if (parts[2] === this.oppSide) this.oppSix.push(parts[3].split(',')[0].replace(/-\*$/, '')); return; }
     if (tag === 'switch' || tag === 'drag' || tag === 'replace') {
       const m = pos(parts[2]); if (!m) return;
@@ -56,14 +116,23 @@ class LiveState {
     if (tag === 'detailschange') { const m = pos(parts[2]); if (m) { const r = this.rec(m[1], m[3]); r.species = parts[3].split(',')[0]; if (/-Mega/.test(r.species)) r.mega = true; } return; }
     if (tag === '-damage' || tag === '-heal' || tag === '-sethp') {
       const m = pos(parts[2]); if (!m) return; const r = this.rec(m[1], m[3]);
+      const prevHp = r.hp, prevAbs = r.hpAbs ? r.hpAbs[0] : null;
       const hb = hpFrom(parts[3]); if (hb) { r.hp = hb[1] ? hb[0] / hb[1] : 0; if (hb[1] > 100) r.hpAbs = hb; }
+      // attribute this damage to the current move (not residual/item/recoil damage: those carry [from])
+      if (tag === '-damage' && this.ctx.move && !parts.some(p => /^\[from\]/.test(p)) && this.ctx.move.side !== m[1]) {
+        const cm = this.ctx.move;
+        if (m[1] === this.mySide && prevAbs != null && r.hpAbs) this.onDamage(cm.rec, cm.side, cm.name, r, m[1], prevAbs - r.hpAbs[0], null, null, false);
+        else if (m[1] === this.oppSide && hb && hb[1] <= 100) this.onDamage(cm.rec, cm.side, cm.name, r, m[1], 0, Math.round(prevHp * 100), hb[0], false);
+      }
       const status = (parts[3] || '').split(' ')[1]; if (status && status !== 'fnt') r.status = status;
       const from = parts.find(p => /^\[from\] item: /.test(p)); if (from) { const who = parts.find(p => p.startsWith('[of] ')); const tgt = who ? pos(who.slice(5)) : m; if (tgt) this.rec(tgt[1], tgt[3]).item = from.replace('[from] item: ', ''); }
       return;
     }
-    if (tag === 'faint') { const m = pos(parts[2]); if (m) { const r = this.rec(m[1], m[3]); r.hp = 0; r.fainted = true; r.status = ''; /* stays in its slot until replaced, as the engine does */ } return; }
+    if (tag === 'faint') { const m = pos(parts[2]); if (m) { const r = this.rec(m[1], m[3]); if (m[1] === this.oppSide && this.ctx.move && this.ctx.move.side === this.mySide && r.hp > 0) this.onDamage(this.ctx.move.rec, this.ctx.move.side, this.ctx.move.name, r, m[1], 0, Math.round(r.hp * 100), 0, true); r.hp = 0; r.fainted = true; r.status = ''; } return; }
     if (tag === 'move') {
       const m = pos(parts[2]); if (!m) return; const r = this.rec(m[1], m[3]);
+      this.ctx.move = {rec: r, side: m[1], name: parts[3], spread: line.includes('[spread]')}; this.ctx.crit = false; this.ctx.helpingHand = !!r.helpingHand; r.helpingHand = false;
+      const mvd = D.moves.get(parts[3]); this.ctx.turnMoves.push({rec: r, side: m[1], priority: mvd.exists ? mvd.priority : 0, turn: this.turn, tr: this.tr, ourTW: !!(this.side[this.mySide] || {})['Tailwind'], theirTW: !!(this.side[this.oppSide] || {})['Tailwind']});
       r.moves.add(parts[3]); r.ppUsed[parts[3]] = (r.ppUsed[parts[3]] || 0) + 1; r.lastMove = parts[3];
       r.volatiles.stall = /^(Protect|Detect|Spiky Shield|Baneful Bunker|King's Shield|Wide Guard|Quick Guard)$/.test(parts[3]) && !line.includes('[still]');
       const fa = parts.find(p => /^\[from\] ability: /.test(p)); if (fa) r.ability = fa.replace('[from] ability: ', '');
@@ -86,6 +155,30 @@ class LiveState {
     if (tag === '-fieldstart') { const f = (parts[2] || '').replace(/^move: /, ''); if (/Trick Room/.test(f)) { this.tr = true; this.trTurn = this.turn; } else if (/Terrain/.test(f)) { this.terrain = f; this.terrainTurn = this.turn; } return; }
     if (tag === '-fieldend') { const f = (parts[2] || '').replace(/^move: /, ''); if (/Trick Room/.test(f)) this.tr = false; else if (/Terrain/.test(f)) this.terrain = null; return; }
     if (tag === '-sidestart' || tag === '-sideend') { const side = (parts[2] || '').slice(0, 2); const cond = (parts[3] || '').replace(/^move: /, ''); if (tag === '-sidestart') this.side[side][cond] = this.turn; else delete this.side[side][cond]; return; }
+  }
+
+  finishTurnSpeed() {
+    const mv = this.ctx.turnMoves.filter(x => x.priority === 0 && x.rec && !x.rec.fainted);
+    for (let i = 0; i + 1 < mv.length; i++) {
+      const a = mv[i], b = mv[i + 1]; if (a.side === b.side) continue;
+      const ours = a.side === this.mySide ? a : b, theirs = a.side === this.mySide ? b : a; const theyFirst = theirs === a;
+      const ourSpe = this.ourStat(ours.rec.species, 'spe', (ours.rec.boosts || {}).spe || 0, ours.rec); if (!ourSpe) continue;
+      const ourEff = Math.trunc(ourSpe * (ours.ourTW ? 2 : 1) * (ours.rec.status === 'par' ? 0.5 : 1));
+      const B = this.beliefFor(theirs.rec.species); if (!B) continue;
+      const opts = {trickRoom: a.tr, tailwind: theirs.theirTW, par: theirs.rec.status === 'par', stage: (theirs.rec.boosts || {}).spe || 0, scarf: theirs.rec.item === 'Choice Scarf'};
+      const removed = B.observeSpeed(ourEff, theyFirst, opts);
+      if (process.env.INFER_DEBUG) console.error(`  speed obs T${a.turn}: ${theirs.rec.species} ${theyFirst ? 'before' : 'after'} our ${ours.rec.species}(${ourEff}) tr=${opts.trickRoom} -> removed ${removed}, left ${B.c.spe.length}`);
+      if (removed === 0 && !opts.scarf && theirs.rec.item == null) { const before = B.c.spe.length; B.observeSpeed(ourEff, theyFirst, {...opts, scarf: true}); if (B.c.spe.length < before) theirs.rec.scarfLikely = true; }
+    }
+  }
+  inferredSpread(species) {
+    const B = this.belief[species] || this.belief[species.replace(/-Mega.*$/, '')]; if (!B || B.observations === 0) return null;
+    const s = B.summary(); const evs = {}; let tot = 0; for (const k of ['hp', 'atk', 'def', 'spa', 'spd', 'spe']) { evs[k] = s[k].pts; tot += s[k].pts; }
+    if (tot > 66) { const scale = 66 / tot; for (const k in evs) evs[k] = Math.floor(evs[k] * scale); }
+    const plus = ['atk', 'spa', 'spe', 'def', 'spd'].find(k => s[k].nat > 0), minus = ['atk', 'spa', 'spe', 'def', 'spd'].find(k => s[k].nat < 0 && k !== plus);
+    const NAT = {'atk|spa': 'Adamant', 'atk|spe': 'Brave', 'spa|atk': 'Modest', 'spa|spe': 'Quiet', 'spe|atk': 'Jolly', 'spe|spa': 'Timid', 'def|atk': 'Bold', 'def|spa': 'Impish', 'spd|atk': 'Calm', 'spd|spa': 'Careful', 'def|spe': 'Relaxed', 'spd|spe': 'Sassy', 'atk|def': 'Lonely', 'spa|def': 'Mild', 'spe|def': 'Hasty', 'spa|spd': 'Rash', 'atk|spd': 'Naughty', 'spe|spd': 'Naive'};
+    const nature = plus ? (NAT[plus + '|' + (minus || (plus === 'spe' ? 'spa' : 'spe'))] || 'Serious') : 'Serious';
+    return {evs, nature, observations: B.observations, summary: s};
   }
 
   // ---- opponent team: sampled sets, forced consistent with reveals; resampled only when a reveal contradicts
@@ -133,7 +226,7 @@ class LiveState {
   // ---- build the Battle for this decision
   
   build(request) {
-    const opp = this.ensureSampled();
+    const opp = this.ensureSampled().map(set => { const inf = this.inferredSpread(set.name); return inf ? {...set, evs: inf.evs, nature: inf.nature} : set; });
     const b = new Battle({formatid: FORMAT, seed: [1, 2, 3, 4]});
     // local seats: we are ALWAYS p1 locally (sim/arena assume it); map server sides accordingly
     const local = (serverSide) => this.mySide === 'p1' ? serverSide : (serverSide === 'p1' ? 'p2' : 'p1');

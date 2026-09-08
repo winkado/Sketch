@@ -62,8 +62,11 @@ function feats(ctx, move) {
 let W = null;
 function load() { if (W === null) { try { W = JSON.parse(fs.readFileSync(MODEL, 'utf8')).w; } catch { W = null; } } return W; }
 function predictDist(ctx) {
-  const w = load(); const cands = candidates(ctx.species, [...ctx.revealed]);
+  const cands = candidates(ctx.species, [...ctx.revealed]);
   if (!cands.length) return {};
+  // neural policy first (trained by train.py), linear model as fallback
+  try { const NN = require('./nn.js'); if (NN.hasPolicy()) { const pr = NN.policyProbs(cands.map(c => feats(ctx, c))); if (pr) { const out = {}; cands.forEach((c, i) => out[c] = pr[i]); return out; } } } catch {}
+  const w = load();
   if (!w) { const out = {}; for (const c of cands) out[c] = 1 / cands.length; return out; }
   const z = cands.map(c => { const x = feats(ctx, c); let s = 0; for (let i = 0; i < w.length; i++) s += w[i] * (x[i] || 0); return s; });
   const m = Math.max(...z); const e = z.map(v => Math.exp(v - m)); const tot = e.reduce((a, b) => a + b, 0);

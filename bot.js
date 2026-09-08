@@ -221,6 +221,7 @@ function decide(id, b, req) {
       if (USE_SEARCH && !planTurn) { const sc = A.searchChoice(battle, req, 'antiTR', Math.random, b.policy || {}); if (sc) { choice = sc; via = 'search'; } else choice = S.ourChoice(req, st, opts); }
       else { choice = S.ourChoice(req, st, opts); via = planTurn ? 'plan' : 'rules'; }
       if (process.env.VERBOSE) console.log(`  [${room(id)}] T${b.live.turn} ${via} ${Date.now() - t0}ms -> ${choice}`);
+      if (process.env.EXPLAIN) { try { const ev = require('./value.js').explainEval(battle); if (ev) console.log(`    assessment: P(win)=${ev.p}  ${ev.top.map(([n, c]) => `${n} ${c > 0 ? '+' : ''}${c}`).join('  ')}`); } catch {} }
       if (process.env.EXPLAIN && via === 'search' && A.lastExplain) {
         const e = A.lastExplain;
         console.log(`    opp sample: ${e.oppSample.join(' | ')}`);

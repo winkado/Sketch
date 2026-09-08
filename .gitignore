@@ -1,9 +1,13 @@
 pokemon-showdown/
 replays/*
 !replays/own/
+!replays/selfplay/
 node_modules/
 __pycache__/
 *.out.json
 
 .env
 replays/selfplay/
+replays/all/
+data/moves.jsonl
+data/value.jsonl

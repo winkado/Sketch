@@ -129,3 +129,10 @@ Sims screen; the ladder promotes. A 90% cell against the sim population is a cla
 function and prints, per turn, what you clicked vs what the bot would have clicked (plan / plan-default / position / read).
 Disagreements are the to-do list. First run (Mawile game): bot Protected through both double-KO turns -> fixed by pruning
 Instruct-into-Protecting-partner and Trick-Room-while-room-up from the candidate set and making the plan line the default.
+
+## 13. Neural pipeline (runs unattended in the container on every refresh)
+crawl.js (all doubles/VGC formats since Gen 5, resumable, polite) -> dataset.js (features computed in JS, the single source of game
+logic) -> train.py (numpy MLPs: policy over candidate moves, value over states) -> models/policy_nn.json / value_nn.json, used by
+predict2.js and value.js via nn.js, hot-reloaded. Each network is saved only if it beats the incumbent on held-out real data.
+First numbers (6.6k games): policy 51.9/91.6 top-1/top-3 vs 43.5/85.6 frequency prior; value 81.7% vs 76.5% linear.
+Older formats teach behaviour (Protect/switch/target); only Champions data feeds sets, numbers and the value net.

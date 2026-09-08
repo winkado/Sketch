@@ -110,11 +110,13 @@ const tvd = (p, q) => { const ks = new Set([...Object.keys(p), ...Object.keys(q)
 const inc = (o, k, by = 1) => { o[k] = (o[k] || 0) + by; };
 
 function mine() {
-  const files = fs.readdirSync(DIR).filter(f => f.endsWith('.json'));
+  // every replay directory: public dump, our own ladder games, self-play (excluded from behaviour: it's not human)
+  const dirs = [DIR, path.join(DIR, 'own')].filter(d => fs.existsSync(d));
+  const files = dirs.flatMap(d => fs.readdirSync(d).filter(f => f.endsWith('.json')).map(f => path.join(d, f)));
   const species = {}, players = {}, byElo = {}; let games = 0; const gamesByElo = {}; const SETS = {}; const SWITCH = {};
   for (const f of files) {
-    let rep; try { rep = JSON.parse(fs.readFileSync(path.join(DIR, f), 'utf8')); } catch { continue; }
-    if (!rep.log) continue;
+    let rep; try { rep = JSON.parse(fs.readFileSync(f, 'utf8')); } catch { continue; }
+    if (!rep.log || rep.selfplay) continue;
     const st = parseReplay(rep.log, rep.players || []);
     games++;
     const eb = eloBucket(rep.rating); inc(gamesByElo, eb);
@@ -201,7 +203,9 @@ function mine() {
   out.switchModel = {};
   const rate = (p) => p[1] >= 20 ? +(p[0] / p[1]).toFixed(3) : null;
   for (const [sp, SW] of Object.entries(SWITCH)) out.switchModel[sp] = {hi: rate(SW.hi), mid: rate(SW.mid), lo: rate(SW.lo), turn1: rate(SW.turn1), underTR: rate(SW.underTR), n: SW.hi[1] + SW.mid[1] + SW.lo[1]};
-  fs.writeFileSync(path.join(OUT, 'behaviour.json'), JSON.stringify(out, null, 1));
+  const prevPath = path.join(OUT, 'behaviour.json');
+  try { const prev = JSON.parse(fs.readFileSync(prevPath, 'utf8')); if (prev.games && games < prev.games * 0.9) { console.error(`REFUSING to overwrite behaviour.json: ${games} games < existing ${prev.games}. Are the public replays present?`); return; } } catch {}
+  fs.writeFileSync(prevPath, JSON.stringify(out, null, 1));
   // sets.json: per-species revealed move / item / ability frequencies + co-occurrence, for sampling full opposing sets
   const sets = {};
   for (const [sp, S2] of Object.entries(SETS)) {
