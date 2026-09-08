@@ -123,6 +123,25 @@ function stepHeuristics(b, oppPolicy, p1kind, rng = Math.random) {
   return acted;
 }
 
+// ------------------------------------------------ zero-sum matrix game solver (regret matching, CFR+ style)
+function solveMatrix(M, iters = 600) {
+  const R = M.length; if (!R) return null; const Cn = M[0].length; if (!Cn) return null;
+  let rowReg = new Array(R).fill(0), colReg = new Array(Cn).fill(0), rowSum = new Array(R).fill(0), colSum = new Array(Cn).fill(0);
+  const norm = (reg, n) => { const pos = reg.map(r => Math.max(0, r)); const t = pos.reduce((a, b) => a + b, 0); return t > 0 ? pos.map(p => p / t) : new Array(n).fill(1 / n); };
+  for (let it = 0; it < iters; it++) {
+    const p = norm(rowReg, R), q = norm(colReg, Cn);
+    const rowU = M.map(row => row.reduce((s, v, j) => s + v * q[j], 0));           // our utility per row vs their mix
+    const colU = new Array(Cn).fill(0).map((_, j) => M.reduce((s, row, i) => s + row[j] * p[i], 0)); // their (negated) per column
+    const u = rowU.reduce((s, v, i) => s + v * p[i], 0);
+    for (let i = 0; i < R; i++) rowReg[i] = Math.max(0, rowReg[i] + rowU[i] - u);
+    for (let j = 0; j < Cn; j++) colReg[j] = Math.max(0, colReg[j] + (u - colU[j]));
+    for (let i = 0; i < R; i++) rowSum[i] += p[i]; for (let j = 0; j < Cn; j++) colSum[j] += q[j];
+  }
+  const row = rowSum.map(v => v / iters), col = colSum.map(v => v / iters);
+  const value = M.reduce((s, r, i) => s + row[i] * r.reduce((t, v, j) => t + v * col[j], 0), 0);
+  return {row, col, value};
+}
+
 // ------------------------------------------------ the search policy for P1
 function searchChoice(b, req, oppPolicy, rng, policy = {}) {
   reqBattle = b;
@@ -154,6 +173,7 @@ function searchChoice(b, req, oppPolicy, rng, policy = {}) {
     }
     return {c, v};
   }).sort((x, y) => y.v - x.v).slice(0, Mx);
+  const matrix = []; // rows: our screened candidates, cols: opponent replies (oppList)
   for (const {c} of screened) {
     let total = 0, n = 0; const perOpp = [];
     for (const o of oppList) { let ot = 0, on = 0; for (let s = 0; s < SEEDSx; s++) {
@@ -162,6 +182,7 @@ function searchChoice(b, req, oppPolicy, rng, policy = {}) {
       ch(cb, 'p1', c); ch(cb, 'p2', o);
       const pv = playout(cb, oppPolicy, ROLLx); total += pv; n++; ot += pv; on++;
     } perOpp.push(ot / on); }
+    matrix.push(perOpp);
     // ROBUST in [0,1]: 0 = pure expectation (take the coin flip), 1 = pure worst case (never enter a mind game)
     const robust = robustX;
     const v = (1 - robust) * (total / n) + robust * Math.min(...perOpp);
@@ -180,6 +201,16 @@ function searchChoice(b, req, oppPolicy, rng, policy = {}) {
     if (planLine && /Instruct|Eruption|Earth Power|Body Press|Ice Fang|Rock Slide|Gigaton Hammer|Psychic|Shadow Ball|Drain Punch|Ice Punch|Thunderbolt|Dragon Pulse|Solar Beam|Earthquake/.test(heur) && !(best.mean - planLine.mean >= 0.08 && best.worst >= planLine.worst - 0.03)) best = {c: planLine.c, v: planLine.v, via: 'plan-default'};
   }
   if (false) {}
+  // ---- matrix-game solve (the simultaneous-move analogue of a minimax node): regret matching to a zero-sum Nash mix
+  const nash = solveMatrix(matrix);
+  const nashW = policy.NASH != null ? +policy.NASH : +(process.env.NASH || 0.5);   // 1 = play the equilibrium, 0 = play the opponent model
+  if (nash && explain.length === matrix.length) {
+    // value of each of our rows against the opponent's equilibrium column mix, blended with its model-expected value
+    for (let i = 0; i < matrix.length; i++) { let ve = 0; for (let j = 0; j < matrix[i].length; j++) ve += matrix[i][j] * nash.col[j]; explain[i].nash = +ve.toFixed(3); explain[i].blend = +((1 - nashW) * explain[i].mean + nashW * ve).toFixed(3); }
+    const byBlend = [...explain].sort((x, y) => y.blend - x.blend)[0];
+    best = {c: byBlend.c, v: byBlend.blend, via: 'nash-blend'};
+    module.exports.lastNash = {value: +nash.value.toFixed(3), ourMix: screened.map((s, i) => [s.c, +nash.row[i].toFixed(2)]).filter(x => x[1] > 0.05), theirMix: oppList.map((o, j) => [o, +nash.col[j].toFixed(2)]).filter(x => x[1] > 0.05)};
+  }
   explain.sort((x, y) => y.v - x.v);
   // exploration (self-play only): with probability EPS choose uniformly among lines within MARGIN of the best
   const eps = policy.EPS != null ? +policy.EPS : +(process.env.EPS || 0), margin = +(process.env.EXPLORE_MARGIN || 0.08);

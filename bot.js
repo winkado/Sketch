@@ -136,11 +136,12 @@ function search() {
   currentFile = nextTeamFile(); current = loadTeam(currentFile); team = current.team; packed = current.packed;
   send(`|/utm ${packed}`);
   for (const f of FORMATS) send(`|/search ${f}`);
-  console.log(`searching ${FORMATS.join(' + ')} (active ${activeGames}/${CONCURRENT}, finished ${games}/${MAX_GAMES})`);
+  console.log(`${new Date().toISOString()} searching ${FORMATS.join(' + ')} (active ${activeGames}/${CONCURRENT}, finished ${games}/${MAX_GAMES}, team ${currentFile})`);
 }
 function onUpdateSearch(json) {
   let j; try { j = JSON.parse(json); } catch { return; }
-  searching = !!(j.searching && j.searching.length); if (!searching) searchStartedAt = 0;
+  const was = searching; searching = !!(j.searching && j.searching.length); if (!searching) searchStartedAt = 0;
+  if (process.env.VERBOSE && was !== searching) console.log(`  ${new Date().toISOString()} server: searching=${searching} games=${j.games ? Object.keys(j.games).length : 0}`);
   activeGames = j.games ? Object.keys(j.games).length : 0;
   // leave any game room we are not tracking as a live battle (dead Bo3 lobbies, stale rooms after reconnect)
   if (j.games) for (const r of Object.keys(j.games)) {
@@ -224,7 +225,8 @@ function decide(id, b, req) {
         const e = A.lastExplain;
         console.log(`    opp sample: ${e.oppSample.join(' | ')}`);
         console.log(`    opp replies considered: ${e.oppReplies.join('  ||  ')}`);
-        for (const x of e.considered) console.log(`    ${x.v.toFixed(3)} (mean ${x.mean} worst ${x.worst})  ${x.c}${x.c === e.heuristicPick ? '   <- rules would pick this' : ''}`);
+        for (const x of e.considered) console.log(`    ${x.v.toFixed(3)} (mean ${x.mean} worst ${x.worst}${x.nash != null ? ' nash ' + x.nash : ''})  ${x.c}${x.c === e.heuristicPick ? '   <- plan line' : ''}`);
+        if (A.lastNash) console.log(`    equilibrium value ${A.lastNash.value} | our mix ${JSON.stringify(A.lastNash.ourMix)} | their mix ${JSON.stringify(A.lastNash.theirMix)}`);
       }
     } else choice = S.ourChoice(req, b.st, opts);
   } catch (e) { console.log('  live/search error, falling back:', e.message); try { choice = S.ourChoice(req, b.st, opts); } catch (e2) { choice = 'default'; } }
